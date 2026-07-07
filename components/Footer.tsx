@@ -35,6 +35,21 @@ export default function Footer() {
           </p>
           <ul className="mt-3 space-y-2">
             <li>
+              <Link href="/asesor-virtual" className="text-sm text-white/80 hover:text-white">
+                Asesor Virtual
+              </Link>
+            </li>
+            <li>
+              <Link href="/historias" className="text-sm text-white/80 hover:text-white">
+                Historias
+              </Link>
+            </li>
+            <li>
+              <Link href="/profesionales" className="text-sm text-white/80 hover:text-white">
+                Profesionales de la salud
+              </Link>
+            </li>
+            <li>
               <Link href="/aviso-de-privacidad" className="text-sm text-white/80 hover:text-white">
                 Aviso de privacidad
               </Link>
