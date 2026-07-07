@@ -40,6 +40,16 @@ export default function Footer() {
               </Link>
             </li>
             <li>
+              <Link href="/derma-finder" className="text-sm text-white/80 hover:text-white">
+                Derma Finder
+              </Link>
+            </li>
+            <li>
+              <Link href="/reto-28-dias" className="text-sm text-white/80 hover:text-white">
+                Reto 28 días
+              </Link>
+            </li>
+            <li>
               <Link href="/historias" className="text-sm text-white/80 hover:text-white">
                 Historias
               </Link>

@@ -81,6 +81,54 @@ export default function Home() {
         </div>
       </section>
 
+      {/* Herramientas */}
+      <section className="bg-cream">
+        <div className="mx-auto max-w-6xl px-4 py-16 sm:px-6">
+          <h2 className="font-display text-3xl leading-snug sm:text-4xl">
+            <span className="font-extrabold">Más que un catálogo.</span>{" "}
+            <span className="font-light">Herramientas que te orientan</span>
+          </h2>
+          <div className="mt-8 grid gap-4 sm:grid-cols-2 lg:grid-cols-4">
+            {[
+              {
+                href: "/asesor-virtual",
+                title: "Asesor Virtual",
+                desc: "Tu rutina orientativa en 2 minutos, guiada paso a paso.",
+              },
+              {
+                href: "/herramientas/test-de-piel",
+                title: "Test de tipo de piel",
+                desc: "¿Seca, mixta, grasa o sensible? Descúbrelo en 5 preguntas.",
+              },
+              {
+                href: "/herramientas/calculadora-rutina",
+                title: "Calculadora de rutina",
+                desc: "Ordena tus productos, mañana y noche, sin adivinar.",
+              },
+              {
+                href: "/derma-finder",
+                title: "Derma Finder",
+                desc: "Dermatólogos y clínicas aliadas cerca de ti.",
+              },
+            ].map((t) => (
+              <Link
+                key={t.href}
+                href={t.href}
+                className="group rounded-card border border-sand bg-white p-5 transition-shadow hover:shadow-lg"
+              >
+                <h3 className="font-display text-lg font-bold group-hover:text-brand">
+                  {t.title}
+                </h3>
+                <p className="mt-2 text-sm leading-relaxed text-ink-soft">{t.desc}</p>
+                <span className="mt-3 inline-block text-sm font-semibold text-brand">
+                  Probar →
+                </span>
+              </Link>
+            ))}
+          </div>
+        </div>
+      </section>
+
       {/* Banner de campaña */}
       <section className="bg-gradient-to-r from-accent-dark to-accent text-white">
         <div className="mx-auto flex max-w-6xl flex-col items-start gap-6 px-4 py-14 sm:px-6 md:flex-row md:items-center md:justify-between">
@@ -97,7 +145,7 @@ export default function Home() {
             </p>
           </div>
           <Link
-            href="/historias"
+            href="/reto-28-dias"
             className="shrink-0 rounded-full bg-white px-7 py-3 text-sm font-bold tracking-wider text-accent-dark transition-colors hover:bg-cream"
           >
             CONOCE MÁS

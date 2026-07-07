@@ -201,6 +201,13 @@ export default function AdvisorFlow() {
             </div>
           </div>
 
+          <p className="mt-6 text-ink-soft">
+            ¿Prefieres una valoración profesional?{" "}
+            <Link href="/derma-finder" className="font-semibold text-brand hover:underline">
+              Busca un dermatólogo cerca de ti →
+            </Link>
+          </p>
+
           <div className="mt-10 rounded-card border border-sand bg-white p-6">
             <h3 className="font-display text-xl font-semibold">
               Recibe tu rutina por correo

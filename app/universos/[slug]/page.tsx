@@ -4,6 +4,7 @@ import { UNIVERSES, FAQS, getUniverse, productsByUniverse } from "@/lib/data";
 import ProductCard from "@/components/ProductCard";
 import Disclaimer from "@/components/Disclaimer";
 import Accordion, { AccordionItem } from "@/components/Accordion";
+import TrackView from "@/components/TrackView";
 
 export function generateStaticParams() {
   return UNIVERSES.map((u) => ({ slug: u.slug }));
@@ -59,6 +60,7 @@ export default async function UniversePage({
 
   return (
     <>
+      <TrackView event="view_category" params={{ category: universe.slug }} />
       <section className={universe.tone}>
         <div className="mx-auto max-w-6xl px-4 py-12 sm:px-6 md:py-16">
           <span className="text-4xl">{universe.emoji}</span>

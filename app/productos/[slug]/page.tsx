@@ -5,6 +5,7 @@ import BuyButtons from "@/components/BuyButtons";
 import Disclaimer from "@/components/Disclaimer";
 import ProductCard from "@/components/ProductCard";
 import Accordion, { AccordionItem } from "@/components/Accordion";
+import TrackView from "@/components/TrackView";
 
 export function generateStaticParams() {
   return PRODUCTS.map((p) => ({ slug: p.slug }));
@@ -36,6 +37,7 @@ export default async function ProductPage({
 
   return (
     <>
+      <TrackView event="view_product" params={{ product: product.slug }} />
       <div className="mx-auto max-w-6xl px-4 py-10 sm:px-6">
         <nav className="text-sm text-ink-soft">
           <Link href="/" className="hover:text-brand">Inicio</Link>
