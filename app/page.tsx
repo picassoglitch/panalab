@@ -1,96 +1,76 @@
 import Link from "next/link";
-import { UNIVERSES, PRODUCTS } from "@/lib/data";
+import { UNIVERSES, PRODUCTS, STORIES } from "@/lib/data";
 import ProductCard from "@/components/ProductCard";
-import BuyButtons from "@/components/BuyButtons";
+import USPBar from "@/components/USPBar";
+import Newsletter from "@/components/Newsletter";
 import Disclaimer from "@/components/Disclaimer";
 
-const TOOLS = [
-  {
-    title: "Asesor Virtual",
-    desc: "Responde unas preguntas y recibe una rutina orientativa con productos Panalab.",
-  },
-  {
-    title: "Test de tipo de piel",
-    desc: "Descubre en 2 minutos si tu piel es seca, mixta, grasa o sensible.",
-  },
-  {
-    title: "Calculadora de rutina",
-    desc: "Ordena tus productos en el orden correcto, mañana y noche.",
-  },
-  {
-    title: "Derma Finder",
-    desc: "Encuentra dermatólogos y clínicas aliadas cerca de ti.",
-  },
+const COMMUNITY_BENEFITS = [
+  "Recibe tu rutina personalizada por correo",
+  "Entérate primero de lanzamientos y novedades",
+  "Consejos de expertos en lenguaje claro",
+  "Acceso a retos, sorteos y experiencias",
 ];
 
 export default function Home() {
-  const featured = PRODUCTS.slice(0, 4);
+  const carousel = PRODUCTS.filter((p) => !p.provisional).concat(
+    PRODUCTS.filter((p) => p.provisional)
+  );
 
   return (
     <>
-      <section className="bg-brand-light">
-        <div className="mx-auto grid max-w-6xl items-center gap-10 px-4 py-16 sm:px-6 md:grid-cols-2 md:py-24">
-          <div>
-            <p className="text-sm font-medium uppercase tracking-widest text-brand">
-              Panalab México
-            </p>
-            <h1 className="mt-4 font-display text-4xl font-semibold leading-tight text-ink sm:text-5xl lg:text-6xl">
-              Historias que tu piel quiere contar
-            </h1>
-            <p className="mt-5 max-w-md text-lg leading-relaxed text-ink-soft">
-              Ciencia traducida a lenguaje cotidiano. Encuentra información
-              clara, rutinas útiles y productos para cada momento de tu piel y
-              tu cabello.
-            </p>
-            <div className="mt-8 flex flex-col gap-3 sm:flex-row">
-              <Link
-                href="/herramientas"
-                className="rounded-full bg-brand px-6 py-3 text-center font-medium text-white transition-colors hover:bg-brand-dark"
-              >
-                Probar el Asesor Virtual
-              </Link>
-              <Link
-                href="/donde-comprar"
-                className="rounded-full border-2 border-brand px-6 py-3 text-center font-medium text-brand transition-colors hover:bg-brand hover:text-white"
-              >
-                Dónde comprar
-              </Link>
-            </div>
-          </div>
-          <div className="grid grid-cols-2 gap-3 sm:grid-cols-3 md:grid-cols-2">
-            {UNIVERSES.slice(0, 4).map((u) => (
-              <Link
-                key={u.slug}
-                href={`/universos/${u.slug}`}
-                className={`flex flex-col items-start justify-between rounded-2xl p-5 transition-transform hover:-translate-y-1 ${u.tone}`}
-              >
-                <span className="text-3xl">{u.emoji}</span>
-                <span className="mt-6 font-display text-lg font-semibold leading-tight">
-                  {u.nav}
-                </span>
-              </Link>
-            ))}
+      {/* Hero full-bleed */}
+      <section className="relative overflow-hidden bg-gradient-to-br from-brand-dark via-brand to-[#1a8a80] text-white">
+        <div
+          className="pointer-events-none absolute inset-0 opacity-20"
+          style={{
+            backgroundImage:
+              "radial-gradient(circle at 80% 20%, rgba(255,255,255,.35), transparent 45%), radial-gradient(circle at 90% 80%, rgba(232,137,107,.4), transparent 40%)",
+          }}
+        />
+        <div className="relative mx-auto flex min-h-[70vh] max-w-6xl flex-col justify-center px-4 py-20 sm:px-6">
+          <p className="text-xs font-bold tracking-[0.25em] text-white/80">
+            PANALAB MÉXICO
+          </p>
+          <h1 className="mt-4 max-w-2xl font-display text-4xl font-extrabold leading-tight sm:text-5xl lg:text-6xl">
+            Historias que tu piel quiere contar
+          </h1>
+          <p className="mt-5 max-w-md text-lg leading-relaxed text-white/85">
+            Ciencia traducida a lenguaje cotidiano, para acompañarte antes,
+            durante y después del tratamiento.
+          </p>
+          <div className="mt-8 flex flex-col gap-3 sm:flex-row">
+            <Link
+              href="/asesor-virtual"
+              className="rounded-full bg-white px-7 py-3 text-center text-sm font-bold tracking-wider text-brand transition-colors hover:bg-cream"
+            >
+              PROBAR EL ASESOR VIRTUAL
+            </Link>
+            <Link
+              href="/donde-comprar"
+              className="rounded-full border-2 border-white px-7 py-3 text-center text-sm font-bold tracking-wider text-white transition-colors hover:bg-white hover:text-brand"
+            >
+              DÓNDE COMPRAR
+            </Link>
           </div>
         </div>
       </section>
 
+      {/* Categorías / universos */}
       <section className="mx-auto max-w-6xl px-4 py-16 sm:px-6">
-        <h2 className="font-display text-3xl font-semibold sm:text-4xl">
-          Entra por lo que necesitas
+        <h2 className="font-display text-3xl leading-snug sm:text-4xl">
+          <span className="font-extrabold">Cuidar tu piel es entenderla.</span>{" "}
+          <span className="font-light">Entra por lo que necesitas hoy</span>
         </h2>
-        <p className="mt-3 max-w-2xl text-ink-soft">
-          No navegues por producto: navega por tu necesidad. Cada universo
-          reúne información, rutinas y productos para un mismo problema.
-        </p>
         <div className="mt-8 grid gap-4 sm:grid-cols-2 lg:grid-cols-5">
           {UNIVERSES.map((u) => (
             <Link
               key={u.slug}
               href={`/universos/${u.slug}`}
-              className={`group rounded-2xl p-5 transition-shadow hover:shadow-lg ${u.tone}`}
+              className={`group rounded-card p-5 transition-shadow hover:shadow-lg ${u.tone}`}
             >
               <span className="text-3xl">{u.emoji}</span>
-              <h3 className="mt-4 font-display text-lg font-semibold group-hover:text-brand">
+              <h3 className="mt-4 font-display text-lg font-bold group-hover:text-brand">
                 {u.nav}
               </h3>
               <p className="mt-2 line-clamp-3 text-sm leading-relaxed text-ink-soft">
@@ -101,69 +81,122 @@ export default function Home() {
         </div>
       </section>
 
-      <section className="bg-white">
-        <div className="mx-auto max-w-6xl px-4 py-16 sm:px-6">
-          <h2 className="font-display text-3xl font-semibold sm:text-4xl">
-            Herramientas útiles
+      {/* Banner de campaña */}
+      <section className="bg-gradient-to-r from-accent-dark to-accent text-white">
+        <div className="mx-auto flex max-w-6xl flex-col items-start gap-6 px-4 py-14 sm:px-6 md:flex-row md:items-center md:justify-between">
+          <div>
+            <p className="text-xs font-bold tracking-[0.25em] text-white/80">
+              MUY PRONTO
+            </p>
+            <h2 className="mt-2 font-display text-3xl font-extrabold sm:text-4xl">
+              Reto 28 días · Tu mejor piel
+            </h2>
+            <p className="mt-2 max-w-xl text-white/90">
+              Regístrate, recibe tu rutina sugerida y comparte tu avance. Con
+              recordatorios, logros y sorteos de kits Panalab.
+            </p>
+          </div>
+          <Link
+            href="/historias"
+            className="shrink-0 rounded-full bg-white px-7 py-3 text-sm font-bold tracking-wider text-accent-dark transition-colors hover:bg-cream"
+          >
+            CONOCE MÁS
+          </Link>
+        </div>
+      </section>
+
+      {/* Carrusel de productos */}
+      <section className="py-16">
+        <div className="mx-auto max-w-6xl px-4 sm:px-6">
+          <h2 className="font-display text-3xl leading-snug sm:text-4xl">
+            <span className="font-extrabold">Ciencia que se entiende.</span>{" "}
+            <span className="font-light">Productos para cada historia</span>
           </h2>
           <p className="mt-3 max-w-2xl text-ink-soft">
-            Más que un catálogo: herramientas que te ayudan a orientarte, sin
-            sustituir a tu médico.
+            El portafolio Panalab organizado por universos: capilar, piel
+            sensible, acné, fotoprotección y antioxidantes.
           </p>
-          <div className="mt-8 grid gap-4 sm:grid-cols-2 lg:grid-cols-4">
-            {TOOLS.map((t) => (
-              <div key={t.title} className="rounded-2xl border border-sand bg-cream p-5">
-                <span className="rounded-full bg-accent/15 px-3 py-1 text-xs font-medium text-accent-dark">
-                  Próximamente
-                </span>
-                <h3 className="mt-4 font-display text-lg font-semibold">{t.title}</h3>
-                <p className="mt-2 text-sm leading-relaxed text-ink-soft">{t.desc}</p>
+        </div>
+        <div className="mx-auto mt-8 max-w-6xl overflow-x-auto px-4 pb-4 sm:px-6">
+          <div className="flex w-max gap-4">
+            {carousel.map((p) => (
+              <div key={p.slug} className="w-64 shrink-0">
+                <ProductCard product={p} />
               </div>
             ))}
           </div>
-          <div className="mt-6">
-            <Disclaimer />
-          </div>
         </div>
-      </section>
-
-      <section className="mx-auto max-w-6xl px-4 py-16 sm:px-6">
-        <div className="flex flex-wrap items-end justify-between gap-4">
-          <div>
-            <h2 className="font-display text-3xl font-semibold sm:text-4xl">
-              Productos destacados
-            </h2>
-            <p className="mt-3 max-w-2xl text-ink-soft">
-              Una muestra del portafolio Panalab por universo.
-            </p>
-          </div>
-          <Link href="/donde-comprar" className="text-sm font-medium text-brand hover:underline">
-            Ver dónde comprar →
+        <div className="mx-auto max-w-6xl px-4 sm:px-6">
+          <Link
+            href="/donde-comprar"
+            className="text-sm font-semibold text-brand hover:underline"
+          >
+            Ver todo y dónde comprar →
           </Link>
         </div>
-        <div className="mt-8 grid gap-4 sm:grid-cols-2 lg:grid-cols-4">
-          {featured.map((p) => (
-            <ProductCard key={p.slug} product={p} />
-          ))}
-        </div>
       </section>
 
-      <section className="bg-brand">
-        <div className="mx-auto max-w-6xl px-4 py-16 text-center sm:px-6">
-          <h2 className="font-display text-3xl font-semibold text-white sm:text-4xl">
-            ¿Lista tu rutina? Encuentra Panalab cerca de ti
-          </h2>
-          <p className="mx-auto mt-3 max-w-xl text-white/80">
-            Compra en tu marketplace favorito o en farmacias y distribuidores
-            autorizados.
-          </p>
-          <div className="mt-8 flex justify-center">
-            <div className="[&_a]:border-white [&_a]:text-white [&_a:hover]:bg-white [&_a:hover]:text-brand">
-              <BuyButtons />
+      {/* Comunidad */}
+      <section className="bg-brand-light">
+        <div className="mx-auto grid max-w-6xl items-center gap-10 px-4 py-16 sm:px-6 md:grid-cols-2">
+          <div>
+            <h2 className="font-display text-3xl font-extrabold sm:text-4xl">
+              La comunidad de los que viven en su mejor piel
+            </h2>
+            <ul className="mt-6 space-y-3">
+              {COMMUNITY_BENEFITS.map((b) => (
+                <li key={b} className="flex items-start gap-3">
+                  <span className="mt-1 flex h-5 w-5 shrink-0 items-center justify-center rounded-full bg-brand text-[10px] font-bold text-white">
+                    ✓
+                  </span>
+                  <span className="leading-relaxed">{b}</span>
+                </li>
+              ))}
+            </ul>
+          </div>
+          <div id="newsletter" className="rounded-card border border-sand bg-white p-6 sm:p-8">
+            <h3 className="font-display text-xl font-bold">
+              No te pierdas nada
+            </h3>
+            <p className="mt-1 text-sm text-ink-soft">
+              Novedades, consejos de expertos y retos, directo a tu correo.
+            </p>
+            <div className="mt-4">
+              <Newsletter source="home" />
             </div>
           </div>
         </div>
       </section>
+
+      {/* Testimonios */}
+      <section className="mx-auto max-w-6xl px-4 py-16 sm:px-6">
+        <h2 className="font-display text-3xl leading-snug sm:text-4xl">
+          <span className="font-extrabold">Historias reales.</span>{" "}
+          <span className="font-light">Piel real</span>
+        </h2>
+        <div className="mt-8 grid gap-4 md:grid-cols-3">
+          {STORIES.map((s) => (
+            <figure key={s.author} className={`rounded-card p-6 ${s.tone}`}>
+              <blockquote className="font-display text-lg font-semibold leading-relaxed">
+                “{s.quote}”
+              </blockquote>
+              <figcaption className="mt-4 text-sm font-medium text-ink-soft">
+                {s.author}
+              </figcaption>
+            </figure>
+          ))}
+        </div>
+        <div className="mt-6">
+          <Link href="/historias" className="text-sm font-semibold text-brand hover:underline">
+            Ver todas las historias →
+          </Link>
+        </div>
+        <div className="mt-8">
+          <Disclaimer />
+        </div>
+      </section>
+
+      <USPBar />
     </>
   );
 }
