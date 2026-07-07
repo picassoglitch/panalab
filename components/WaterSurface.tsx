@@ -16,7 +16,8 @@ export default function WaterSurface() {
     if (!ctx) return;
 
     const COLS = 160;
-    const DAMP = 0.984;
+    // Amortiguación alta: una sola onda limpia que se expande y muere pronto
+    const DAMP = 0.94;
     let rows = 100;
     let w = 0;
     let h = 0;
@@ -59,29 +60,8 @@ export default function WaterSurface() {
       }
     };
 
-    const onDown = (e: PointerEvent) => drop(e.clientX, e.clientY, 2.6, 3);
-
-    // Onda al posar el cursor sobre elementos interactivos
-    let hovered: Element | null = null;
-    const onOver = (e: PointerEvent) => {
-      const target = (e.target as Element | null)?.closest(
-        "a, button, summary, input, [role='button']"
-      );
-      if (!target || target === hovered) {
-        if (!target) hovered = null;
-        return;
-      }
-      hovered = target;
-      const r = target.getBoundingClientRect();
-      drop(r.left + r.width / 2, r.top + r.height / 2, 1.4, 2.6);
-    };
+    const onDown = (e: PointerEvent) => drop(e.clientX, e.clientY, 2.2, 3);
     window.addEventListener("pointerdown", onDown, { passive: true });
-    window.addEventListener("pointerover", onOver, { passive: true });
-
-    // Gotas ambientales ocasionales: el estanque nunca está del todo quieto
-    const ambient = window.setInterval(() => {
-      if (!document.hidden) drop(Math.random() * w, Math.random() * h, 0.7, 2.2);
-    }, 4000);
 
     let raf = 0;
     const step = () => {
@@ -138,10 +118,8 @@ export default function WaterSurface() {
 
     return () => {
       cancelAnimationFrame(raf);
-      clearInterval(ambient);
       window.removeEventListener("resize", resize);
       window.removeEventListener("pointerdown", onDown);
-      window.removeEventListener("pointerover", onOver);
       document.removeEventListener("visibilitychange", onVisibility);
     };
   }, []);
