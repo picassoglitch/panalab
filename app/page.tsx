@@ -4,6 +4,8 @@ import ProductCard from "@/components/ProductCard";
 import USPBar from "@/components/USPBar";
 import Newsletter from "@/components/Newsletter";
 import Disclaimer from "@/components/Disclaimer";
+import OceanWaves from "@/components/OceanWaves";
+import WaveDivider from "@/components/WaveDivider";
 
 const COMMUNITY_BENEFITS = [
   "Recibe tu rutina personalizada por correo",
@@ -28,7 +30,7 @@ export default function Home() {
               "radial-gradient(circle at 80% 20%, rgba(255,255,255,.35), transparent 45%), radial-gradient(circle at 90% 80%, rgba(232,137,107,.4), transparent 40%)",
           }}
         />
-        <div className="relative mx-auto flex min-h-[70vh] max-w-6xl flex-col justify-center px-4 py-20 sm:px-6">
+        <div className="relative mx-auto flex min-h-[70vh] max-w-6xl flex-col justify-center px-4 pb-32 pt-20 sm:px-6">
           <p className="text-xs font-bold tracking-[0.25em] text-white/80">
             PANALAB MÉXICO
           </p>
@@ -42,18 +44,19 @@ export default function Home() {
           <div className="mt-8 flex flex-col gap-3 sm:flex-row">
             <Link
               href="/asesor-virtual"
-              className="rounded-full bg-white px-7 py-3 text-center text-sm font-bold tracking-wider text-brand transition-colors hover:bg-cream"
+              className="wave-btn wave-btn-teal rounded-full bg-white px-7 py-3 text-center text-sm font-bold tracking-wider text-brand"
             >
               PROBAR EL ASESOR VIRTUAL
             </Link>
             <Link
               href="/donde-comprar"
-              className="rounded-full border-2 border-white px-7 py-3 text-center text-sm font-bold tracking-wider text-white transition-colors hover:bg-white hover:text-brand"
+              className="wave-btn wave-btn-white rounded-full border-2 border-white px-7 py-3 text-center text-sm font-bold tracking-wider text-white"
             >
               DÓNDE COMPRAR
             </Link>
           </div>
         </div>
+        <OceanWaves />
       </section>
 
       {/* Categorías / universos */}
@@ -80,6 +83,8 @@ export default function Home() {
           ))}
         </div>
       </section>
+
+      <WaveDivider fill="#f6f8f8" bg="#ffffff" />
 
       {/* Herramientas */}
       <section className="bg-cream">
@@ -146,7 +151,7 @@ export default function Home() {
           </div>
           <Link
             href="/reto-28-dias"
-            className="shrink-0 rounded-full bg-white px-7 py-3 text-sm font-bold tracking-wider text-accent-dark transition-colors hover:bg-cream"
+            className="wave-btn wave-btn-accent shrink-0 rounded-full bg-white px-7 py-3 text-sm font-bold tracking-wider text-accent-dark"
           >
             CONOCE MÁS
           </Link>
@@ -183,6 +188,8 @@ export default function Home() {
           </Link>
         </div>
       </section>
+
+      <WaveDivider fill="#e3f0ee" bg="#ffffff" />
 
       {/* Comunidad */}
       <section className="bg-brand-light">

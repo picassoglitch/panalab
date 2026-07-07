@@ -31,26 +31,26 @@ export default function Header() {
               <Link
                 key={u.slug}
                 href={`/universos/${u.slug}`}
-                className="text-sm text-ink transition-colors hover:text-brand"
+                className="wave-link text-sm text-ink transition-colors hover:text-brand"
               >
                 {u.nav}
               </Link>
             ))}
             <Link
               href="/herramientas"
-              className="text-sm text-ink transition-colors hover:text-brand"
+              className="wave-link text-sm text-ink transition-colors hover:text-brand"
             >
               Herramientas
             </Link>
             <Link
               href="/historias"
-              className="text-sm text-ink transition-colors hover:text-brand"
+              className="wave-link text-sm text-ink transition-colors hover:text-brand"
             >
               Historias
             </Link>
             <Link
               href="/donde-comprar"
-              className="rounded-full bg-brand px-5 py-2 text-xs font-bold tracking-wider text-white transition-colors hover:bg-brand-dark"
+              className="wave-btn wave-btn-deep rounded-full bg-brand px-5 py-2 text-xs font-bold tracking-wider text-white"
             >
               DÓNDE COMPRAR
             </Link>

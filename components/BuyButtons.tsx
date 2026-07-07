@@ -15,7 +15,7 @@ export default function BuyButtons({ product }: { product?: string }) {
           onClick={() =>
             track("click_where_to_buy", { channel: m.id, product: product ?? "general" })
           }
-          className="flex items-center justify-center rounded-full border-2 border-brand px-6 py-3 text-sm font-medium text-brand transition-colors hover:bg-brand hover:text-white"
+          className="wave-btn wave-btn-teal flex items-center justify-center rounded-full border-2 border-brand px-6 py-3 text-sm font-medium text-brand"
         >
           {m.name}
         </a>

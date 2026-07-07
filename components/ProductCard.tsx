@@ -7,7 +7,7 @@ export default function ProductCard({ product }: { product: Product }) {
   return (
     <Link
       href={`/productos/${product.slug}`}
-      className="group relative flex flex-col rounded-card border border-sand bg-white transition-shadow hover:shadow-lg"
+      className="sheen group relative flex flex-col rounded-card border border-sand bg-white transition-shadow hover:shadow-lg"
     >
       {product.badge && (
         <span

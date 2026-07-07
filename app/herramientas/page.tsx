@@ -1,6 +1,7 @@
 import type { Metadata } from "next";
 import Link from "next/link";
 import Disclaimer from "@/components/Disclaimer";
+import OceanWaves from "@/components/OceanWaves";
 
 export const metadata: Metadata = {
   title: "Herramientas",
@@ -44,8 +45,8 @@ const TOOLS = [
 export default function HerramientasPage() {
   return (
     <>
-      <section className="bg-brand-light">
-        <div className="mx-auto max-w-6xl px-4 py-14 sm:px-6 md:py-20">
+      <section className="relative bg-brand-light">
+        <div className="mx-auto max-w-6xl px-4 pb-28 pt-14 sm:px-6 md:pt-20">
           <h1 className="font-display text-4xl font-extrabold sm:text-5xl">
             Herramientas
           </h1>
@@ -54,6 +55,7 @@ export default function HerramientasPage() {
             sustituir a tu médico.
           </p>
         </div>
+        <OceanWaves />
       </section>
 
       <section className="mx-auto max-w-6xl px-4 py-14 sm:px-6">
@@ -71,7 +73,7 @@ export default function HerramientasPage() {
           </p>
           <Link
             href="/asesor-virtual"
-            className="mt-6 inline-block rounded-full bg-white px-7 py-3 text-sm font-bold tracking-wider text-brand transition-colors hover:bg-cream"
+            className="wave-btn wave-btn-accent mt-6 inline-block rounded-full bg-white px-7 py-3 text-sm font-bold tracking-wider text-brand"
           >
             EMPEZAR AHORA
           </Link>

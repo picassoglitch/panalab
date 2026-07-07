@@ -37,7 +37,7 @@ export default function Newsletter({ source = "newsletter" }: { source?: string 
         <button
           type="submit"
           disabled={!consent}
-          className="rounded-full bg-brand px-6 py-3 text-sm font-medium text-white transition-colors hover:bg-brand-dark disabled:cursor-not-allowed disabled:opacity-50"
+          className="wave-btn wave-btn-deep rounded-full bg-brand px-6 py-3 text-sm font-medium text-white disabled:cursor-not-allowed disabled:opacity-50"
         >
           Suscribirme
         </button>
