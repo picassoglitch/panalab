@@ -31,72 +31,82 @@ body {
 
 /* ===== Tema WAVE — olas como textura de lujo ===== */
 
-/* Botón líquido: una ola sube y llena el botón al hover */
+/* Botón ripple: el color se expande en círculo desde donde entra el cursor,
+   con un anillo eco que se desvanece — como una gota sobre el agua */
 .wave-btn {
   position: relative;
   overflow: hidden;
   isolation: isolate;
-  transition: color 0.45s ease, box-shadow 0.45s ease, transform 0.45s ease;
+  transition: color 0.4s ease, box-shadow 0.45s ease, transform 0.45s ease;
 }
-.wave-btn::before,
-.wave-btn::after {
+.wave-btn::before {
   content: "";
   position: absolute;
   z-index: -1;
-  left: -10%;
-  width: 120%;
-  height: 140%;
-  top: 100%;
-  background-repeat: repeat-x;
-  background-size: 90px 100%;
-  background-position: top left;
-  transition: transform 0.7s cubic-bezier(0.22, 1, 0.36, 1);
+  left: var(--rx, 50%);
+  top: var(--ry, 50%);
+  width: 280%;
+  aspect-ratio: 1;
+  border-radius: 50%;
+  transform: translate(-50%, -50%) scale(0);
+  transition: transform 0.65s cubic-bezier(0.22, 1, 0.36, 1);
   will-change: transform;
-}
-.wave-btn::after {
-  transition-duration: 0.95s;
-  opacity: 0.55;
-  background-position: top 0 left 45px;
 }
 .wave-btn:hover {
   transform: translateY(-1px);
   box-shadow: 0 10px 26px -12px rgba(11, 31, 36, 0.45);
 }
 .wave-btn:hover::before {
-  transform: translateY(-96%);
-  animation: btn-wave-x 1.9s linear infinite;
+  transform: translate(-50%, -50%) scale(1);
+}
+.wave-btn::after {
+  content: "";
+  position: absolute;
+  z-index: -1;
+  left: var(--rx, 50%);
+  top: var(--ry, 50%);
+  width: 14px;
+  aspect-ratio: 1;
+  border-radius: 50%;
+  border: 2px solid rgba(255, 255, 255, 0.6);
+  opacity: 0;
+  transform: translate(-50%, -50%) scale(1);
+  pointer-events: none;
 }
 .wave-btn:hover::after {
-  transform: translateY(-90%);
-  animation: btn-wave-x 2.7s linear infinite reverse;
+  animation: btn-ripple-ring 0.75s ease-out;
 }
-@keyframes btn-wave-x {
-  to {
-    background-position-x: 90px;
+@keyframes btn-ripple-ring {
+  0% {
+    opacity: 0.6;
+    transform: translate(-50%, -50%) scale(1);
+  }
+  100% {
+    opacity: 0;
+    transform: translate(-50%, -50%) scale(16);
   }
 }
 
-.wave-btn-teal::before,
-.wave-btn-teal::after {
-  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 120 140' preserveAspectRatio='none'%3E%3Cpath d='M0 14 Q 15 0 30 14 T 60 14 T 90 14 T 120 14 L 120 140 L 0 140 Z' fill='%230e6e66'/%3E%3C/svg%3E");
+.wave-btn-teal::before {
+  background: #0e6e66;
 }
 .wave-btn-teal:hover {
   color: #ffffff;
 }
-.wave-btn-deep::before,
-.wave-btn-deep::after {
-  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 120 140' preserveAspectRatio='none'%3E%3Cpath d='M0 14 Q 15 0 30 14 T 60 14 T 90 14 T 120 14 L 120 140 L 0 140 Z' fill='%230a4f4a'/%3E%3C/svg%3E");
+.wave-btn-deep::before {
+  background: #0a4f4a;
 }
-.wave-btn-white::before,
+.wave-btn-white::before {
+  background: #ffffff;
+}
 .wave-btn-white::after {
-  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 120 140' preserveAspectRatio='none'%3E%3Cpath d='M0 14 Q 15 0 30 14 T 60 14 T 90 14 T 120 14 L 120 140 L 0 140 Z' fill='%23ffffff'/%3E%3C/svg%3E");
+  border-color: rgba(14, 110, 102, 0.45);
 }
 .wave-btn-white:hover {
   color: var(--color-brand);
 }
-.wave-btn-accent::before,
-.wave-btn-accent::after {
-  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 120 140' preserveAspectRatio='none'%3E%3Cpath d='M0 14 Q 15 0 30 14 T 60 14 T 90 14 T 120 14 L 120 140 L 0 140 Z' fill='%23d4704f'/%3E%3C/svg%3E");
+.wave-btn-accent::before {
+  background: #d4704f;
 }
 .wave-btn-accent:hover {
   color: #ffffff;

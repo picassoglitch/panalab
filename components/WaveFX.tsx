@@ -33,5 +33,19 @@ export default function WaveFX() {
     return () => observer.disconnect();
   }, [pathname]);
 
+  // El ripple de los botones nace donde entra el cursor
+  useEffect(() => {
+    const onOver = (e: PointerEvent) => {
+      const btn = (e.target as Element | null)?.closest?.(".wave-btn") as HTMLElement | null;
+      if (!btn) return;
+      if (e.relatedTarget && btn.contains(e.relatedTarget as Node)) return;
+      const r = btn.getBoundingClientRect();
+      btn.style.setProperty("--rx", `${e.clientX - r.left}px`);
+      btn.style.setProperty("--ry", `${e.clientY - r.top}px`);
+    };
+    document.addEventListener("pointerover", onOver, { passive: true });
+    return () => document.removeEventListener("pointerover", onOver);
+  }, []);
+
   return null;
 }
