@@ -4,6 +4,7 @@ import { Raleway, Mulish } from "next/font/google";
 import Header from "@/components/Header";
 import Footer from "@/components/Footer";
 import WaveFX from "@/components/WaveFX";
+import WaterSurface from "@/components/WaterSurface";
 import "./globals.css";
 
 const GTM_ID = process.env.NEXT_PUBLIC_GTM_ID;
@@ -51,6 +52,7 @@ export default function RootLayout({
           </>
         )}
         <WaveFX />
+        <WaterSurface />
         <Header />
         <main>{children}</main>
         <Footer />
