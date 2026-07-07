@@ -5,6 +5,7 @@ import ProductCard from "@/components/ProductCard";
 import Disclaimer from "@/components/Disclaimer";
 import Accordion, { AccordionItem } from "@/components/Accordion";
 import TrackView from "@/components/TrackView";
+import OceanWaves from "@/components/OceanWaves";
 
 export function generateStaticParams() {
   return UNIVERSES.map((u) => ({ slug: u.slug }));
@@ -61,8 +62,8 @@ export default async function UniversePage({
   return (
     <>
       <TrackView event="view_category" params={{ category: universe.slug }} />
-      <section className={universe.tone}>
-        <div className="mx-auto max-w-6xl px-4 py-12 sm:px-6 md:py-16">
+      <section className={`relative ${universe.tone}`}>
+        <div className="mx-auto max-w-6xl px-4 pb-24 pt-12 sm:px-6 md:pt-16">
           <span className="text-4xl">{universe.emoji}</span>
           <h1 className="mt-4 font-display text-4xl font-extrabold sm:text-5xl">
             {universe.title}
@@ -81,6 +82,7 @@ export default async function UniversePage({
             ))}
           </div>
         </div>
+        <OceanWaves />
       </section>
 
       <section className="mx-auto max-w-6xl px-4 py-12 sm:px-6">
@@ -89,7 +91,7 @@ export default async function UniversePage({
         <div className="mt-10 flex flex-col gap-3 sm:flex-row">
           <Link
             href="/donde-comprar"
-            className="rounded-full bg-brand px-7 py-3 text-center text-sm font-bold tracking-wider text-white transition-colors hover:bg-brand-dark"
+            className="wave-btn wave-btn-deep rounded-full bg-brand px-7 py-3 text-center text-sm font-bold tracking-wider text-white"
           >
             DÓNDE COMPRAR
           </Link>
