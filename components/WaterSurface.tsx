@@ -59,16 +59,24 @@ export default function WaterSurface() {
       }
     };
 
-    let lastMove = 0;
     const onDown = (e: PointerEvent) => drop(e.clientX, e.clientY, 2.6, 3);
-    const onMove = (e: PointerEvent) => {
-      const now = performance.now();
-      if (now - lastMove < 45) return;
-      lastMove = now;
-      drop(e.clientX, e.clientY, 0.5, 1.7);
+
+    // Onda al posar el cursor sobre elementos interactivos
+    let hovered: Element | null = null;
+    const onOver = (e: PointerEvent) => {
+      const target = (e.target as Element | null)?.closest(
+        "a, button, summary, input, [role='button']"
+      );
+      if (!target || target === hovered) {
+        if (!target) hovered = null;
+        return;
+      }
+      hovered = target;
+      const r = target.getBoundingClientRect();
+      drop(r.left + r.width / 2, r.top + r.height / 2, 1.4, 2.6);
     };
     window.addEventListener("pointerdown", onDown, { passive: true });
-    window.addEventListener("pointermove", onMove, { passive: true });
+    window.addEventListener("pointerover", onOver, { passive: true });
 
     // Gotas ambientales ocasionales: el estanque nunca está del todo quieto
     const ambient = window.setInterval(() => {
@@ -133,7 +141,7 @@ export default function WaterSurface() {
       clearInterval(ambient);
       window.removeEventListener("resize", resize);
       window.removeEventListener("pointerdown", onDown);
-      window.removeEventListener("pointermove", onMove);
+      window.removeEventListener("pointerover", onOver);
       document.removeEventListener("visibilitychange", onVisibility);
     };
   }, []);
