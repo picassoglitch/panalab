@@ -44,7 +44,7 @@ export default function Home() {
           <div className="mt-8 flex flex-col gap-3 sm:flex-row">
             <Link
               href="/asesor-virtual"
-              className="wave-btn wave-btn-teal rounded-full bg-white px-7 py-3 text-center text-sm font-bold tracking-wider text-brand"
+              className="wave-btn wave-btn-brand rounded-full bg-white px-7 py-3 text-center text-sm font-bold tracking-wider text-brand"
             >
               PROBAR EL ASESOR VIRTUAL
             </Link>
@@ -84,7 +84,7 @@ export default function Home() {
         </div>
       </section>
 
-      <WaveDivider fill="#f6f8f8" bg="#ffffff" />
+      <WaveDivider fill="#f6f7f9" bg="#ffffff" />
 
       {/* Herramientas */}
       <section className="bg-cream">

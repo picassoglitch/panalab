@@ -40,7 +40,7 @@ export const UNIVERSES: Universe[] = [
       "Cuero cabelludo sensible",
     ],
     emoji: "💇",
-    tone: "bg-[#eef4ee]",
+    tone: "bg-[#e7eaf4]",
   },
   {
     slug: "piel-sensible",
@@ -403,6 +403,6 @@ export const STORIES: Story[] = [
     quote:
       "Ver menos cabello en la almohada cada mañana me devolvió una tranquilidad que no sabía que había perdido.",
     author: "Carla, 42 · Caída estacional",
-    tone: "bg-[#eef4ee]",
+    tone: "bg-[#e7eaf4]",
   },
 ];

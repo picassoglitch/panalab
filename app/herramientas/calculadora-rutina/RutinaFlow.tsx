@@ -321,7 +321,7 @@ export default function RutinaFlow() {
             </button>
             <button
               onClick={() => pickFocus("cabello")}
-              className="flex items-center gap-4 rounded-card bg-[#eef4ee] p-5 text-left transition-transform hover:-translate-y-0.5"
+              className="flex items-center gap-4 rounded-card bg-[#e7eaf4] p-5 text-left transition-transform hover:-translate-y-0.5"
             >
               <span className="text-3xl">💇</span>
               <span className="font-display text-lg font-semibold">Cabello</span>
