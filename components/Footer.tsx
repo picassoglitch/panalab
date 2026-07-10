@@ -77,7 +77,11 @@ export default function Footer() {
         </div>
       </div>
       <div className="border-t border-white/10 py-4 text-center text-xs text-white/40">
-        © 2026 Panalab México. Todos los derechos reservados.
+        <p>© 2026 Panalab México. Todos los derechos reservados.</p>
+        <p className="mt-1">
+          Sitio desarrollado por{" "}
+          <span className="font-semibold tracking-wide text-white/60">TheBroMedia</span>
+        </p>
       </div>
     </footer>
   );
