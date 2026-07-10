@@ -59,7 +59,7 @@ export default function HerramientasPage() {
       </section>
 
       <section className="mx-auto max-w-6xl px-4 py-14 sm:px-6">
-        <div className="rounded-card bg-gradient-to-br from-brand-dark to-brand p-8 text-white sm:p-10">
+        <div className="panalab-gradient rounded-card p-8 text-white sm:p-10">
           <span className="rounded-full bg-white/15 px-3 py-1 text-xs font-bold tracking-wider">
             EMPIEZA AQUÍ
           </span>

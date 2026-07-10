@@ -141,7 +141,7 @@ export default function Reto28DiasPage() {
 
       {/* Registro */}
       <section className="mx-auto max-w-6xl px-4 py-14 sm:px-6">
-        <div className="rounded-card bg-brand p-8 text-white sm:p-12">
+        <div className="panalab-gradient rounded-card p-8 text-white sm:p-12">
           <h2 className="font-display text-2xl font-semibold sm:text-3xl">
             Apúntate a la lista
           </h2>
