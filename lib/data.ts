@@ -3,6 +3,20 @@
 // Acné, sol y primeras arrugas quedan con fichas provisionales hasta que marketing confirme SKUs.
 // Descripciones y claims pendientes de validación médica/regulatoria antes de producción.
 
+export interface HeroSlide {
+  src: string;
+  alt: string;
+}
+
+// Banners de campaña del hero. El primero es "La ciencia que vive en tu piel".
+// Para agregar más, coloca la imagen en public/hero/ y añade su entrada aquí.
+export const HERO_SLIDES: HeroSlide[] = [
+  {
+    src: "/hero/la-ciencia-que-vive-en-tu-piel.webp",
+    alt: "La ciencia que vive en tu piel — Laboratorios Panalab",
+  },
+];
+
 export interface Universe {
   slug: string;
   nav: string;

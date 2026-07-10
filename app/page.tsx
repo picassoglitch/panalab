@@ -4,7 +4,7 @@ import ProductCard from "@/components/ProductCard";
 import USPBar from "@/components/USPBar";
 import Newsletter from "@/components/Newsletter";
 import Disclaimer from "@/components/Disclaimer";
-import OceanWaves from "@/components/OceanWaves";
+import HeroBanner from "@/components/HeroBanner";
 import WaveDivider from "@/components/WaveDivider";
 
 const COMMUNITY_BENEFITS = [
@@ -21,43 +21,8 @@ export default function Home() {
 
   return (
     <>
-      {/* Hero full-bleed */}
-      <section className="relative overflow-hidden bg-gradient-to-br from-brand-dark via-brand to-[#2a4a9e] text-white">
-        <div
-          className="pointer-events-none absolute inset-0 opacity-20"
-          style={{
-            backgroundImage:
-              "radial-gradient(circle at 80% 20%, rgba(255,255,255,.35), transparent 45%), radial-gradient(circle at 90% 80%, rgba(232,137,107,.4), transparent 40%)",
-          }}
-        />
-        <div className="relative mx-auto flex min-h-[70vh] max-w-6xl flex-col justify-center px-4 pb-32 pt-20 sm:px-6">
-          <p className="text-xs font-bold tracking-[0.25em] text-white/80">
-            PANALAB MÉXICO
-          </p>
-          <h1 className="mt-4 max-w-2xl font-display text-4xl font-extrabold leading-tight sm:text-5xl lg:text-6xl">
-            Historias que tu piel quiere contar
-          </h1>
-          <p className="mt-5 max-w-md text-lg leading-relaxed text-white/85">
-            Ciencia traducida a lenguaje cotidiano, para acompañarte antes,
-            durante y después del tratamiento.
-          </p>
-          <div className="mt-8 flex flex-col gap-3 sm:flex-row">
-            <Link
-              href="/asesor-virtual"
-              className="wave-btn wave-btn-brand rounded-full bg-white px-7 py-3 text-center text-sm font-bold tracking-wider text-brand"
-            >
-              PROBAR EL ASESOR VIRTUAL
-            </Link>
-            <Link
-              href="/donde-comprar"
-              className="wave-btn wave-btn-white rounded-full border-2 border-white px-7 py-3 text-center text-sm font-bold tracking-wider text-white"
-            >
-              DÓNDE COMPRAR
-            </Link>
-          </div>
-        </div>
-        <OceanWaves />
-      </section>
+      {/* Hero de banners de campaña */}
+      <HeroBanner />
 
       {/* Categorías / universos */}
       <section className="mx-auto max-w-6xl px-4 py-16 sm:px-6">
@@ -84,7 +49,7 @@ export default function Home() {
         </div>
       </section>
 
-      <WaveDivider fill="#f6f7f9" bg="#ffffff" />
+      <WaveDivider fill="#f1f1f3" bg="#ffffff" />
 
       {/* Herramientas */}
       <section className="bg-cream">
