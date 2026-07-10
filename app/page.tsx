@@ -22,7 +22,7 @@ export default function Home() {
   return (
     <>
       {/* Hero full-bleed */}
-      <section className="relative overflow-hidden bg-gradient-to-br from-brand-dark via-brand to-[#1a8a80] text-white">
+      <section className="relative overflow-hidden bg-gradient-to-br from-brand-dark via-brand to-[#2a4a9e] text-white">
         <div
           className="pointer-events-none absolute inset-0 opacity-20"
           style={{
@@ -189,7 +189,7 @@ export default function Home() {
         </div>
       </section>
 
-      <WaveDivider fill="#e3f0ee" bg="#ffffff" />
+      <WaveDivider fill="#e7eaf4" bg="#ffffff" />
 
       {/* Comunidad */}
       <section className="bg-brand-light">
