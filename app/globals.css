@@ -1,15 +1,21 @@
 @import "tailwindcss";
 
+/* Paleta 100% Panalab:
+   #001e62 Pantone 2758 C (logo) · #5b6770 Pantone 431 (logo)
+   #133782 azul web · #00a7dc cian web · #005380 azul profundo
+   #0a6f83 azul-verdoso del gradiente institucional de panalab.com */
 @theme {
   --color-brand: #001e62; /* Pantone 2758 C */
   --color-brand-dark: #001440;
   --color-brand-light: #e7eaf4;
+  --color-royal: #133782; /* azul primario panalab.com */
+  --color-petrol: #0a6f83; /* verde-azulado del gradiente Panalab */
   --color-ink: #10162e;
   --color-ink-soft: #5b6770; /* Pantone 431 */
-  --color-cream: #f6f7f9;
+  --color-cream: #f1f1f3; /* neutro panalab.com */
   --color-sand: #e4e7ee;
-  --color-accent: #e8896b;
-  --color-accent-dark: #d4704f;
+  --color-accent: #00a7dc; /* cian panalab.com */
+  --color-accent-dark: #005380;
   --radius-card: 2px;
 }
 
@@ -106,10 +112,33 @@ body {
   color: var(--color-brand);
 }
 .wave-btn-accent::before {
-  background: #d4704f;
+  background: #005380;
 }
 .wave-btn-accent:hover {
   color: #ffffff;
+}
+
+/* Gradiente institucional Panalab: azul marino que se difumina
+   hacia un verde-azulado tenue en la zona clara */
+.panalab-gradient {
+  background: linear-gradient(
+    115deg,
+    #001440 0%,
+    #001e62 38%,
+    #133782 66%,
+    #0a6f83 100%
+  );
+}
+
+/* Velo inferior del hero de imágenes: navy que se disuelve pasando
+   por el petrol tenue, para asentar los CTAs sobre la foto */
+.hero-scrim {
+  background: linear-gradient(
+    to top,
+    #001440 0%,
+    rgba(10, 111, 131, 0.28) 55%,
+    transparent 100%
+  );
 }
 
 /* Subrayado ondulado animado en enlaces de navegación */
