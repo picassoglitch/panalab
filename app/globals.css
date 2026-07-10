@@ -87,10 +87,10 @@ body {
   }
 }
 
-.wave-btn-teal::before {
+.wave-btn-brand::before {
   background: #001e62;
 }
-.wave-btn-teal:hover {
+.wave-btn-brand:hover {
   color: #ffffff;
 }
 .wave-btn-deep::before {
