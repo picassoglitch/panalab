@@ -6,9 +6,9 @@ export const SITE_URL = (
 
 export const SITE_NAME = "Panalab México";
 
-// El build usa trailingSlash, así que las URLs canónicas también lo llevan.
+// Sin trailingSlash (default de Next/Vercel): la raíz lleva "/" y el resto no,
+// para que las URLs del sitemap coincidan exactamente con las canónicas.
 export function absoluteUrl(path: string): string {
-  if (path === "/" || path === "") return `${SITE_URL}/`;
-  const clean = `/${path.replace(/^\/+/, "").replace(/\/+$/, "")}/`;
-  return `${SITE_URL}${clean}`;
+  if (path === "/" || path === "") return SITE_URL;
+  return `${SITE_URL}/${path.replace(/^\/+/, "").replace(/\/+$/, "")}`;
 }

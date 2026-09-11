@@ -20,38 +20,22 @@ You can start editing the page by modifying `app/page.tsx`. The page auto-update
 
 This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
 
-## Dominio y despliegue
+## Dominio
 
 El dominio de producción es **https://panalab.mx** y se configura en un solo
 lugar: `lib/site.ts`. De ahí lo toman el `metadataBase` del layout, las URLs
 canónicas de cada página, `app/sitemap.ts` y `app/robots.ts`.
 
-Para apuntar a otro dominio (staging, pruebas) basta con la variable de entorno:
+Para apuntar a otro dominio (staging, pruebas):
 
 ```bash
 NEXT_PUBLIC_SITE_URL=https://staging.panalab.mx npm run build
 ```
 
-### Publicar por FTP
-
-El hosting del cliente es compartido (Apache/cPanel, FTPS explícito en el
-puerto 21), sin servidor Node. Por eso `next.config.ts` usa `output: "export"`:
-el build genera un sitio estático en `out/`.
-
-```bash
-npm ci
-npm run build     # genera out/
-```
-
-Después se sube **el contenido de `out/`** (no la carpeta) a `public_html` en el
-servidor FTP. `trailingSlash: true` hace que cada ruta quede como
-`carpeta/index.html`, que Apache sirve sin reglas de rewrite.
-
-Las credenciales de FTP no viven en el repo: van en el cliente de FTP o en un
-secreto del pipeline de despliegue.
-
-La redirección de `panalab.com.mx` hacia `panalab.mx` la configura el cliente en
-su hosting/DNS, no este proyecto.
+El despliegue es en Vercel. Para conectar el dominio: en el proyecto de Vercel,
+Settings → Domains → agregar `panalab.mx`; Vercel muestra los registros DNS
+(un A para el ápice y un CNAME para `www`) que debe capturar quien administre
+el DNS del dominio. El CNAME es distinto para cada proyecto de Vercel.
 
 ## Learn More
 
