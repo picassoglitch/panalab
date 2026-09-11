@@ -48,13 +48,13 @@ const NEEDS: Record<Focus, { question: string; options: NeedOption[] }> = {
                 title: "Hidratación / emoliente",
                 detail:
                   "Aplica el emoliente con la piel aún ligeramente húmeda para sellar la hidratación.",
-                productSlug: "proavenal",
+                productSlug: "proavenal-crema-emoliente",
               },
               {
                 title: "Fotoprotección",
                 detail:
                   "Último paso de la mañana, incluso en días nublados. Reaplica cada 3 a 4 horas de exposición.",
-                productSlug: "fotoprotector-facial",
+                productSlug: "mineral-safe-fluido-sin-color",
               },
             ],
           },
@@ -68,16 +68,16 @@ const NEEDS: Record<Focus, { question: string; options: NeedOption[] }> = {
                   "Retira el fotoprotector y las impurezas del día con el mismo limpiador suave de la mañana.",
               },
               {
-                title: "Tratamiento renovador suave",
+                title: "Baño o ducha corta",
                 detail:
-                  "La noche es buen momento para activos renovadores que respetan el equilibrio de la piel.",
-                productSlug: "lactokey",
+                  "Agua tibia y poco tiempo. Un gel syndet limpia sin resecar; al salir, seca sin frotar para no irritar la piel.",
+                productSlug: "proavenal-gel-de-ducha",
               },
               {
                 title: "Hidratación / emoliente",
                 detail:
                   "Cierra la rutina con tu emoliente para reforzar la barrera cutánea mientras duermes.",
-                productSlug: "proavenal",
+                productSlug: "proavenal-crema-emoliente",
               },
             ],
           },
@@ -107,7 +107,7 @@ const NEEDS: Record<Focus, { question: string; options: NeedOption[] }> = {
                 title: "Fotoprotección",
                 detail:
                   "Elige un fotoprotector de acabado ligero; el sol puede oscurecer las marcas de acné.",
-                productSlug: "fotoprotector-facial",
+                productSlug: "mineral-safe-oil-control-sin-color",
               },
             ],
           },
@@ -152,7 +152,7 @@ const NEEDS: Record<Focus, { question: string; options: NeedOption[] }> = {
                 title: "Sérum antioxidante",
                 detail:
                   "Sobre piel limpia y seca, antes de la crema. Los antioxidantes complementan la defensa frente a sol y contaminación.",
-                productSlug: "serum-antioxidante",
+                productSlug: "vitanoin-c5-serum",
               },
               {
                 title: "Hidratación",
@@ -163,7 +163,7 @@ const NEEDS: Record<Focus, { question: string; options: NeedOption[] }> = {
                 title: "Fotoprotección",
                 detail:
                   "El hábito con mayor impacto contra el fotoenvejecimiento. Siempre el último paso de la mañana.",
-                productSlug: "fotoprotector-facial",
+                productSlug: "mineral-safe-fluido-sin-color",
               },
             ],
           },
@@ -185,7 +185,7 @@ const NEEDS: Record<Focus, { question: string; options: NeedOption[] }> = {
                 title: "Hidratación",
                 detail:
                   "Cierra con tu crema para acompañar la renovación nocturna de la piel. Como complemento diario, un antioxidante oral puede sumar desde adentro.",
-                productSlug: "antioxidante-oral",
+                productSlug: "leraco",
               },
             ],
           },

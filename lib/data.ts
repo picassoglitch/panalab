@@ -2,7 +2,7 @@
 // capilar (línea Aminoter, Complidermol) y piel sensible (Proavenal, Lactokey) usan nombres reales.
 // Orden de UNIVERSES = orden del menú superior: Acné · Capilar · Fotoprotección · Piel sensible · Primeras arrugas.
 // Acné usa la línea real Cuteral (crema, wash y tabletas) con fotos en public/productos/<slug>/.
-// Sol y primeras arrugas quedan con fichas provisionales hasta que marketing confirme SKUs.
+// Todos los universos usan nombres, presentaciones y fotos reales de producto.
 // Descripciones y claims pendientes de validación médica/regulatoria antes de producción.
 
 export interface HeroSlide {
@@ -40,7 +40,6 @@ export interface Product {
   science: string;
   legend?: string;
   badge?: "Best seller" | "Nuevo";
-  provisional?: boolean;
   // Rutas bajo public/. La primera es la foto principal (tarjeta y ficha).
   images?: string[];
 }
@@ -74,6 +73,41 @@ export const PRODUCT_LINES: ProductLine[] = [
     tagline: "El clásico del cuidado capilar",
     description:
       "Suplemento alimenticio en cápsulas con larga trayectoria en el portafolio capilar Panalab para el cuidado del cabello y las uñas.",
+  },
+  {
+    id: "MINERAL SAFE",
+    name: "Mineral Safe",
+    tagline: "Fotoprotección 100% mineral",
+    description:
+      "Línea Panalab de fotoprotección con filtro solar 100% mineral y protección de amplio espectro para uso diario. Incluye fluidos faciales de 50 mL y sticks de 10 g, con y sin color, libres de parabenos, siliconas, fragancia y derivados de petróleo.",
+  },
+  {
+    id: "PROAVENAL",
+    name: "Proavenal",
+    tagline: "Emoliencia diaria con avena",
+    description:
+      "Línea emoliente Panalab con avena sativa para la piel seca, sensible o con tendencia atópica. Reúne crema, gel de ducha, shampoo y desodorante para construir una rutina suave de uso diario.",
+  },
+  {
+    id: "LACTOKEY",
+    name: "Lactokey",
+    tagline: "Zinc y probióticos en sobres",
+    description:
+      "Suplemento alimenticio Panalab en sobres, con zinc y probióticos. Acompaña desde adentro las rutinas tópicas para piel sensible.",
+  },
+  {
+    id: "VITANOIN",
+    name: "Vitanoin",
+    tagline: "Sueros faciales por necesidad",
+    description:
+      "Línea de sueros faciales Panalab en presentación de 30 mL. Cada referencia trabaja con activos distintos: antioxidantes con vitamina C, control de manchas e imperfecciones, alivio del enrojecimiento y efecto tensor.",
+  },
+  {
+    id: "LERACO",
+    name: "Leraco",
+    tagline: "Antioxidantes desde adentro",
+    description:
+      "Suplemento alimenticio en cápsulas que acompaña la rutina de cuidado de la piel desde adentro, con antioxidantes, vitaminas y minerales.",
   },
 ];
 
@@ -157,8 +191,10 @@ export const PRODUCTS: Product[] = [
     badge: "Best seller",
     universe: "capilar",
     name: "Aminoter MAX Shampoo",
-    benefit: "Shampoo de reparación y protección capilar en microesferas. 150 mL.",
-    usage: "Aplicar sobre cabello húmedo, masajear suavemente el cuero cabelludo y enjuagar.",
+    benefit:
+      "Shampoo de reparación y protección capilar en microesferas. 150 mL.",
+    usage:
+      "Aplicar sobre cabello húmedo, masajear suavemente el cuero cabelludo y enjuagar.",
     ingredients: ["Complejo de aminoácidos", "Activos fortalecedores"],
     science:
       "Parte de la línea Aminoter, desarrollada para el cuidado integral del cabello debilitado o en etapas de caída.",
@@ -172,8 +208,10 @@ export const PRODUCTS: Product[] = [
     line: "AMINOTER",
     universe: "capilar",
     name: "Aminoter Mask",
-    benefit: "Mascarilla capilar de fórmula mejorada para nutrir y reparar el cabello debilitado. 140 g.",
-    usage: "Después del shampoo, aplicar de medios a puntas, dejar actuar unos minutos y enjuagar.",
+    benefit:
+      "Mascarilla capilar de fórmula mejorada para nutrir y reparar el cabello debilitado. 140 g.",
+    usage:
+      "Después del shampoo, aplicar de medios a puntas, dejar actuar unos minutos y enjuagar.",
     ingredients: ["Agentes acondicionadores", "Complejo nutritivo capilar"],
     science:
       "Complemento de la rutina Aminoter para devolver suavidad y fuerza a la fibra capilar.",
@@ -184,8 +222,10 @@ export const PRODUCTS: Product[] = [
     line: "AMINOTER",
     universe: "capilar",
     name: "Aminoter Reparage",
-    benefit: "Suero capilar reparador para cabello dañado por procesos químicos o calor.",
-    usage: "Aplicar según indicación del empaque sobre cabello limpio y húmedo.",
+    benefit:
+      "Suero capilar reparador para cabello dañado por procesos químicos o calor.",
+    usage:
+      "Aplicar según indicación del empaque sobre cabello limpio y húmedo.",
     ingredients: ["Complejo reparador", "Activos protectores"],
     science:
       "Formulado para ayudar a restaurar la estructura del cabello sometido a tintes, decoloración o herramientas de calor.",
@@ -196,9 +236,17 @@ export const PRODUCTS: Product[] = [
     line: "AMINOTER",
     universe: "capilar",
     name: "Aminoter cápsulas",
-    benefit: "Suplemento oral para acompañar el manejo de la caída de cabello desde adentro.",
+    benefit:
+      "Suplemento oral para acompañar el manejo de la caída de cabello desde adentro.",
     usage: "Tomar según indicación del empaque o de su médico.",
-    ingredients: ["L-Metionina", "L-Cistina", "Pantotenato de calcio", "Zinc", "Vitamina B6", "Biotina"],
+    ingredients: [
+      "L-Metionina",
+      "L-Cistina",
+      "Pantotenato de calcio",
+      "Zinc",
+      "Vitamina B6",
+      "Biotina",
+    ],
     science:
       "Suplemento de la línea capilar Panalab pensado para complementar rutinas tópicas en etapas de caída.",
     legend:
@@ -225,59 +273,42 @@ export const PRODUCTS: Product[] = [
     badge: "Best seller",
     universe: "capilar",
     name: "Complidermol 5α",
-    benefit: "Suplemento oral de referencia para el cuidado del cabello y las uñas.",
+    benefit:
+      "Suplemento oral de referencia para el cuidado del cabello y las uñas.",
     usage: "Tomar según indicación del empaque o de su médico.",
     ingredients: ["Complejo nutricional capilar"],
     science:
       "Uno de los productos con mayor trayectoria del portafolio capilar Panalab.",
-    legend:
-      "Este producto no es un medicamento. Consulte a su médico.",
+    legend: "Este producto no es un medicamento. Consulte a su médico.",
     images: ["/productos/complidermol/1.webp"],
-  },
-  {
-    slug: "proavenal",
-    line: "PROAVENAL",
-    badge: "Best seller",
-    universe: "piel-sensible",
-    name: "Proavenal",
-    benefit: "Línea emoliente para piel seca, sensible o con tendencia atópica.",
-    usage: "Aplicar 1 a 2 veces al día sobre piel limpia, idealmente después del baño.",
-    ingredients: ["Avena", "Agentes emolientes e hidratantes"],
-    science:
-      "Línea desarrollada para restaurar y proteger la barrera cutánea, apta para uso frecuente, incluida la piel de los niños.",
-    legend: "En caso de dermatitis diagnosticada, siga las indicaciones de su médico.",
-  },
-  {
-    slug: "lactokey",
-    line: "LACTOKEY",
-    universe: "piel-sensible",
-    name: "Lactokey",
-    benefit: "Hidratación y renovación suave para piel sensible o reseca.",
-    usage: "Aplicar sobre la piel limpia según indicación del empaque.",
-    ingredients: ["Activos hidratantes", "Agentes renovadores suaves"],
-    science:
-      "Línea Panalab enfocada en mantener la piel hidratada y flexible respetando su equilibrio natural.",
   },
   {
     slug: "cuteral-wash",
     line: "CUTERAL",
     universe: "acne",
     name: "Cuteral Wash Gel limpiador",
-    benefit: "Gel dermolimpiador probiótico para piel grasa y con tendencia acneica.",
-    usage: "Usar mañana y noche sobre rostro húmedo, masajear suavemente y enjuagar. Evitar el contorno de ojos.",
+    benefit:
+      "Gel dermolimpiador probiótico para piel grasa y con tendencia acneica.",
+    usage:
+      "Usar mañana y noche sobre rostro húmedo, masajear suavemente y enjuagar. Evitar el contorno de ojos.",
     ingredients: ["Probióticos", "Agentes limpiadores suaves"],
     science:
       "Primer paso de la rutina Cuteral: limpia el exceso de grasa sin agredir la barrera cutánea. Presentación de 240 mL con dosificador.",
     legend: "El acné moderado o severo requiere valoración dermatológica.",
-    images: ["/productos/cuteral-wash/1.webp", "/productos/cuteral-wash/2.webp"],
+    images: [
+      "/productos/cuteral-wash/1.webp",
+      "/productos/cuteral-wash/2.webp",
+    ],
   },
   {
     slug: "cuteral-crema-probiotic",
     line: "CUTERAL",
     universe: "acne",
     name: "Cuteral Crema Probiotic",
-    benefit: "Crema facial hidratante y matificante con protección solar FPS 30.",
-    usage: "Aplicar por la mañana sobre piel limpia como último paso de la rutina. Textura ligera de rápida absorción.",
+    benefit:
+      "Crema facial hidratante y matificante con protección solar FPS 30.",
+    usage:
+      "Aplicar por la mañana sobre piel limpia como último paso de la rutina. Textura ligera de rápida absorción.",
     ingredients: ["Probióticos", "FPS 30", "Activos matificantes"],
     science:
       "Hidrata y matifica la piel grasa mientras aporta fotoprotección diaria. Dermatológicamente probada. Presentación de 40 mL.",
@@ -292,64 +323,469 @@ export const PRODUCTS: Product[] = [
     line: "CUTERAL",
     universe: "acne",
     name: "Cuteral tabletas",
-    benefit: "Suplemento alimenticio con lisina, nicotinamida, zinc, cobre y ácido fólico.",
-    usage: "Tomar según indicación del empaque o de su médico. Caja con 30 tabletas de 388 mg.",
+    benefit:
+      "Suplemento alimenticio con lisina, nicotinamida, zinc, cobre y ácido fólico.",
+    usage:
+      "Tomar según indicación del empaque o de su médico. Caja con 30 tabletas de 388 mg.",
     ingredients: ["Lisina", "Nicotinamida", "Zinc", "Cobre", "Ácido fólico"],
     science:
       "Complemento oral de la rutina Cuteral: nutrientes que participan en el equilibrio de la piel con tendencia acneica.",
     legend:
       "Este producto no es un medicamento. Consulte a su médico antes de iniciar cualquier suplemento.",
-    images: ["/productos/cuteral-tabletas/1.webp", "/productos/cuteral-tabletas/2.webp"],
+    images: [
+      "/productos/cuteral-tabletas/1.webp",
+      "/productos/cuteral-tabletas/2.webp",
+    ],
   },
   {
-    slug: "fotoprotector-facial",
-    line: "PANALAB",
+    slug: "mineral-safe-oil-control-sin-color",
+    line: "MINERAL SAFE",
     universe: "fotoproteccion",
-    name: "Fotoprotector Facial FPS 50+",
-    benefit: "Protección diaria de amplio espectro con acabado ligero.",
-    usage: "Aplicar cada mañana como último paso de la rutina; reaplicar cada 3 a 4 horas de exposición.",
-    ingredients: ["Filtros UVA/UVB amplio espectro", "Vitamina E"],
+    name: "Mineral Safe Oil Control FPS 50 Sin color",
+    benefit:
+      "Fotoprotector facial con filtro 100% mineral y acabado mate para piel grasa o mixta. 50 mL.",
+    usage:
+      "Aplicar por la mañana sobre piel limpia, como último paso de la rutina. Reaplicar cada 2 a 4 horas de exposición.",
+    ingredients: [
+      "Filtro solar 100% mineral",
+      "FPS 50",
+      "Ácido hialurónico",
+      "Efecto matificante",
+      "Sin color",
+    ],
     science:
-      "La fotoprotección diaria reduce el daño acumulado por radiación solar, principal causa de fotoenvejecimiento y manchas.",
-    provisional: true,
-  },
-  {
-    slug: "fotoprotector-corporal",
-    line: "PANALAB",
-    universe: "fotoproteccion",
-    name: "Fotoprotector Corporal FPS 50",
-    benefit: "Protección corporal resistente al agua para actividades al aire libre.",
-    usage: "Aplicar 20 minutos antes de la exposición y reaplicar después de nadar o sudar.",
-    ingredients: ["Filtros fotoestables", "Pantenol"],
-    science:
-      "Formulación resistente al agua pensada para el clima y estilo de vida de México.",
-    provisional: true,
-  },
-  {
-    slug: "serum-antioxidante",
-    line: "PANALAB",
-    universe: "primeras-arrugas",
-    name: "Sérum Antioxidante",
-    benefit: "Luminosidad y defensa antioxidante para uso diario.",
-    usage: "Aplicar por la mañana sobre piel limpia, antes del fotoprotector.",
-    ingredients: ["Vitamina C estabilizada", "Vitamina E"],
-    science:
-      "Los antioxidantes tópicos ayudan a neutralizar radicales libres generados por sol y contaminación.",
-    provisional: true,
-  },
-  {
-    slug: "antioxidante-oral",
-    line: "PANALAB",
-    universe: "primeras-arrugas",
-    name: "Antioxidante Oral",
-    benefit: "Suplemento para complementar el cuidado de la piel desde adentro.",
-    usage: "Una cápsula al día con alimentos, o según indicación de su médico.",
-    ingredients: ["Antioxidantes", "Vitaminas C y E", "Zinc"],
-    science:
-      "Suplemento alimenticio que acompaña hábitos de fotoprotección y cuidado diario. No es un medicamento.",
+      "Fotoprotector de uso diario con filtros minerales y protección de amplio espectro, formulado para pieles grasa o mixta. Su efecto matificante ayuda a controlar el brillo y el ácido hialurónico contribuye a mantener la piel hidratada.",
     legend:
-      "Este producto no es un medicamento. El consumo de este producto es responsabilidad de quien lo recomienda y de quien lo usa.",
-    provisional: true,
+      "La fotoprotección no sustituye otras medidas: evite la exposición prolongada al sol y use ropa protectora.",
+    images: [
+      "/productos/mineral-safe-oil-control-sin-color/1.webp",
+      "/productos/mineral-safe-oil-control-sin-color/2.webp",
+    ],
+  },
+  {
+    slug: "mineral-safe-oil-control-color-medio",
+    line: "MINERAL SAFE",
+    universe: "fotoproteccion",
+    name: "Mineral Safe Oil Control FPS 50 Color medio",
+    benefit:
+      "Fotoprotector facial mineral con acabado mate y color medio para piel grasa o mixta. 50 mL.",
+    usage:
+      "Aplicar por la mañana sobre piel limpia y extender de manera uniforme. Reaplicar cada 2 a 4 horas de exposición.",
+    ingredients: [
+      "Filtro solar 100% mineral",
+      "FPS 50",
+      "Ácido hialurónico",
+      "Efecto matificante",
+      "Color medio",
+    ],
+    science:
+      "Versión con color medio del fotoprotector Oil Control, pensada para piel grasa o mixta que busca un acabado mate y un tono más uniforme. Aporta protección de amplio espectro en la rutina diaria.",
+    legend:
+      "La fotoprotección no sustituye otras medidas: evite la exposición prolongada al sol y use ropa protectora.",
+    images: [
+      "/productos/mineral-safe-oil-control-color-medio/1.webp",
+      "/productos/mineral-safe-oil-control-color-medio/2.webp",
+    ],
+  },
+  {
+    slug: "mineral-safe-fluido-sin-color",
+    line: "MINERAL SAFE",
+    universe: "fotoproteccion",
+    name: "Mineral Safe Fluido FPS 50 Sin color",
+    benefit:
+      "Fluido facial con filtro solar 100% mineral y textura ligera de uso diario. 50 mL, sin color.",
+    usage:
+      "Aplicar cada mañana sobre piel limpia como último paso de la rutina. Reaplicar cada 2 a 4 horas de exposición.",
+    ingredients: [
+      "Filtro solar 100% mineral",
+      "FPS 50",
+      "Tecnología Ronacare®",
+      "Ingredientes 100% de origen natural",
+      "Sin color",
+    ],
+    science:
+      "Fluido de fotoprotección diaria con filtros minerales y protección de amplio espectro. Está formulado con ingredientes 100% de origen natural y libre de parabenos, siliconas, fragancia y derivados de petróleo.",
+    legend:
+      "La fotoprotección no sustituye otras medidas: evite la exposición prolongada al sol y use ropa protectora.",
+    images: [
+      "/productos/mineral-safe-fluido-sin-color/1.webp",
+      "/productos/mineral-safe-fluido-sin-color/2.webp",
+    ],
+  },
+  {
+    slug: "mineral-safe-fluido-color-ligero",
+    line: "MINERAL SAFE",
+    universe: "fotoproteccion",
+    name: "Mineral Safe Fluido FPS 50 Color ligero",
+    benefit:
+      "Fluido facial mineral de textura ligera con color ligero para uso diario. 50 mL.",
+    usage:
+      "Aplicar cada mañana sobre piel limpia y extender de manera uniforme. Reaplicar cada 2 a 4 horas de exposición.",
+    ingredients: [
+      "Filtro solar 100% mineral",
+      "FPS 50",
+      "Tecnología Ronacare®",
+      "Ingredientes 100% de origen natural",
+      "Color ligero",
+    ],
+    science:
+      "Fluido de fotoprotección diaria con filtros minerales y protección de amplio espectro, en una tonalidad ligera que acompaña tonos de piel claros. Libre de parabenos, siliconas, fragancia y derivados de petróleo.",
+    legend:
+      "La fotoprotección no sustituye otras medidas: evite la exposición prolongada al sol y use ropa protectora.",
+    images: [
+      "/productos/mineral-safe-fluido-color-ligero/1.webp",
+      "/productos/mineral-safe-fluido-color-ligero/2.webp",
+    ],
+  },
+  {
+    slug: "mineral-safe-fluido-color-medio",
+    line: "MINERAL SAFE",
+    universe: "fotoproteccion",
+    name: "Mineral Safe Fluido FPS 50 Color medio",
+    benefit:
+      "Fluido facial mineral de textura ligera con color medio para uso diario. 50 mL.",
+    usage:
+      "Aplicar cada mañana sobre piel limpia y extender de manera uniforme. Reaplicar cada 2 a 4 horas de exposición.",
+    ingredients: [
+      "Filtro solar 100% mineral",
+      "FPS 50",
+      "Tecnología Ronacare®",
+      "Ingredientes 100% de origen natural",
+      "Color medio",
+    ],
+    science:
+      "Fluido de fotoprotección diaria con filtros minerales y protección de amplio espectro, en una tonalidad media que acompaña tonos de piel intermedios. Libre de parabenos, siliconas, fragancia y derivados de petróleo.",
+    legend:
+      "La fotoprotección no sustituye otras medidas: evite la exposición prolongada al sol y use ropa protectora.",
+    images: [
+      "/productos/mineral-safe-fluido-color-medio/1.webp",
+      "/productos/mineral-safe-fluido-color-medio/2.webp",
+    ],
+  },
+  {
+    slug: "mineral-safe-stick-color-ligero",
+    line: "MINERAL SAFE",
+    universe: "fotoproteccion",
+    name: "Mineral Safe Stick FPS 50+ Color ligero",
+    benefit:
+      "Stick de protector solar mineral de muy alta protección, con color ligero. 10 g.",
+    usage:
+      "Deslizar directamente sobre rostro, orejas, nariz u otras zonas expuestas. Reaplicar cada 2 a 4 horas de exposición.",
+    ingredients: [
+      "Protector solar mineral",
+      "FPS 50+",
+      "Muy alta protección",
+      "Amplio espectro UVA/UVB",
+      "Apto para pieles sensibles",
+    ],
+    science:
+      "Formato en stick para llevar la fotoprotección a las zonas más expuestas del rostro y retocarla durante el día. Ofrece protección de amplio espectro UVA/UVB y es apto para pieles sensibles.",
+    legend:
+      "La fotoprotección no sustituye otras medidas: evite la exposición prolongada al sol y use ropa protectora.",
+    images: [
+      "/productos/mineral-safe-stick-color-ligero/1.webp",
+      "/productos/mineral-safe-stick-color-ligero/2.webp",
+    ],
+  },
+  {
+    slug: "mineral-safe-stick-color-medio",
+    line: "MINERAL SAFE",
+    universe: "fotoproteccion",
+    name: "Mineral Safe Stick FPS 50 Color medio",
+    benefit:
+      "Stick de protector solar mineral de alta protección, con color medio. 10 g.",
+    usage:
+      "Deslizar directamente sobre rostro, orejas, nariz u otras zonas expuestas. Reaplicar cada 2 a 4 horas de exposición.",
+    ingredients: [
+      "Protector solar mineral",
+      "FPS 50",
+      "Alta protección",
+      "Amplio espectro UVA/UVB",
+      "Apto para pieles sensibles",
+    ],
+    science:
+      "Formato en stick para aplicar y retocar la fotoprotección en las zonas más expuestas del rostro. Ofrece protección de amplio espectro UVA/UVB en una tonalidad media y es apto para pieles sensibles.",
+    legend:
+      "La fotoprotección no sustituye otras medidas: evite la exposición prolongada al sol y use ropa protectora.",
+    images: [
+      "/productos/mineral-safe-stick-color-medio/1.webp",
+      "/productos/mineral-safe-stick-color-medio/2.webp",
+    ],
+  },
+  {
+    slug: "mineral-safe-stick-kids",
+    line: "MINERAL SAFE",
+    universe: "fotoproteccion",
+    name: "Mineral Safe Stick Kids FPS 50+",
+    benefit:
+      "Stick de protector solar mineral de muy alta protección para niños y familia. 10 g.",
+    usage:
+      "Deslizar sobre rostro, orejas, nariz y hombros antes de salir. Reaplicar cada 2 a 4 horas de exposición.",
+    ingredients: [
+      "Protector solar mineral",
+      "FPS 50+",
+      "Muy alta protección",
+      "Amplio espectro UVA/UVB",
+      "Apto para pieles sensibles",
+    ],
+    science:
+      "Stick pensado para la piel de niños y para el uso de toda la familia, en un formato fácil de aplicar y de llevar. Ofrece muy alta protección de amplio espectro UVA/UVB y es apto para pieles sensibles.",
+    legend:
+      "La fotoprotección no sustituye otras medidas: evite la exposición prolongada al sol y use ropa protectora. En menores de 6 meses, consulte a su médico.",
+    images: [
+      "/productos/mineral-safe-stick-kids/1.webp",
+      "/productos/mineral-safe-stick-kids/2.webp",
+    ],
+  },
+  {
+    slug: "proavenal-crema-emoliente",
+    line: "PROAVENAL",
+    badge: "Best seller",
+    universe: "piel-sensible",
+    name: "Proavenal Crema Emoliente",
+    benefit:
+      "Crema emoliente para piel seca, sensible o con tendencia atópica. 250 g.",
+    usage:
+      "Aplicar 1 a 2 veces al día sobre piel limpia, de preferencia después del baño y con la piel aún húmeda.",
+    ingredients: ["Avena", "Omegatopic®", "Agentes emolientes"],
+    science:
+      "Crema de la línea Proavenal Omegatopic, formulada para ayudar a mantener hidratada y protegida la barrera cutánea. Su textura emoliente permite el uso frecuente, incluida la piel de los niños.",
+    legend:
+      "En caso de dermatitis diagnosticada, siga las indicaciones de su médico.",
+    images: [
+      "/productos/proavenal-crema-emoliente/1.webp",
+      "/productos/proavenal-crema-emoliente/2.webp",
+    ],
+  },
+  {
+    slug: "proavenal-gel-de-ducha",
+    line: "PROAVENAL",
+    universe: "piel-sensible",
+    name: "Proavenal Syndet Gel de Ducha",
+    benefit:
+      "Gel de ducha syndet con avena sativa para la limpieza diaria de piel seca y sensible. 300 mL.",
+    usage:
+      "Aplicar sobre la piel húmeda durante el baño, masajear suavemente y enjuagar. De uso diario.",
+    ingredients: [
+      "Avena sativa",
+      "Complejo ProRepair-B5",
+      "Harina de soya",
+      "Alantoína",
+    ],
+    science:
+      "Limpiador syndet, sin jabón, con extracto de avena sativa y complejo ProRepair-B5 para un efecto emoliente durante el baño. Está pensado para la higiene diaria de la piel seca, sensible o con tendencia atópica.",
+    legend:
+      "En caso de dermatitis diagnosticada, siga las indicaciones de su médico.",
+    images: [
+      "/productos/proavenal-gel-de-ducha/1.webp",
+      "/productos/proavenal-gel-de-ducha/2.webp",
+    ],
+  },
+  {
+    slug: "proavenal-shampoo",
+    line: "PROAVENAL",
+    universe: "piel-sensible",
+    name: "Proavenal Shampoo",
+    benefit:
+      "Shampoo suave para el lavado frecuente del cabello y el cuero cabelludo sensible. 150 mL.",
+    usage:
+      "Aplicar sobre el cabello húmedo, masajear suavemente el cuero cabelludo y enjuagar. Repetir si es necesario.",
+    ingredients: ["Avena", "Agentes limpiadores suaves"],
+    science:
+      "Shampoo de la línea emoliente Proavenal, pensado para el aseo del cabello cuando el cuero cabelludo está seco o se irrita con facilidad. Su fórmula suave permite el uso frecuente.",
+    images: [
+      "/productos/proavenal-shampoo/1.webp",
+      "/productos/proavenal-shampoo/2.webp",
+    ],
+  },
+  {
+    slug: "proavenal-desodorante",
+    line: "PROAVENAL",
+    universe: "piel-sensible",
+    name: "Proavenal Desodorante Roll-On",
+    benefit: "Desodorante roll-on con pH 5.5 para axilas sensibles. 90 mL.",
+    usage:
+      "Aplicar una capa delgada sobre la axila limpia y seca. Evitar su uso inmediatamente después del rasurado.",
+    ingredients: [
+      "pH 5.5",
+      "Agentes desodorantes",
+      "Apto para axilas sensibles",
+    ],
+    science:
+      "Desodorante roll-on con pH 5.5, cercano al de la piel, formulado para axilas que se irritan con facilidad. Completa la rutina Proavenal en zonas de piel delgada y sensible.",
+    images: [
+      "/productos/proavenal-desodorante/1.webp",
+      "/productos/proavenal-desodorante/2.webp",
+    ],
+  },
+  {
+    slug: "lactokey",
+    line: "LACTOKEY",
+    universe: "piel-sensible",
+    name: "Lactokey",
+    benefit:
+      "Suplemento alimenticio con zinc y probióticos. Caja con 30 sobres de 2.0 g.",
+    usage: "Tomar según indicación del empaque o de su médico.",
+    ingredients: ["Zinc", "Probióticos", "Sobres de 2.0 g"],
+    science:
+      "Suplemento alimenticio en sobres que aporta zinc, mineral que contribuye al mantenimiento de la piel en condiciones normales. Acompaña desde adentro las rutinas tópicas para piel sensible.",
+    legend:
+      "Este producto no es un medicamento. Consulte a su médico antes de iniciar cualquier suplemento.",
+    images: ["/productos/lactokey/1.webp", "/productos/lactokey/2.webp"],
+  },
+  {
+    slug: "vitanoin-c5-serum",
+    line: "VITANOIN",
+    universe: "primeras-arrugas",
+    name: "Vitanoin C5 Serum",
+    benefit:
+      "Suero facial antioxidante con vitamina C al 5% y vitamina E al 1%. 30 mL.",
+    usage:
+      "Aplicar por la mañana sobre piel limpia, antes del fotoprotector. No sustituye al protector solar.",
+    ingredients: [
+      "Vitamina C 5%",
+      "Tetraisopalmitato de ascorbilo",
+      "Vitamina E 1%",
+      "Complejo de siliconas",
+    ],
+    science:
+      "Suero de textura homogénea con vitamina C en forma de tetraisopalmitato de ascorbilo, un derivado óleo-soluble que el empaque describe como más estable frente a la oxidación. Los antioxidantes tópicos complementan la fotoprotección diaria; no la reemplazan.",
+    images: [
+      "/productos/vitanoin-c5-serum/1.webp",
+      "/productos/vitanoin-c5-serum/2.webp",
+    ],
+  },
+  {
+    slug: "vitanoin-fec-15-serum",
+    line: "VITANOIN",
+    universe: "primeras-arrugas",
+    name: "Vitanoin FEC 15 Serum",
+    benefit:
+      "Suero facial con ácido ferúlico, vitamina C al 15% y vitamina E al 1%. 30 mL.",
+    usage:
+      "Aplicar por la mañana sobre piel limpia, antes del fotoprotector. Es un complemento de la protección solar, no un sustituto.",
+    ingredients: [
+      "Ácido ferúlico",
+      "Vitamina C 15%",
+      "Vitamina E 1%",
+      "Tetraisopalmitato de ascorbilo",
+    ],
+    science:
+      "Combina ácido ferúlico con vitamina C óleo-soluble al 15% y vitamina E al 1%; según el empaque, la vitamina E potencializa el efecto de la vitamina C. Está pensado para acompañar la rutina diaria frente al estrés oxidativo, siempre junto con fotoprotector.",
+    images: [
+      "/productos/vitanoin-fec-15-serum/1.webp",
+      "/productos/vitanoin-fec-15-serum/2.webp",
+    ],
+  },
+  {
+    slug: "vitanoin-an-serum",
+    line: "VITANOIN",
+    universe: "primeras-arrugas",
+    name: "Vitanoin AN Serum",
+    benefit:
+      "Suero facial para control de manchas e imperfecciones en piel grasa. 30 mL.",
+    usage:
+      "Aplicar sobre piel limpia y seca según indicación del empaque. Durante el día, complete la rutina con fotoprotector.",
+    ingredients: [
+      "Ácido azelaico",
+      "Ácido salicílico",
+      "Niacinamida",
+      "Zinc PCA",
+      "Ácido hialurónico",
+    ],
+    science:
+      "Fórmula descrita en el empaque para el control o asistencia en piel con grasa, puntos negros y propensa al acné. Combina ácido azelaico, ácido salicílico, niacinamida y zinc PCA con ácido hialurónico, que ayuda a retener la hidratación del rostro.",
+    legend: "El acné moderado o severo requiere valoración dermatológica.",
+    images: [
+      "/productos/vitanoin-an-serum/1.webp",
+      "/productos/vitanoin-an-serum/2.webp",
+    ],
+  },
+  {
+    slug: "vitanoin-ar-serum",
+    line: "VITANOIN",
+    universe: "primeras-arrugas",
+    name: "Vitanoin AR Serum",
+    benefit:
+      "Suero facial para control del enrojecimiento y la irritación de la piel. 30 mL.",
+    usage:
+      "Aplicar sobre piel limpia según indicación del empaque. Si el día incluye exposición solar, complete con fotoprotector.",
+    ingredients: [
+      "Ácido azelaico",
+      "Niacinamida",
+      "Ácido hialurónico",
+      "Enoxolona",
+    ],
+    science:
+      "El empaque lo describe como un suero formulado para el control o asistencia en piel con enrojecimiento e irritación asociados a rosácea. Aporta ácido azelaico, niacinamida y enoxolona, junto con ácido hialurónico para sostener la hidratación.",
+    legend:
+      "Si tiene rosácea u otro padecimiento diagnosticado, siga las indicaciones de su médico.",
+    images: [
+      "/productos/vitanoin-ar-serum/1.webp",
+      "/productos/vitanoin-ar-serum/2.webp",
+    ],
+  },
+  {
+    slug: "vitanoin-lifting-serum",
+    line: "VITANOIN",
+    universe: "primeras-arrugas",
+    name: "Vitanoin Lifting",
+    benefit:
+      "Suero facial tensor con polipéptidos y efecto tensor inmediato. 30 mL.",
+    usage:
+      "Aplicar sobre el rostro limpio y seco, extendiendo de manera uniforme. No aplicar sobre piel irritada o lastimada.",
+    ingredients: [
+      "Polipéptidos",
+      "Colágeno hidrolizado",
+      "Ácido hialurónico",
+      "Extracto de aloe",
+      "Sin conservadores añadidos",
+    ],
+    science:
+      "Suero tensor con polipéptidos (palmitoil tripéptido-1, palmitoil tetrapéptido-7 y dipéptido diaminobutiroil benzilamida diacetato) que, según el empaque, producen un efecto tensor inmediato. Se acompaña de colágeno hidrolizado y ácido hialurónico para mejorar la sensación de la piel.",
+    legend:
+      "No aplicar sobre piel irritada o lastimada. En caso de irritación, descontinúe su uso y consulte a su médico.",
+    images: [
+      "/productos/vitanoin-lifting-serum/1.webp",
+      "/productos/vitanoin-lifting-serum/2.webp",
+    ],
+  },
+  {
+    slug: "vitanoin-blemish",
+    line: "VITANOIN",
+    universe: "primeras-arrugas",
+    name: "Vitanoin Blemish",
+    benefit:
+      "Suero despigmentante facial para el cuidado de las manchas. 30 mL.",
+    usage:
+      "Aplicar sobre la zona con manchas según indicación del empaque, de preferencia por la noche. Use fotoprotector durante el día.",
+    ingredients: ["Activo despigmentante"],
+    science:
+      "Suero despigmentante de la línea Vitanoin en presentación de 30 mL. El manejo de las manchas es gradual y depende de la constancia y de la fotoprotección diaria.",
+    legend:
+      "Las manchas persistentes o de aparición reciente requieren valoración dermatológica.",
+    images: ["/productos/vitanoin-blemish/1.webp"],
+  },
+  {
+    slug: "leraco",
+    line: "LERACO",
+    universe: "primeras-arrugas",
+    name: "Leraco",
+    benefit:
+      "Suplemento alimenticio antioxidante. Frasco con 30 cápsulas de 873 mg cada una.",
+    usage: "Tomar según indicación del empaque o de su médico.",
+    ingredients: [
+      "Ácido alfa lipoico",
+      "Omega 3",
+      "Vitaminas C, E y D3",
+      "L-cisteína",
+      "Zinc y superóxido dismutasa",
+    ],
+    science:
+      "Suplemento alimenticio a base de ácido alfa lipoico, omega 3, vitaminas E, C y D3, L-cisteína, zinc y superóxido dismutasa. Acompaña desde adentro los hábitos de fotoprotección y cuidado diario de la piel.",
+    legend:
+      "Este producto no es un medicamento. Consulte a su médico antes de iniciar cualquier suplemento.",
+    images: ["/productos/leraco/1.webp", "/productos/leraco/2.webp"],
   },
 ];
 
@@ -360,9 +796,21 @@ export interface Marketplace {
 }
 
 export const MARKETPLACES: Marketplace[] = [
-  { id: "amazon", name: "Amazon México", baseUrl: "https://www.amazon.com.mx/s?k=panalab" },
-  { id: "mercadolibre", name: "Mercado Libre", baseUrl: "https://listado.mercadolibre.com.mx/panalab" },
-  { id: "farmacias", name: "Farmacias y distribuidores", baseUrl: "https://www.google.com/maps/search/farmacia" },
+  {
+    id: "amazon",
+    name: "Amazon México",
+    baseUrl: "https://www.amazon.com.mx/s?k=panalab",
+  },
+  {
+    id: "mercadolibre",
+    name: "Mercado Libre",
+    baseUrl: "https://listado.mercadolibre.com.mx/panalab",
+  },
+  {
+    id: "farmacias",
+    name: "Farmacias y distribuidores",
+    baseUrl: "https://www.google.com/maps/search/farmacia",
+  },
 ];
 
 export function productsByUniverse(slug: string): Product[] {

@@ -15,8 +15,9 @@ const COMMUNITY_BENEFITS = [
 ];
 
 export default function Home() {
-  const carousel = PRODUCTS.filter((p) => !p.provisional).concat(
-    PRODUCTS.filter((p) => p.provisional)
+  // Carrusel equilibrado: hasta 3 productos por universo, en el orden del menú.
+  const carousel = UNIVERSES.flatMap((u) =>
+    PRODUCTS.filter((p) => p.universe === u.slug).slice(0, 3),
   );
 
   return (
