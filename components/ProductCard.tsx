@@ -1,3 +1,4 @@
+import Image from "next/image";
 import Link from "next/link";
 import type { Product } from "@/lib/data";
 import { getUniverse } from "@/lib/data";
@@ -18,11 +19,23 @@ export default function ProductCard({ product }: { product: Product }) {
           {product.badge.toUpperCase()}
         </span>
       )}
-      <div
-        className={`flex h-44 items-center justify-center text-6xl transition-transform duration-300 group-hover:scale-105 ${universe?.tone ?? "bg-cream"}`}
-      >
-        {universe?.emoji}
-      </div>
+      {product.images?.[0] ? (
+        <div className="relative h-44 overflow-hidden rounded-t-card bg-white">
+          <Image
+            src={product.images[0]}
+            alt={product.name}
+            fill
+            sizes="(min-width: 1024px) 25vw, (min-width: 640px) 50vw, 100vw"
+            className="object-contain p-3 transition-transform duration-300 group-hover:scale-105"
+          />
+        </div>
+      ) : (
+        <div
+          className={`flex h-44 items-center justify-center text-6xl transition-transform duration-300 group-hover:scale-105 ${universe?.tone ?? "bg-cream"}`}
+        >
+          {universe?.emoji}
+        </div>
+      )}
       <div className="flex flex-1 flex-col p-4">
         <p className="text-[11px] font-bold tracking-[0.15em] text-ink-soft">
           {product.line}

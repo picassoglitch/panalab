@@ -1,7 +1,8 @@
 // Portafolio según "Propuesta contenidos y landing Panalab 2026":
 // capilar (línea Aminoter, Complidermol) y piel sensible (Proavenal, Lactokey) usan nombres reales.
 // Orden de UNIVERSES = orden del menú superior: Acné · Capilar · Fotoprotección · Piel sensible · Primeras arrugas.
-// Acné, sol y primeras arrugas quedan con fichas provisionales hasta que marketing confirme SKUs.
+// Acné usa la línea real Cuteral (crema, wash y tabletas) con fotos en public/productos/<slug>/.
+// Sol y primeras arrugas quedan con fichas provisionales hasta que marketing confirme SKUs.
 // Descripciones y claims pendientes de validación médica/regulatoria antes de producción.
 
 export interface HeroSlide {
@@ -40,7 +41,27 @@ export interface Product {
   legend?: string;
   badge?: "Best seller" | "Nuevo";
   provisional?: boolean;
+  // Rutas bajo public/. La primera es la foto principal (tarjeta y ficha).
+  images?: string[];
 }
+
+export interface ProductLine {
+  id: string;
+  name: string;
+  tagline: string;
+  description: string;
+}
+
+// Líneas con sección propia dentro de su universo. Se agrupan por Product.line.
+export const PRODUCT_LINES: ProductLine[] = [
+  {
+    id: "CUTERAL",
+    name: "Cuteral",
+    tagline: "Entendemos el lenguaje de la piel",
+    description:
+      "Línea Panalab para piel grasa y con tendencia acneica: limpieza, hidratación con protección solar y un suplemento oral que acompaña la rutina desde adentro.",
+  },
+];
 
 export const UNIVERSES: Universe[] = [
   {
@@ -216,30 +237,47 @@ export const PRODUCTS: Product[] = [
       "Línea Panalab enfocada en mantener la piel hidratada y flexible respetando su equilibrio natural.",
   },
   {
-    slug: "gel-limpiador-acne",
-    line: "PANALAB",
+    slug: "cuteral-wash",
+    line: "CUTERAL",
     universe: "acne",
-    name: "Gel Limpiador Piel Grasa",
-    benefit: "Limpieza profunda sin resecar, para piel con tendencia acneica.",
-    usage: "Usar mañana y noche sobre rostro húmedo, evitar el contorno de ojos.",
-    ingredients: ["Ácido salicílico", "Zinc PCA", "Niacinamida"],
+    name: "Cuteral Wash Gel limpiador",
+    benefit: "Gel dermolimpiador probiótico para piel grasa y con tendencia acneica.",
+    usage: "Usar mañana y noche sobre rostro húmedo, masajear suavemente y enjuagar. Evitar el contorno de ojos.",
+    ingredients: ["Probióticos", "Agentes limpiadores suaves"],
     science:
-      "El ácido salicílico ayuda a destapar poros y regular el exceso de grasa; el zinc contribuye a calmar la piel.",
+      "Primer paso de la rutina Cuteral: limpia el exceso de grasa sin agredir la barrera cutánea. Presentación de 240 mL con dosificador.",
     legend: "El acné moderado o severo requiere valoración dermatológica.",
-    provisional: true,
+    images: ["/productos/cuteral-wash/1.webp", "/productos/cuteral-wash/2.webp"],
   },
   {
-    slug: "gel-secativo",
-    line: "PANALAB",
+    slug: "cuteral-crema-probiotic",
+    line: "CUTERAL",
     universe: "acne",
-    name: "Gel Secativo Localizado",
-    benefit: "Tratamiento puntual para brotes visibles.",
-    usage: "Aplicar una capa fina sobre el brote, 1 a 2 veces al día.",
-    ingredients: ["Peróxido de benzoilo baja concentración", "Aloe vera"],
+    name: "Cuteral Crema Probiotic",
+    benefit: "Crema facial hidratante y matificante con protección solar FPS 30.",
+    usage: "Aplicar por la mañana sobre piel limpia como último paso de la rutina. Textura ligera de rápida absorción.",
+    ingredients: ["Probióticos", "FPS 30", "Activos matificantes"],
     science:
-      "Uso localizado para acompañar la rutina de limpieza. No sustituye tratamientos indicados por un dermatólogo.",
-    legend: "Consulte a su médico si los brotes no mejoran en 4 semanas.",
-    provisional: true,
+      "Hidrata y matifica la piel grasa mientras aporta fotoprotección diaria. Dermatológicamente probada. Presentación de 40 mL.",
+    legend: "El acné moderado o severo requiere valoración dermatológica.",
+    images: [
+      "/productos/cuteral-crema-probiotic/1.webp",
+      "/productos/cuteral-crema-probiotic/2.webp",
+    ],
+  },
+  {
+    slug: "cuteral-tabletas",
+    line: "CUTERAL",
+    universe: "acne",
+    name: "Cuteral tabletas",
+    benefit: "Suplemento alimenticio con lisina, nicotinamida, zinc, cobre y ácido fólico.",
+    usage: "Tomar según indicación del empaque o de su médico. Caja con 30 tabletas de 388 mg.",
+    ingredients: ["Lisina", "Nicotinamida", "Zinc", "Cobre", "Ácido fólico"],
+    science:
+      "Complemento oral de la rutina Cuteral: nutrientes que participan en el equilibrio de la piel con tendencia acneica.",
+    legend:
+      "Este producto no es un medicamento. Consulte a su médico antes de iniciar cualquier suplemento.",
+    images: ["/productos/cuteral-tabletas/1.webp", "/productos/cuteral-tabletas/2.webp"],
   },
   {
     slug: "fotoprotector-facial",
@@ -315,6 +353,10 @@ export function getUniverse(slug: string): Universe | undefined {
 
 export function getProduct(slug: string): Product | undefined {
   return PRODUCTS.find((p) => p.slug === slug);
+}
+
+export function getProductLine(id: string): ProductLine | undefined {
+  return PRODUCT_LINES.find((l) => l.id === id);
 }
 
 export interface Faq {

@@ -1,6 +1,12 @@
 import Link from "next/link";
 import { notFound } from "next/navigation";
-import { UNIVERSES, FAQS, getUniverse, productsByUniverse } from "@/lib/data";
+import {
+  UNIVERSES,
+  FAQS,
+  getProductLine,
+  getUniverse,
+  productsByUniverse,
+} from "@/lib/data";
 import ProductCard from "@/components/ProductCard";
 import Disclaimer from "@/components/Disclaimer";
 import Accordion, { AccordionItem } from "@/components/Accordion";
@@ -30,8 +36,19 @@ export default async function UniversePage({
   const universe = getUniverse(slug);
   if (!universe) notFound();
 
-  const products = productsByUniverse(slug);
+  const allProducts = productsByUniverse(slug);
   const faqs = FAQS[slug] ?? [];
+
+  // Líneas con sección propia (p. ej. Cuteral en acné) van arriba, con su
+  // encabezado; el resto de productos sigue en el grid general.
+  const lineIds = Array.from(new Set(allProducts.map((p) => p.line))).filter(
+    (id) => getProductLine(id),
+  );
+  const lineSections = lineIds.map((id) => ({
+    line: getProductLine(id)!,
+    products: allProducts.filter((p) => p.line === id),
+  }));
+  const products = allProducts.filter((p) => !getProductLine(p.line));
 
   // Banner editorial intercalado en el grid, patrón ISDIN (posición fija)
   const gridItems: React.ReactNode[] = products.map((p) => (
@@ -84,6 +101,30 @@ export default async function UniversePage({
         </div>
         <OceanWaves />
       </section>
+
+      {lineSections.map(({ line, products: lineProducts }) => (
+        <section
+          key={line.id}
+          id={line.name.toLowerCase()}
+          className="mx-auto max-w-6xl px-4 pt-12 sm:px-6"
+        >
+          <p className="text-xs font-bold tracking-[0.25em] text-ink-soft">
+            LÍNEA
+          </p>
+          <h2 className="mt-2 font-display text-3xl leading-snug sm:text-4xl">
+            <span className="font-extrabold">{line.name}.</span>{" "}
+            <span className="font-light">{line.tagline}</span>
+          </h2>
+          <p className="mt-3 max-w-2xl leading-relaxed text-ink-soft">
+            {line.description}
+          </p>
+          <div className="mt-8 grid gap-4 sm:grid-cols-2 lg:grid-cols-4">
+            {lineProducts.map((p) => (
+              <ProductCard key={p.slug} product={p} />
+            ))}
+          </div>
+        </section>
+      ))}
 
       <section className="mx-auto max-w-6xl px-4 py-12 sm:px-6">
         <div className="grid gap-4 sm:grid-cols-2 lg:grid-cols-4">{gridItems}</div>

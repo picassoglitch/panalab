@@ -95,12 +95,13 @@ const NEEDS: Record<Focus, { question: string; options: NeedOption[] }> = {
                 title: "Limpieza suave",
                 detail:
                   "Limpia sin tallar: el exceso de fricción irrita y puede empeorar los brotes.",
-                productSlug: "gel-limpiador-acne",
+                productSlug: "cuteral-wash",
               },
               {
                 title: "Hidratación ligera",
                 detail:
                   "Usa un hidratante ligero, libre de aceite (oil-free) y no comedogénico. La piel con acné también necesita hidratación.",
+                productSlug: "cuteral-crema-probiotic",
               },
               {
                 title: "Fotoprotección",
@@ -118,13 +119,12 @@ const NEEDS: Record<Focus, { question: string; options: NeedOption[] }> = {
                 title: "Limpieza suave",
                 detail:
                   "Segunda (y última) limpieza del día. Lavar más veces no mejora el acné.",
-                productSlug: "gel-limpiador-acne",
+                productSlug: "cuteral-wash",
               },
               {
                 title: "Tratamiento localizado",
                 detail:
                   "Aplica una capa fina solo sobre los brotes visibles, sin exprimirlos.",
-                productSlug: "gel-secativo",
               },
               {
                 title: "Hidratación ligera",

@@ -4,6 +4,7 @@ import { PRODUCTS, getProduct, getUniverse, productsByUniverse } from "@/lib/dat
 import BuyButtons from "@/components/BuyButtons";
 import Disclaimer from "@/components/Disclaimer";
 import ProductCard from "@/components/ProductCard";
+import ProductGallery from "@/components/ProductGallery";
 import Accordion, { AccordionItem } from "@/components/Accordion";
 import TrackView from "@/components/TrackView";
 
@@ -50,19 +51,25 @@ export default async function ProductPage({
         </nav>
 
         <div className="mt-8 grid gap-10 md:grid-cols-2">
-          <div
-            className={`relative flex min-h-80 items-center justify-center rounded-card text-8xl ${universe?.tone ?? "bg-cream"}`}
-          >
+          <div className="relative">
             {product.badge && (
               <span
-                className={`absolute left-4 top-4 rounded-full px-3 py-1 text-[11px] font-bold tracking-wide text-white ${
+                className={`absolute left-4 top-4 z-10 rounded-full px-3 py-1 text-[11px] font-bold tracking-wide text-white ${
                   product.badge === "Nuevo" ? "bg-accent-dark" : "bg-brand"
                 }`}
               >
                 {product.badge.toUpperCase()}
               </span>
             )}
-            {universe?.emoji}
+            {product.images?.length ? (
+              <ProductGallery images={product.images} name={product.name} />
+            ) : (
+              <div
+                className={`flex min-h-80 items-center justify-center rounded-card text-8xl ${universe?.tone ?? "bg-cream"}`}
+              >
+                {universe?.emoji}
+              </div>
+            )}
           </div>
 
           <div>
