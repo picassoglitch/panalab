@@ -6,6 +6,11 @@ import Newsletter from "@/components/Newsletter";
 import Disclaimer from "@/components/Disclaimer";
 import HeroBanner from "@/components/HeroBanner";
 import WaveDivider from "@/components/WaveDivider";
+import type { Metadata } from "next";
+
+export const metadata: Metadata = {
+  alternates: { canonical: "/" },
+};
 
 const COMMUNITY_BENEFITS = [
   "Recibe tu rutina personalizada por correo",

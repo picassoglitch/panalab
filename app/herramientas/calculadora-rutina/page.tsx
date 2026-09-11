@@ -2,6 +2,7 @@ import type { Metadata } from "next";
 import RutinaFlow from "./RutinaFlow";
 
 export const metadata: Metadata = {
+  alternates: { canonical: "/herramientas/calculadora-rutina" },
   title: "Calculadora de rutina",
   description:
     "Ordena tus productos en una rutina de mañana y noche según tu piel o tu cabello. Herramienta orientativa Panalab; no sustituye una valoración médica.",

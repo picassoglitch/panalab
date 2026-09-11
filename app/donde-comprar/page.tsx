@@ -4,6 +4,7 @@ import ProductCard from "@/components/ProductCard";
 import BuyButtons from "@/components/BuyButtons";
 
 export const metadata: Metadata = {
+  alternates: { canonical: "/donde-comprar" },
   title: "Dónde comprar",
   description:
     "Encuentra productos Panalab en Amazon México, Mercado Libre, farmacias y distribuidores autorizados.",

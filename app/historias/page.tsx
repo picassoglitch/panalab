@@ -4,6 +4,7 @@ import Newsletter from "@/components/Newsletter";
 import { STORIES } from "@/lib/data";
 
 export const metadata: Metadata = {
+  alternates: { canonical: "/historias" },
   title: "Historias",
   description:
     "Historias que tu piel quiere contar: testimonios reales, noticias y eventos de Panalab México.",

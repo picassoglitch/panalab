@@ -2,6 +2,7 @@ import type { Metadata } from "next";
 import CaidaFlow from "./CaidaFlow";
 
 export const metadata: Metadata = {
+  alternates: { canonical: "/herramientas/mini-test-caida" },
   title: "Mini test: ¿tu caída es estacional o persistente?",
   description:
     "4 preguntas rápidas para orientarte sobre si tu caída de cabello parece estacional o persistente. No sustituye una valoración dermatológica.",

@@ -2,6 +2,7 @@ import type { Metadata } from "next";
 import Newsletter from "@/components/Newsletter";
 
 export const metadata: Metadata = {
+  alternates: { canonical: "/profesionales" },
   title: "Profesionales de la salud",
   description:
     "Espacio para dermatólogos, pediatras y médicos: resúmenes de estudios, fichas técnicas y webinars Panalab.",

@@ -5,6 +5,7 @@ import Disclaimer from "@/components/Disclaimer";
 import Accordion, { AccordionItem } from "@/components/Accordion";
 
 export const metadata: Metadata = {
+  alternates: { canonical: "/reto-28-dias" },
   title: "Reto 28 días",
   description:
     "Reto 28 días · Tu mejor piel: regístrate, recibe tu rutina sugerida y comparte tu avance semanal con la comunidad Panalab.",

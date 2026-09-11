@@ -5,6 +5,7 @@ import Header from "@/components/Header";
 import Footer from "@/components/Footer";
 import WaveFX from "@/components/WaveFX";
 import WaterSurface from "@/components/WaterSurface";
+import { SITE_NAME, SITE_URL } from "@/lib/site";
 import "./globals.css";
 
 const GTM_ID = process.env.NEXT_PUBLIC_GTM_ID;
@@ -19,13 +20,32 @@ const mulish = Mulish({
   subsets: ["latin"],
 });
 
+const TITLE = "Panalab México — Historias que tu piel quiere contar";
+const DESCRIPTION =
+  "El hub digital de Panalab México: cuidado capilar, piel sensible, acné, fotoprotección y antioxidantes, con información clara y herramientas útiles.";
+
 export const metadata: Metadata = {
+  // Base para resolver rutas relativas en canonical, Open Graph y Twitter.
+  metadataBase: new URL(SITE_URL),
   title: {
-    default: "Panalab México — Historias que tu piel quiere contar",
+    default: TITLE,
     template: "%s | Panalab México",
   },
-  description:
-    "El hub digital de Panalab México: cuidado capilar, piel sensible, acné, fotoprotección y antioxidantes, con información clara y herramientas útiles.",
+  description: DESCRIPTION,
+  openGraph: {
+    type: "website",
+    locale: "es_MX",
+    siteName: SITE_NAME,
+    title: TITLE,
+    description: DESCRIPTION,
+    images: ["/hero/la-ciencia-que-vive-en-tu-piel.webp"],
+  },
+  twitter: {
+    card: "summary_large_image",
+    title: TITLE,
+    description: DESCRIPTION,
+    images: ["/hero/la-ciencia-que-vive-en-tu-piel.webp"],
+  },
 };
 
 export default function RootLayout({

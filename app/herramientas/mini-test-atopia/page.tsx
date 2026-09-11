@@ -2,6 +2,7 @@ import type { Metadata } from "next";
 import AtopiaFlow from "./AtopiaFlow";
 
 export const metadata: Metadata = {
+  alternates: { canonical: "/herramientas/mini-test-atopia" },
   title: "Mini test: ¿tu piel podría ser atópica?",
   description:
     "5 preguntas de sí o no para identificar señales asociadas a la piel atópica. Orientación con productos Panalab; solo un médico puede confirmar el diagnóstico.",

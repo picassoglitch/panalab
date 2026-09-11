@@ -2,6 +2,7 @@ import type { Metadata } from "next";
 import AdvisorFlow from "./AdvisorFlow";
 
 export const metadata: Metadata = {
+  alternates: { canonical: "/asesor-virtual" },
   title: "Asesor Virtual",
   description:
     "Responde unas preguntas y recibe una orientación con rutinas y productos Panalab. No sustituye una valoración médica.",

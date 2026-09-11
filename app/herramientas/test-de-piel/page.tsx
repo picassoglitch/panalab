@@ -2,6 +2,7 @@ import type { Metadata } from "next";
 import TestFlow from "./TestFlow";
 
 export const metadata: Metadata = {
+  alternates: { canonical: "/herramientas/test-de-piel" },
   title: "Test de tipo de piel",
   description:
     "Responde 5 preguntas rápidas y descubre si tu piel tiende a ser seca, mixta, grasa o sensible. Orientación con productos Panalab; no sustituye una valoración médica.",

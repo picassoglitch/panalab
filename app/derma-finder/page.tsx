@@ -2,6 +2,7 @@ import type { Metadata } from "next";
 import FinderClient from "./FinderClient";
 
 export const metadata: Metadata = {
+  alternates: { canonical: "/derma-finder" },
   title: "Derma Finder",
   description:
     "Encuentra dermatólogos, pediatras y clínicas aliadas cerca de ti. Busca por código postal o ciudad y filtra por necesidad.",

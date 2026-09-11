@@ -19,7 +19,11 @@ export async function generateMetadata({
 }) {
   const { slug } = await params;
   const product = getProduct(slug);
-  return { title: product?.name ?? "Producto" };
+  return {
+    title: product?.name ?? "Producto",
+    description: product?.benefit,
+    alternates: { canonical: `/productos/${slug}` },
+  };
 }
 
 export default async function ProductPage({

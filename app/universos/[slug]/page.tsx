@@ -24,7 +24,11 @@ export async function generateMetadata({
 }) {
   const { slug } = await params;
   const universe = getUniverse(slug);
-  return { title: universe?.title ?? "Universo" };
+  return {
+    title: universe?.title ?? "Universo",
+    description: universe?.intro,
+    alternates: { canonical: `/universos/${slug}` },
+  };
 }
 
 export default async function UniversePage({
