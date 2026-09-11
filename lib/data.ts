@@ -254,20 +254,6 @@ export const PRODUCTS: Product[] = [
     images: ["/productos/aminoter/1.webp", "/productos/aminoter/2.webp"],
   },
   {
-    slug: "aminoter-d",
-    line: "AMINOTER",
-    badge: "Nuevo",
-    universe: "capilar",
-    name: "Aminoter D",
-    benefit: "Suplemento capilar con vitamina D para necesidades específicas.",
-    usage: "Tomar según indicación del empaque o de su médico.",
-    ingredients: ["Aminoácidos", "Vitamina D"],
-    science:
-      "Variante de la línea Aminoter oral que suma vitamina D al cuidado del cabello.",
-    legend:
-      "Este producto no es un medicamento. Consulte a su médico antes de iniciar cualquier suplemento.",
-  },
-  {
     slug: "complidermol",
     line: "COMPLIDERMOL",
     badge: "Best seller",
