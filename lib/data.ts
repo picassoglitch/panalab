@@ -1,5 +1,6 @@
 // Portafolio según "Propuesta contenidos y landing Panalab 2026":
 // capilar (línea Aminoter, Complidermol) y piel sensible (Proavenal, Lactokey) usan nombres reales.
+// Orden de UNIVERSES = orden del menú superior: Acné · Capilar · Fotoprotección · Piel sensible · Primeras arrugas.
 // Acné, sol y primeras arrugas quedan con fichas provisionales hasta que marketing confirme SKUs.
 // Descripciones y claims pendientes de validación médica/regulatoria antes de producción.
 
@@ -43,34 +44,6 @@ export interface Product {
 
 export const UNIVERSES: Universe[] = [
   {
-    slug: "cabello",
-    nav: "Cabello",
-    title: "Universo capilar",
-    intro:
-      "La caída y el debilitamiento del cabello tienen causas distintas: estacionales, hormonales o de hábitos. Aquí ordenamos la información para que entiendas qué le pasa a tu cabello y qué rutina puede ayudarte.",
-    needs: [
-      "Caída estacional o persistente",
-      "Cabello debilitado o sin volumen",
-      "Cuero cabelludo sensible",
-    ],
-    emoji: "💇",
-    tone: "bg-[#e7eaf4]",
-  },
-  {
-    slug: "piel-sensible",
-    nav: "Piel sensible",
-    title: "Piel sensible y atópica",
-    intro:
-      "La piel atópica y sensible necesita limpieza suave, hidratación constante y productos sin irritantes. Te ayudamos a construir una rutina prudente para ti o para tus hijos.",
-    needs: [
-      "Resequedad y comezón recurrente",
-      "Piel atópica en niños",
-      "Enrojecimiento e irritación frecuente",
-    ],
-    emoji: "🤲",
-    tone: "bg-[#f2eef4]",
-  },
-  {
     slug: "acne",
     nav: "Acné",
     title: "Universo acné",
@@ -85,8 +58,22 @@ export const UNIVERSES: Universe[] = [
     tone: "bg-[#fdf0ea]",
   },
   {
-    slug: "sol",
-    nav: "Sol",
+    slug: "capilar",
+    nav: "Capilar",
+    title: "Universo capilar",
+    intro:
+      "La caída y el debilitamiento del cabello tienen causas distintas: estacionales, hormonales o de hábitos. Aquí ordenamos la información para que entiendas qué le pasa a tu cabello y qué rutina puede ayudarte.",
+    needs: [
+      "Caída estacional o persistente",
+      "Cabello debilitado o sin volumen",
+      "Cuero cabelludo sensible",
+    ],
+    emoji: "💇",
+    tone: "bg-[#e7eaf4]",
+  },
+  {
+    slug: "fotoproteccion",
+    nav: "Fotoprotección",
     title: "Fotoprotección",
     intro:
       "El sol es el principal factor de envejecimiento y daño cutáneo en México. La fotoprotección diaria es el hábito con mayor impacto en la salud de tu piel a largo plazo.",
@@ -97,6 +84,20 @@ export const UNIVERSES: Universe[] = [
     ],
     emoji: "☀️",
     tone: "bg-[#fdf6e3]",
+  },
+  {
+    slug: "piel-sensible",
+    nav: "Piel sensible",
+    title: "Piel sensible y atópica",
+    intro:
+      "La piel atópica y sensible necesita limpieza suave, hidratación constante y productos sin irritantes. Te ayudamos a construir una rutina prudente para ti o para tus hijos.",
+    needs: [
+      "Resequedad y comezón recurrente",
+      "Piel atópica en niños",
+      "Enrojecimiento e irritación frecuente",
+    ],
+    emoji: "🤲",
+    tone: "bg-[#f2eef4]",
   },
   {
     slug: "primeras-arrugas",
@@ -119,7 +120,7 @@ export const PRODUCTS: Product[] = [
     slug: "aminoter-max-shampoo",
     line: "AMINOTER",
     badge: "Best seller",
-    universe: "cabello",
+    universe: "capilar",
     name: "Aminoter MAX Shampoo",
     benefit: "Limpieza diaria que fortalece la fibra capilar y acompaña rutinas anticaída.",
     usage: "Aplicar sobre cabello húmedo, masajear suavemente el cuero cabelludo y enjuagar.",
@@ -130,7 +131,7 @@ export const PRODUCTS: Product[] = [
   {
     slug: "aminoter-mask",
     line: "AMINOTER",
-    universe: "cabello",
+    universe: "capilar",
     name: "Aminoter Mask",
     benefit: "Mascarilla de tratamiento para nutrir y reparar el cabello debilitado.",
     usage: "Después del shampoo, aplicar de medios a puntas, dejar actuar unos minutos y enjuagar.",
@@ -141,7 +142,7 @@ export const PRODUCTS: Product[] = [
   {
     slug: "aminoter-reparage",
     line: "AMINOTER",
-    universe: "cabello",
+    universe: "capilar",
     name: "Aminoter Reparage",
     benefit: "Tratamiento reparador para cabello dañado por procesos químicos o calor.",
     usage: "Aplicar según indicación del empaque sobre cabello limpio y húmedo.",
@@ -152,7 +153,7 @@ export const PRODUCTS: Product[] = [
   {
     slug: "aminoter",
     line: "AMINOTER",
-    universe: "cabello",
+    universe: "capilar",
     name: "Aminoter",
     benefit: "Suplemento oral para acompañar el manejo de la caída de cabello desde adentro.",
     usage: "Tomar según indicación del empaque o de su médico.",
@@ -166,7 +167,7 @@ export const PRODUCTS: Product[] = [
     slug: "aminoter-d",
     line: "AMINOTER",
     badge: "Nuevo",
-    universe: "cabello",
+    universe: "capilar",
     name: "Aminoter D",
     benefit: "Suplemento capilar con vitamina D para necesidades específicas.",
     usage: "Tomar según indicación del empaque o de su médico.",
@@ -180,7 +181,7 @@ export const PRODUCTS: Product[] = [
     slug: "complidermol",
     line: "COMPLIDERMOL",
     badge: "Best seller",
-    universe: "cabello",
+    universe: "capilar",
     name: "Complidermol",
     benefit: "Suplemento oral de referencia para el cuidado del cabello y las uñas.",
     usage: "Tomar según indicación del empaque o de su médico.",
@@ -243,7 +244,7 @@ export const PRODUCTS: Product[] = [
   {
     slug: "fotoprotector-facial",
     line: "PANALAB",
-    universe: "sol",
+    universe: "fotoproteccion",
     name: "Fotoprotector Facial FPS 50+",
     benefit: "Protección diaria de amplio espectro con acabado ligero.",
     usage: "Aplicar cada mañana como último paso de la rutina; reaplicar cada 3 a 4 horas de exposición.",
@@ -255,7 +256,7 @@ export const PRODUCTS: Product[] = [
   {
     slug: "fotoprotector-corporal",
     line: "PANALAB",
-    universe: "sol",
+    universe: "fotoproteccion",
     name: "Fotoprotector Corporal FPS 50",
     benefit: "Protección corporal resistente al agua para actividades al aire libre.",
     usage: "Aplicar 20 minutos antes de la exposición y reaplicar después de nadar o sudar.",
@@ -322,7 +323,7 @@ export interface Faq {
 }
 
 export const FAQS: Record<string, Faq[]> = {
-  cabello: [
+  capilar: [
     {
       q: "¿Cuánto cabello es normal perder al día?",
       a: "Perder entre 50 y 100 cabellos al día se considera normal. Si notas una caída mayor durante más de 3 meses, mechones al peinarte o zonas con menos densidad, lo recomendable es una valoración con dermatólogo.",
@@ -364,7 +365,7 @@ export const FAQS: Record<string, Faq[]> = {
       a: "No: manipular las lesiones aumenta la inflamación y el riesgo de marcas. Un tratamiento localizado y una rutina constante son un mejor camino.",
     },
   ],
-  sol: [
+  fotoproteccion: [
     {
       q: "¿Cuándo se aplica el protector solar en el rostro?",
       a: "Cada mañana como último paso de la rutina, incluso en días nublados o dentro de casa si hay exposición a ventanas. Reaplicar cada 3 a 4 horas de exposición.",

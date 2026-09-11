@@ -37,18 +37,6 @@ export default function Header() {
               </Link>
             ))}
             <Link
-              href="/herramientas"
-              className="wave-link text-sm text-ink transition-colors hover:text-brand"
-            >
-              Herramientas
-            </Link>
-            <Link
-              href="/historias"
-              className="wave-link text-sm text-ink transition-colors hover:text-brand"
-            >
-              Historias
-            </Link>
-            <Link
               href="/donde-comprar"
               className="wave-btn wave-btn-deep rounded-full bg-brand px-5 py-2 text-xs font-bold tracking-wider text-white"
             >
@@ -86,27 +74,6 @@ export default function Header() {
                 {u.nav}
               </Link>
             ))}
-            <Link
-              href="/herramientas"
-              className="border-b border-sand py-3 text-ink"
-              onClick={() => setOpen(false)}
-            >
-              Herramientas
-            </Link>
-            <Link
-              href="/historias"
-              className="border-b border-sand py-3 text-ink"
-              onClick={() => setOpen(false)}
-            >
-              Historias
-            </Link>
-            <Link
-              href="/profesionales"
-              className="border-b border-sand py-3 text-ink"
-              onClick={() => setOpen(false)}
-            >
-              Profesionales de la salud
-            </Link>
             <Link
               href="/asesor-virtual"
               className="mt-4 rounded-full border-2 border-brand px-4 py-3 text-center text-sm font-bold tracking-wider text-brand"

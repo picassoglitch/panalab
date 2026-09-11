@@ -142,7 +142,7 @@ export default function CaidaFlow() {
             Rutina capilar Panalab que puede acompañarte
           </h3>
           <div className="mt-4 grid gap-3 sm:grid-cols-2">
-            {productsByUniverse("cabello").slice(0, 4).map((p) => (
+            {productsByUniverse("capilar").slice(0, 4).map((p) => (
               <Link
                 key={p.slug}
                 href={`/productos/${p.slug}`}

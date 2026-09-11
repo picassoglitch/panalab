@@ -99,7 +99,7 @@ function productsForType(type: SkinType): Product[] {
     case "mixta":
       return [
         ...productsByUniverse("primeras-arrugas"),
-        ...productsByUniverse("sol"),
+        ...productsByUniverse("fotoproteccion"),
       ].slice(0, 3);
   }
 }

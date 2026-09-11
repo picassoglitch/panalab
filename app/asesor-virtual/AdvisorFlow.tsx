@@ -12,7 +12,7 @@ const DETAIL_QUESTIONS: Record<
   string,
   { question: string; options: { label: string; note: string }[] }
 > = {
-  cabello: {
+  capilar: {
     question: "¿Cómo describirías la caída o el estado de tu cabello?",
     options: [
       {
@@ -55,7 +55,7 @@ const DETAIL_QUESTIONS: Record<
       },
     ],
   },
-  sol: {
+  fotoproteccion: {
     question: "¿Cuál es tu exposición típica al sol?",
     options: [
       {
