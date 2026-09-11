@@ -58,7 +58,9 @@ export default async function UniversePage({
     <Link
       key="_banner"
       href="/asesor-virtual"
-      className="panalab-gradient flex flex-col justify-between rounded-card p-5 text-white transition-shadow hover:shadow-lg sm:col-span-2"
+      className={`panalab-gradient flex flex-col justify-between rounded-card p-5 text-white transition-shadow hover:shadow-lg sm:col-span-2 ${
+        products.length === 0 ? "lg:col-span-4" : ""
+      }`}
     >
       <p className="text-xs font-bold tracking-[0.25em] text-white/70">
         ¿NO SABES POR DÓNDE EMPEZAR?

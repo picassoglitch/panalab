@@ -61,6 +61,20 @@ export const PRODUCT_LINES: ProductLine[] = [
     description:
       "Línea Panalab para piel grasa y con tendencia acneica: limpieza, hidratación con protección solar y un suplemento oral que acompaña la rutina desde adentro.",
   },
+  {
+    id: "AMINOTER",
+    name: "Aminoter",
+    tagline: "Reparación y protección capilar",
+    description:
+      "Línea Panalab para el cabello debilitado o en etapas de caída: shampoo, mascarilla y suero para el cuidado tópico, más cápsulas que acompañan la rutina desde adentro.",
+  },
+  {
+    id: "COMPLIDERMOL",
+    name: "Complidermol",
+    tagline: "El clásico del cuidado capilar",
+    description:
+      "Suplemento alimenticio en cápsulas con larga trayectoria en el portafolio capilar Panalab para el cuidado del cabello y las uñas.",
+  },
 ];
 
 export const UNIVERSES: Universe[] = [
@@ -143,46 +157,53 @@ export const PRODUCTS: Product[] = [
     badge: "Best seller",
     universe: "capilar",
     name: "Aminoter MAX Shampoo",
-    benefit: "Limpieza diaria que fortalece la fibra capilar y acompaña rutinas anticaída.",
+    benefit: "Shampoo de reparación y protección capilar en microesferas. 150 mL.",
     usage: "Aplicar sobre cabello húmedo, masajear suavemente el cuero cabelludo y enjuagar.",
     ingredients: ["Complejo de aminoácidos", "Activos fortalecedores"],
     science:
       "Parte de la línea Aminoter, desarrollada para el cuidado integral del cabello debilitado o en etapas de caída.",
+    images: [
+      "/productos/aminoter-max-shampoo/1.webp",
+      "/productos/aminoter-max-shampoo/2.webp",
+    ],
   },
   {
     slug: "aminoter-mask",
     line: "AMINOTER",
     universe: "capilar",
     name: "Aminoter Mask",
-    benefit: "Mascarilla de tratamiento para nutrir y reparar el cabello debilitado.",
+    benefit: "Mascarilla capilar de fórmula mejorada para nutrir y reparar el cabello debilitado. 140 g.",
     usage: "Después del shampoo, aplicar de medios a puntas, dejar actuar unos minutos y enjuagar.",
     ingredients: ["Agentes acondicionadores", "Complejo nutritivo capilar"],
     science:
       "Complemento de la rutina Aminoter para devolver suavidad y fuerza a la fibra capilar.",
+    images: ["/productos/aminoter-mask/1.webp"],
   },
   {
     slug: "aminoter-reparage",
     line: "AMINOTER",
     universe: "capilar",
     name: "Aminoter Reparage",
-    benefit: "Tratamiento reparador para cabello dañado por procesos químicos o calor.",
+    benefit: "Suero capilar reparador para cabello dañado por procesos químicos o calor.",
     usage: "Aplicar según indicación del empaque sobre cabello limpio y húmedo.",
     ingredients: ["Complejo reparador", "Activos protectores"],
     science:
       "Formulado para ayudar a restaurar la estructura del cabello sometido a tintes, decoloración o herramientas de calor.",
+    images: ["/productos/aminoter-reparage/1.webp"],
   },
   {
     slug: "aminoter",
     line: "AMINOTER",
     universe: "capilar",
-    name: "Aminoter",
+    name: "Aminoter cápsulas",
     benefit: "Suplemento oral para acompañar el manejo de la caída de cabello desde adentro.",
     usage: "Tomar según indicación del empaque o de su médico.",
-    ingredients: ["Aminoácidos", "Vitaminas y minerales"],
+    ingredients: ["L-Metionina", "L-Cistina", "Pantotenato de calcio", "Zinc", "Vitamina B6", "Biotina"],
     science:
       "Suplemento de la línea capilar Panalab pensado para complementar rutinas tópicas en etapas de caída.",
     legend:
       "Este producto no es un medicamento. Si la caída persiste, consulte a su médico.",
+    images: ["/productos/aminoter/1.webp", "/productos/aminoter/2.webp"],
   },
   {
     slug: "aminoter-d",
@@ -203,7 +224,7 @@ export const PRODUCTS: Product[] = [
     line: "COMPLIDERMOL",
     badge: "Best seller",
     universe: "capilar",
-    name: "Complidermol",
+    name: "Complidermol 5α",
     benefit: "Suplemento oral de referencia para el cuidado del cabello y las uñas.",
     usage: "Tomar según indicación del empaque o de su médico.",
     ingredients: ["Complejo nutricional capilar"],
@@ -211,6 +232,7 @@ export const PRODUCTS: Product[] = [
       "Uno de los productos con mayor trayectoria del portafolio capilar Panalab.",
     legend:
       "Este producto no es un medicamento. Consulte a su médico.",
+    images: ["/productos/complidermol/1.webp"],
   },
   {
     slug: "proavenal",
