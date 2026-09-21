@@ -1,0 +1,36 @@
+# Configuracion para el hospedaje compartido de panalab.mx (Apache).
+# Este archivo se copia tal cual a /out al correr `npm run build:static`
+# y debe quedar en la raiz de public_html.
+
+# Pagina 404 exportada por Next.js
+ErrorDocument 404 /404.html
+
+<IfModule mod_rewrite.c>
+  RewriteEngine On
+
+  # Forzar HTTPS
+  RewriteCond %{HTTPS} !=on
+  RewriteCond %{HTTP:X-Forwarded-Proto} !https
+  RewriteRule ^(.*)$ https://%{HTTP_HOST}/$1 [R=301,L]
+
+  # Si el cliente NO hace la redireccion de panalab.com.mx a nivel DNS/hosting,
+  # descomentar estas dos lineas para resolverla desde aqui:
+  # RewriteCond %{HTTP_HOST} ^(www\.)?panalab\.com\.mx$ [NC]
+  # RewriteRule ^(.*)$ https://panalab.mx/$1 [R=301,L]
+</IfModule>
+
+# Cache de los assets con hash que genera Next.js
+<IfModule mod_expires.c>
+  ExpiresActive On
+  ExpiresByType text/html "access plus 0 seconds"
+  ExpiresByType text/css "access plus 1 year"
+  ExpiresByType application/javascript "access plus 1 year"
+  ExpiresByType image/webp "access plus 6 months"
+  ExpiresByType image/jpeg "access plus 6 months"
+  ExpiresByType image/png "access plus 6 months"
+  ExpiresByType image/svg+xml "access plus 6 months"
+</IfModule>
+
+<IfModule mod_deflate.c>
+  AddOutputFilterByType DEFLATE text/html text/css application/javascript application/json image/svg+xml
+</IfModule>
