@@ -51,8 +51,9 @@ estatico y subir por FTP tal cual.
 
    El script usa `lftp` con FTPS explicito y espeja `out/` contra
    `/public_html`. **`--delete` esta activo**: borra del servidor lo que ya no
-   existe en `out/`. Si en `public_html` vive todavia el sitio anterior del
-   cliente, correr primero el `--dry-run`, revisar la lista y respaldar.
+   existe en `out/`. Es lo que queremos: el sitio nuevo reemplaza por completo
+   al anterior (decision tomada con el cliente). Aun asi conviene bajar una
+   copia de `public_html` antes de la primera subida, por si acaso.
 
 4. Revisar en el navegador: home, un producto (`/productos/aminoter-mask/`), un
    universo (`/universos/acne/`), una herramienta y `/donde-comprar/`.
