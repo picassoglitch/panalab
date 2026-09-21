@@ -1,8 +1,8 @@
 # Configuracion para el hospedaje compartido de panalab.mx (Apache).
-# Este archivo se copia tal cual a /out al correr `npm run build:static`
+# Este archivo se copia tal cual a /out durante el build
 # y debe quedar en la raiz de public_html.
 
-# Pagina 404 exportada por Next.js
+# Pagina de error 404 del sitio
 ErrorDocument 404 /404.html
 
 <IfModule mod_rewrite.c>
@@ -19,7 +19,7 @@ ErrorDocument 404 /404.html
   # RewriteRule ^(.*)$ https://panalab.mx/$1 [R=301,L]
 </IfModule>
 
-# Cache de los assets con hash que genera Next.js
+# Cache de los assets estaticos (llevan hash en el nombre)
 <IfModule mod_expires.c>
   ExpiresActive On
   ExpiresByType text/html "access plus 0 seconds"
