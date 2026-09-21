@@ -8,10 +8,14 @@ ErrorDocument 404 /404.html
 <IfModule mod_rewrite.c>
   RewriteEngine On
 
-  # Forzar HTTPS
-  RewriteCond %{HTTPS} !=on
-  RewriteCond %{HTTP:X-Forwarded-Proto} !https
-  RewriteRule ^(.*)$ https://%{HTTP_HOST}/$1 [R=301,L]
+  # Forzar HTTPS: DESACTIVADO hasta que el hosting emita el certificado de
+  # panalab.mx. Sin certificado, las peticiones https no llegan a esta cuenta
+  # (las atiende el vhost por defecto del servidor y devuelven un 404 ajeno),
+  # asi que redirigir hacia https deja el sitio inaccesible.
+  # Reactivar estas tres lineas en cuanto AutoSSL este emitido:
+  # RewriteCond %{HTTPS} !=on
+  # RewriteCond %{HTTP:X-Forwarded-Proto} !https
+  # RewriteRule ^(.*)$ https://%{HTTP_HOST}/$1 [R=301,L]
 
   # Si el cliente NO hace la redireccion de panalab.com.mx a nivel DNS/hosting,
   # descomentar estas dos lineas para resolverla desde aqui:
