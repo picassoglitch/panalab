@@ -8,7 +8,7 @@ import {
   type Especialista,
   type Foco,
 } from "@/lib/dermatologos";
-import { track } from "@/lib/analytics";
+import { sanitizeForAnalytics, track } from "@/lib/analytics";
 import Disclaimer from "@/components/Disclaimer";
 
 const FOCOS: Foco[] = ["acne", "capilar", "atopia", "pediatria"];
@@ -41,7 +41,10 @@ export default function FinderClient() {
   function handleSubmit(ev: FormEvent) {
     ev.preventDefault();
     setQuery(input);
-    track("derma_finder_search", { query: input, focos: focos.join(",") });
+    track("derma_finder_search", {
+      query: sanitizeForAnalytics(input),
+      focos: focos.join(","),
+    });
   }
 
   function toggleFoco(foco: Foco) {
@@ -49,7 +52,10 @@ export default function FinderClient() {
       ? focos.filter((f) => f !== foco)
       : [...focos, foco];
     setFocos(next);
-    track("derma_finder_search", { query, focos: next.join(",") });
+    track("derma_finder_search", {
+      query: sanitizeForAnalytics(query),
+      focos: next.join(","),
+    });
   }
 
   return (
