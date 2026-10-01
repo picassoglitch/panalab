@@ -2,7 +2,7 @@ import Image from "next/image";
 import Link from "next/link";
 import { notFound } from "next/navigation";
 import { PRODUCTS, getProduct, getUniverse, productsByUniverse } from "@/lib/data";
-import { canonical } from "@/lib/site";
+import { canonical, clampDescription } from "@/lib/site";
 import BuyButtons from "@/components/BuyButtons";
 import Disclaimer from "@/components/Disclaimer";
 import ProductCard from "@/components/ProductCard";
@@ -21,9 +21,26 @@ export async function generateMetadata({
 }) {
   const { slug } = await params;
   const product = getProduct(slug);
+  if (!product) return { title: "Producto" };
+
+  const path = canonical(`/productos/${slug}`);
+  // Cada ficha describe su producto: antes las 28 heredaban la descripcion
+  // generica del layout y competian entre si por el mismo texto.
+  const description = clampDescription(product.benefit);
+
   return {
-    title: product?.name ?? "Producto",
-    alternates: { canonical: canonical(`/productos/${slug}`) },
+    title: product.name,
+    description,
+    alternates: { canonical: path },
+    openGraph: {
+      title: product.name,
+      description,
+      url: path,
+      siteName: "Panalab México",
+      locale: "es_MX",
+      type: "website",
+      ...(product.images?.length ? { images: [product.images[0]] } : {}),
+    },
   };
 }
 

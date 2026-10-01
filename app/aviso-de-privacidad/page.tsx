@@ -3,6 +3,8 @@ import type { Metadata } from "next";
 export const metadata: Metadata = {
   alternates: { canonical: "/aviso-de-privacidad/" },
   title: "Aviso de privacidad",
+  description:
+    "Cómo Panalab México trata los datos personales que recibe a través de este sitio y cómo ejercer tus derechos ARCO.",
 };
 
 export default function AvisoPrivacidadPage() {

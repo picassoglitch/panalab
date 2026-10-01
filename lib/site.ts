@@ -20,3 +20,20 @@ export function canonical(path: string): string {
   const clean = path.startsWith("/") ? path : `/${path}`;
   return clean.endsWith("/") ? clean : `${clean}/`;
 }
+
+/** Largo maximo de una meta description antes de que Google la corte. */
+export const DESCRIPTION_MAX = 155;
+
+/**
+ * Recorta un texto para usarlo como meta description.
+ *
+ * Corta en el ultimo espacio para no partir una palabra a la mitad y cierra
+ * con puntos suspensivos. Si ya cabe, lo devuelve tal cual.
+ */
+export function clampDescription(text: string, max = DESCRIPTION_MAX): string {
+  const clean = text.replace(/\s+/g, " ").trim();
+  if (clean.length <= max) return clean;
+  const cut = clean.slice(0, max - 1);
+  const lastSpace = cut.lastIndexOf(" ");
+  return `${(lastSpace > 0 ? cut.slice(0, lastSpace) : cut).replace(/[.,;:]$/, "")}…`;
+}

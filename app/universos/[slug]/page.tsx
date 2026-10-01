@@ -8,7 +8,7 @@ import {
   getUniverse,
   productsByUniverse,
 } from "@/lib/data";
-import { canonical } from "@/lib/site";
+import { canonical, clampDescription } from "@/lib/site";
 import ProductCard from "@/components/ProductCard";
 import Disclaimer from "@/components/Disclaimer";
 import Accordion, { AccordionItem } from "@/components/Accordion";
@@ -26,9 +26,24 @@ export async function generateMetadata({
 }) {
   const { slug } = await params;
   const universe = getUniverse(slug);
+  if (!universe) return { title: "Universo" };
+
+  const path = canonical(`/universos/${slug}`);
+  const description = clampDescription(universe.intro);
+
   return {
-    title: universe?.title ?? "Universo",
-    alternates: { canonical: canonical(`/universos/${slug}`) },
+    title: universe.title,
+    description,
+    alternates: { canonical: path },
+    openGraph: {
+      title: universe.title,
+      description,
+      url: path,
+      siteName: "Panalab México",
+      locale: "es_MX",
+      type: "website",
+      images: [universe.image],
+    },
   };
 }
 

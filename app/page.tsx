@@ -12,6 +12,15 @@ import WaveDivider from "@/components/WaveDivider";
 
 export const metadata: Metadata = {
   alternates: { canonical: "/" },
+  openGraph: {
+    title: "Panalab México — Historias que tu piel quiere contar",
+    description:
+      "El hub digital de Panalab México: cuidado capilar, piel sensible, acné, fotoprotección y antioxidantes.",
+    url: "/",
+    siteName: "Panalab México",
+    locale: "es_MX",
+    type: "website",
+  },
 };
 
 const COMMUNITY_BENEFITS = [
@@ -34,10 +43,10 @@ export default function Home() {
 
       {/* Categorías / universos */}
       <section className="mx-auto max-w-6xl px-4 py-16 sm:px-6">
-        <h2 className="font-display text-3xl leading-snug sm:text-4xl">
+        <h1 className="font-display text-3xl leading-snug sm:text-4xl">
           <span className="font-extrabold">Cuidar tu piel es entenderla.</span>{" "}
           <span className="font-light">Entra por lo que necesitas hoy</span>
-        </h2>
+        </h1>
         <div className="mt-8 grid gap-4 sm:grid-cols-2 lg:grid-cols-5">
           {UNIVERSES.map((u) => (
             <Link
