@@ -7,10 +7,11 @@
     "build": "next build",
     "start": "next start",
     "lint": "eslint",
-    "build:static": "node --experimental-strip-types --disable-warning=ExperimentalWarning --disable-warning=MODULE_TYPELESS_PACKAGE_JSON scripts/report-missing-buy-links.mjs && STATIC_EXPORT=true next build",
+    "build:static": "node --experimental-strip-types --disable-warning=ExperimentalWarning --disable-warning=MODULE_TYPELESS_PACKAGE_JSON scripts/check-legal.mjs && node --experimental-strip-types --disable-warning=ExperimentalWarning --disable-warning=MODULE_TYPELESS_PACKAGE_JSON scripts/report-missing-buy-links.mjs && STATIC_EXPORT=true next build",
     "test": "vitest run",
     "test:watch": "vitest",
-    "verify:out": "node scripts/verify-static-out.mjs"
+    "verify:out": "node scripts/verify-static-out.mjs",
+    "check:legal": "node --experimental-strip-types --disable-warning=ExperimentalWarning --disable-warning=MODULE_TYPELESS_PACKAGE_JSON scripts/check-legal.mjs"
   },
   "dependencies": {
     "next": "16.3.8",
