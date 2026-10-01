@@ -33,8 +33,33 @@ export interface Universe {
   tone: string;
 }
 
+/** Canales de venta con enlace directo a la ficha del producto. */
+export type BuyChannel = "amazon" | "mercadolibre" | "farmacias";
+
+/**
+ * Enlaces directos por canal.
+ *
+ * TODO(owner): ninguno de los 28 productos tiene URL todavia. Hasta que el
+ * cliente las entregue, la ficha de producto no muestra botones de compra:
+ * antes mandaban a una busqueda generica de "panalab", que no lleva al
+ * producto que el usuario esta viendo. Solo se aceptan URLs https de los
+ * dominios de BUY_LINK_HOSTS.
+ */
+export type BuyLinks = Partial<Record<BuyChannel, string>>;
+
+/** Dominios permitidos en buyLinks. Agregar aqui los de distribuidores. */
+export const BUY_LINK_HOSTS = [
+  "amazon.com.mx",
+  "www.amazon.com.mx",
+  "mercadolibre.com.mx",
+  "listado.mercadolibre.com.mx",
+  "articulo.mercadolibre.com.mx",
+] as const;
+
 export interface Product {
   slug: string;
+  /** Vacio mientras el cliente no entregue las URLs. Ver BuyLinks. */
+  buyLinks?: BuyLinks;
   universe: string;
   line: string;
   name: string;

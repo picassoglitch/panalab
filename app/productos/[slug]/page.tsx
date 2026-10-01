@@ -110,7 +110,11 @@ export default async function ProductPage({
             <div className="mt-8">
               <p className="text-sm font-bold tracking-wider text-ink">DÓNDE COMPRAR</p>
               <div className="mt-3">
-                <BuyButtons product={product.slug} />
+                <BuyButtons
+                  product={product.slug}
+                  scope="product"
+                  buyLinks={product.buyLinks}
+                />
               </div>
             </div>
 
