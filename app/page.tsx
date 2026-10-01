@@ -1,11 +1,27 @@
+import type { Metadata } from "next";
+import Image from "next/image";
 import Link from "next/link";
 import { UNIVERSES, PRODUCTS, STORIES } from "@/lib/data";
+import { DERMA_FINDER_MODE } from "@/lib/features";
 import ProductCard from "@/components/ProductCard";
 import USPBar from "@/components/USPBar";
 import Newsletter from "@/components/Newsletter";
 import Disclaimer from "@/components/Disclaimer";
 import HeroBanner from "@/components/HeroBanner";
 import WaveDivider from "@/components/WaveDivider";
+
+export const metadata: Metadata = {
+  alternates: { canonical: "/" },
+  openGraph: {
+    title: "Panalab México — Historias que tu piel quiere contar",
+    description:
+      "El hub digital de Panalab México: cuidado capilar, piel sensible, acné, fotoprotección y antioxidantes.",
+    url: "/",
+    siteName: "Panalab México",
+    locale: "es_MX",
+    type: "website",
+  },
+};
 
 const COMMUNITY_BENEFITS = [
   "Recibe tu rutina personalizada por correo",
@@ -27,10 +43,10 @@ export default function Home() {
 
       {/* Categorías / universos */}
       <section className="mx-auto max-w-6xl px-4 py-16 sm:px-6">
-        <h2 className="font-display text-3xl leading-snug sm:text-4xl">
+        <h1 className="font-display text-3xl leading-snug sm:text-4xl">
           <span className="font-extrabold">Cuidar tu piel es entenderla.</span>{" "}
           <span className="font-light">Entra por lo que necesitas hoy</span>
-        </h2>
+        </h1>
         <div className="mt-8 grid gap-4 sm:grid-cols-2 lg:grid-cols-5">
           {UNIVERSES.map((u) => (
             <Link
@@ -38,7 +54,15 @@ export default function Home() {
               href={`/universos/${u.slug}`}
               className={`group rounded-card p-5 transition-shadow hover:shadow-lg ${u.tone}`}
             >
-              <span className="text-3xl">{u.emoji}</span>
+              <div className="relative h-28">
+                <Image
+                  src={u.image}
+                  alt={u.imageAlt}
+                  fill
+                  sizes="(min-width: 1024px) 20vw, (min-width: 640px) 45vw, 90vw"
+                  className="object-contain object-left transition-transform duration-300 group-hover:scale-105"
+                />
+              </div>
               <h3 className="mt-4 font-display text-lg font-bold group-hover:text-brand">
                 {u.nav}
               </h3>
@@ -79,7 +103,11 @@ export default function Home() {
               {
                 href: "/derma-finder",
                 title: "Derma Finder",
-                desc: "Dermatólogos y clínicas aliadas cerca de ti.",
+                desc:
+                  DERMA_FINDER_MODE === "off"
+                    ? "Directorio de especialistas aliados, en construcción."
+                    : "Dermatólogos y clínicas aliadas cerca de ti.",
+                soon: DERMA_FINDER_MODE === "off",
               },
             ].map((t) => (
               <Link
@@ -92,7 +120,7 @@ export default function Home() {
                 </h3>
                 <p className="mt-2 text-sm leading-relaxed text-ink-soft">{t.desc}</p>
                 <span className="mt-3 inline-block text-sm font-semibold text-brand">
-                  Probar →
+                  {"soon" in t && t.soon ? "Próximamente" : "Probar →"}
                 </span>
               </Link>
             ))}
@@ -167,8 +195,19 @@ export default function Home() {
             <ul className="mt-6 space-y-3">
               {COMMUNITY_BENEFITS.map((b) => (
                 <li key={b} className="flex items-start gap-3">
-                  <span className="mt-1 flex h-5 w-5 shrink-0 items-center justify-center rounded-full bg-brand text-[10px] font-bold text-white">
-                    ✓
+                  <span className="mt-1 flex h-5 w-5 shrink-0 items-center justify-center rounded-full bg-brand text-white">
+                    <svg
+                      viewBox="0 0 24 24"
+                      fill="none"
+                      stroke="currentColor"
+                      strokeWidth="3"
+                      strokeLinecap="round"
+                      strokeLinejoin="round"
+                      className="h-3 w-3"
+                      aria-hidden="true"
+                    >
+                      <path d="m5 12.5 4.5 4.5L19 7.5" />
+                    </svg>
                   </span>
                   <span className="leading-relaxed">{b}</span>
                 </li>

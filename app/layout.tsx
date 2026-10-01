@@ -1,13 +1,19 @@
 import type { Metadata } from "next";
 import Script from "next/script";
 import { Raleway, Mulish } from "next/font/google";
+import { SITE_URL } from "@/lib/site";
 import Header from "@/components/Header";
 import Footer from "@/components/Footer";
 import WaveFX from "@/components/WaveFX";
 import WaterSurface from "@/components/WaterSurface";
 import "./globals.css";
 
-const GTM_ID = process.env.NEXT_PUBLIC_GTM_ID;
+// El id entra tal cual en un <script> inline, asi que se valida el formato:
+// un valor raro en la variable de entorno podria cerrar la cadena e inyectar
+// codigo en todas las paginas. Si no cuadra, GTM simplemente no se carga.
+const GTM_ID_PATTERN = /^GTM-[A-Z0-9]{4,10}$/;
+const rawGtmId = process.env.NEXT_PUBLIC_GTM_ID;
+const GTM_ID = rawGtmId && GTM_ID_PATTERN.test(rawGtmId) ? rawGtmId : undefined;
 
 const raleway = Raleway({
   variable: "--font-raleway",
@@ -20,6 +26,8 @@ const mulish = Mulish({
 });
 
 export const metadata: Metadata = {
+  // Base para resolver los canonical y las URLs de Open Graph.
+  metadataBase: new URL(SITE_URL),
   title: {
     default: "Panalab México — Historias que tu piel quiere contar",
     template: "%s | Panalab México",
