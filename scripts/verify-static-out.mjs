@@ -170,6 +170,17 @@ for (const { file, route } of pages) {
     fail(`${route} todavia enlaza a la busqueda generica de Mercado Libre`);
 }
 
+// --- El token de la CSP no puede llegar al servidor ------------------------
+const outHtaccess = join(OUT, ".htaccess");
+if (!existsSync(outHtaccess)) fail("falta out/.htaccess");
+else {
+  const txt = readFileSync(outHtaccess, "utf8");
+  if (txt.includes("__LEAD_ENDPOINT_ORIGIN__"))
+    fail("out/.htaccess todavia trae __LEAD_ENDPOINT_ORIGIN__ sin sustituir");
+  if (!/Content-Security-Policy/.test(txt))
+    fail("out/.htaccess no lleva ninguna CSP");
+}
+
 // --- Resultado -------------------------------------------------------------
 console.log(`verify:out — ${pages.length} paginas revisadas en ${OUT}/`);
 for (const n of notes) console.log(`  · ${n}`);

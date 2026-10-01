@@ -94,7 +94,12 @@ AddDefaultCharset UTF-8
   # Plan para aplicarla: observar los reportes y luego, o bien aplicarla tal
   # cual con 'unsafe-inline', o anadir un paso despues del build que calcule el
   # sha256 de cada script inline y los liste aqui. Ver OPEN QUESTION 3.
-  Header always set Content-Security-Policy-Report-Only "default-src 'self'; script-src 'self' 'unsafe-inline' https://www.googletagmanager.com; style-src 'self' 'unsafe-inline'; img-src 'self' data: https://www.googletagmanager.com https://*.google-analytics.com; font-src 'self'; connect-src 'self' https://*.google-analytics.com https://*.analytics.google.com https://www.googletagmanager.com; frame-src https://www.googletagmanager.com; frame-ancestors 'none'"
+  #
+  # __LEAD_ENDPOINT_ORIGIN__ lo sustituye scripts/apply-lead-endpoint-csp.mjs
+  # al terminar el build, con el origen de NEXT_PUBLIC_LEAD_ENDPOINT. Si la
+  # variable va vacia, el token se borra. Nunca debe llegar al servidor tal
+  # cual: verify:out falla si lo encuentra en out/.htaccess.
+  Header always set Content-Security-Policy-Report-Only "default-src 'self'; script-src 'self' 'unsafe-inline' https://www.googletagmanager.com; style-src 'self' 'unsafe-inline'; img-src 'self' data: https://www.googletagmanager.com https://*.google-analytics.com; font-src 'self'; connect-src 'self' https://*.google-analytics.com https://*.analytics.google.com https://www.googletagmanager.com __LEAD_ENDPOINT_ORIGIN__; frame-src https://www.googletagmanager.com; frame-ancestors 'none'"
 
   Header always unset X-Powered-By
 
