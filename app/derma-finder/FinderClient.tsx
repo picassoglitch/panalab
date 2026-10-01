@@ -8,7 +8,7 @@ import {
   type Especialista,
   type Foco,
 } from "@/lib/dermatologos";
-import { track } from "@/lib/analytics";
+import { sanitizeForAnalytics, track } from "@/lib/analytics";
 import Disclaimer from "@/components/Disclaimer";
 
 const FOCOS: Foco[] = ["acne", "capilar", "atopia", "pediatria"];
@@ -21,13 +21,6 @@ function matchesQuery(e: Especialista, query: string): boolean {
     e.ciudad.toLowerCase().includes(q) ||
     e.estado.toLowerCase().includes(q)
   );
-}
-
-function contactHref(e: Especialista): string {
-  const subject = encodeURIComponent(
-    `Contacto Derma Finder: ${e.nombre} (${e.ciudad})`
-  );
-  return `mailto:hola@panalab.mx?subject=${subject}`;
 }
 
 export default function FinderClient() {
@@ -48,7 +41,10 @@ export default function FinderClient() {
   function handleSubmit(ev: FormEvent) {
     ev.preventDefault();
     setQuery(input);
-    track("derma_finder_search", { query: input, focos: focos.join(",") });
+    track("derma_finder_search", {
+      query: sanitizeForAnalytics(input),
+      focos: focos.join(","),
+    });
   }
 
   function toggleFoco(foco: Foco) {
@@ -56,11 +52,22 @@ export default function FinderClient() {
       ? focos.filter((f) => f !== foco)
       : [...focos, foco];
     setFocos(next);
-    track("derma_finder_search", { query, focos: next.join(",") });
+    track("derma_finder_search", {
+      query: sanitizeForAnalytics(query),
+      focos: next.join(","),
+    });
   }
 
   return (
     <div className="space-y-8">
+      <p
+        role="alert"
+        className="rounded-card border border-ink-soft/30 bg-cream px-5 py-4 text-sm font-semibold leading-relaxed text-ink"
+      >
+        Directorio de demostración: los especialistas que ves son ficticios y
+        no representan a médicos reales.
+      </p>
+
       <form
         onSubmit={handleSubmit}
         className="flex flex-col gap-3 sm:flex-row sm:items-center"
@@ -112,9 +119,14 @@ export default function FinderClient() {
               key={e.id}
               className="flex flex-col rounded-card border border-sand bg-white p-5"
             >
-              <h2 className="font-display text-lg font-semibold text-ink">
-                {e.nombre}
-              </h2>
+              <div className="flex items-start justify-between gap-3">
+                <h2 className="font-display text-lg font-semibold text-ink">
+                  {e.nombre}
+                </h2>
+                <span className="shrink-0 rounded-full bg-ink-soft/15 px-2.5 py-0.5 text-[11px] font-bold uppercase tracking-wider text-ink-soft">
+                  Ejemplo
+                </span>
+              </div>
               <p className="mt-1 text-sm text-ink-soft">{e.especialidad}</p>
               <div className="mt-3 flex flex-wrap gap-1.5">
                 {e.focos.map((f) => (
@@ -131,12 +143,6 @@ export default function FinderClient() {
                 <br />
                 CP {e.cp}
               </p>
-              <a
-                href={contactHref(e)}
-                className="mt-5 inline-block self-start rounded-full bg-brand px-6 py-2.5 text-xs font-bold uppercase tracking-wider text-white transition hover:bg-brand-dark"
-              >
-                Contactar
-              </a>
             </article>
           ))}
         </div>
@@ -157,12 +163,6 @@ export default function FinderClient() {
           </Link>
         </div>
       )}
-
-      <div className="rounded-card border border-sand bg-cream px-5 py-4 text-sm leading-relaxed text-ink-soft">
-        Este directorio muestra especialistas y clínicas aliadas de
-        demostración. Los datos se reemplazarán por la base de aliados real de
-        Panalab una vez que esté disponible.
-      </div>
 
       <Disclaimer />
     </div>

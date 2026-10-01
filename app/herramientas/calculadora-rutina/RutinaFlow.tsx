@@ -1,5 +1,6 @@
 "use client";
 
+import Image from "next/image";
 import Link from "next/link";
 import { useState } from "react";
 import { getProduct } from "@/lib/data";
@@ -316,14 +317,30 @@ export default function RutinaFlow() {
               onClick={() => pickFocus("piel")}
               className="flex items-center gap-4 rounded-card bg-[#f2eef4] p-5 text-left transition-transform hover:-translate-y-0.5"
             >
-              <span className="text-3xl">🧴</span>
+              <span className="relative h-14 w-14 shrink-0">
+                <Image
+                  src="/productos/vitanoin-c5-serum/1.webp"
+                  alt="Vitanoin C5 Serum, cuidado facial Panalab"
+                  fill
+                  sizes="56px"
+                  className="object-contain"
+                />
+              </span>
               <span className="font-display text-lg font-semibold">Piel</span>
             </button>
             <button
               onClick={() => pickFocus("cabello")}
               className="flex items-center gap-4 rounded-card bg-[#e7eaf4] p-5 text-left transition-transform hover:-translate-y-0.5"
             >
-              <span className="text-3xl">💇</span>
+              <span className="relative h-14 w-14 shrink-0">
+                <Image
+                  src="/productos/aminoter-mask/1.webp"
+                  alt="Aminoter Mask, cuidado capilar Panalab"
+                  fill
+                  sizes="56px"
+                  className="object-contain"
+                />
+              </span>
               <span className="font-display text-lg font-semibold">Cabello</span>
             </button>
           </div>

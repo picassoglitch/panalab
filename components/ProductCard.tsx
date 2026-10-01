@@ -30,10 +30,16 @@ export default function ProductCard({ product }: { product: Product }) {
           />
         </div>
       ) : (
-        <div
-          className={`flex h-44 items-center justify-center text-6xl transition-transform duration-300 group-hover:scale-105 ${universe?.tone ?? "bg-cream"}`}
-        >
-          {universe?.emoji}
+        <div className={`relative h-44 ${universe?.tone ?? "bg-cream"}`}>
+          {universe ? (
+            <Image
+              src={universe.image}
+              alt={universe.imageAlt}
+              fill
+              sizes="(min-width: 1024px) 25vw, (min-width: 640px) 50vw, 100vw"
+              className="object-contain p-4 transition-transform duration-300 group-hover:scale-105"
+            />
+          ) : null}
         </div>
       )}
       <div className="flex flex-1 flex-col p-4">

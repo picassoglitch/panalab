@@ -1,6 +1,8 @@
+import Image from "next/image";
 import Link from "next/link";
 import { notFound } from "next/navigation";
 import { PRODUCTS, getProduct, getUniverse, productsByUniverse } from "@/lib/data";
+import { canonical, clampDescription } from "@/lib/site";
 import BuyButtons from "@/components/BuyButtons";
 import Disclaimer from "@/components/Disclaimer";
 import ProductCard from "@/components/ProductCard";
@@ -19,7 +21,27 @@ export async function generateMetadata({
 }) {
   const { slug } = await params;
   const product = getProduct(slug);
-  return { title: product?.name ?? "Producto" };
+  if (!product) return { title: "Producto" };
+
+  const path = canonical(`/productos/${slug}`);
+  // Cada ficha describe su producto: antes las 28 heredaban la descripcion
+  // generica del layout y competian entre si por el mismo texto.
+  const description = clampDescription(product.benefit);
+
+  return {
+    title: product.name,
+    description,
+    alternates: { canonical: path },
+    openGraph: {
+      title: product.name,
+      description,
+      url: path,
+      siteName: "Panalab México",
+      locale: "es_MX",
+      type: "website",
+      ...(product.images?.length ? { images: [product.images[0]] } : {}),
+    },
+  };
 }
 
 export default async function ProductPage({
@@ -65,9 +87,17 @@ export default async function ProductPage({
               <ProductGallery images={product.images} name={product.name} />
             ) : (
               <div
-                className={`flex min-h-80 items-center justify-center rounded-card text-8xl ${universe?.tone ?? "bg-cream"}`}
+                className={`relative min-h-80 overflow-hidden rounded-card ${universe?.tone ?? "bg-cream"}`}
               >
-                {universe?.emoji}
+                {universe ? (
+                  <Image
+                    src={universe.image}
+                    alt={universe.imageAlt}
+                    fill
+                    sizes="(min-width: 768px) 45vw, 90vw"
+                    className="object-contain p-10"
+                  />
+                ) : null}
               </div>
             )}
           </div>
@@ -97,7 +127,11 @@ export default async function ProductPage({
             <div className="mt-8">
               <p className="text-sm font-bold tracking-wider text-ink">DÓNDE COMPRAR</p>
               <div className="mt-3">
-                <BuyButtons product={product.slug} />
+                <BuyButtons
+                  product={product.slug}
+                  scope="product"
+                  buyLinks={product.buyLinks}
+                />
               </div>
             </div>
 

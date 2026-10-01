@@ -1,12 +1,20 @@
+import Image from "next/image";
 import Link from "next/link";
 import { UNIVERSES } from "@/lib/data";
+import { DERMA_FINDER_MODE } from "@/lib/features";
 
 export default function Footer() {
   return (
     <footer className="bg-ink text-white">
       <div className="mx-auto grid max-w-6xl gap-10 px-4 py-12 sm:px-6 md:grid-cols-3">
         <div>
-          <p className="font-display text-2xl font-semibold">Panalab México</p>
+          <Image
+            src="/brand/panalab-logo-blanco.png"
+            alt="Panalab México"
+            width={1200}
+            height={331}
+            className="h-10 w-auto"
+          />
           <p className="mt-3 max-w-xs text-sm leading-relaxed text-white/70">
             Historias que tu piel quiere contar. Ciencia traducida a lenguaje
             cotidiano para cuidar tu piel y tu cabello.
@@ -41,7 +49,7 @@ export default function Footer() {
             </li>
             <li>
               <Link href="/derma-finder" className="text-sm text-white/80 hover:text-white">
-                Derma Finder
+                Derma Finder{DERMA_FINDER_MODE === "off" && " · Próximamente"}
               </Link>
             </li>
             <li>
