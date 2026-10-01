@@ -25,7 +25,11 @@ export interface Universe {
   title: string;
   intro: string;
   needs: string[];
-  emoji: string;
+  /* Foto real del producto que representa a la linea, en vez del emoji que
+     se usaba antes. Se eligieron las tomas con fondo transparente para que
+     asienten sobre el color `tone` de cada universo. */
+  image: string;
+  imageAlt: string;
   tone: string;
 }
 
@@ -123,7 +127,8 @@ export const UNIVERSES: Universe[] = [
       "Acné adulto",
       "Marcas y textura irregular",
     ],
-    emoji: "✨",
+    image: "/productos/cuteral-wash/1.webp",
+    imageAlt: "Cuteral Wash, gel limpiador de la linea para piel con acne",
     tone: "bg-[#fdf0ea]",
   },
   {
@@ -137,7 +142,8 @@ export const UNIVERSES: Universe[] = [
       "Cabello debilitado o sin volumen",
       "Cuero cabelludo sensible",
     ],
-    emoji: "💇",
+    image: "/productos/aminoter-mask/1.webp",
+    imageAlt: "Aminoter Mask, mascarilla capilar de la linea Aminoter",
     tone: "bg-[#e7eaf4]",
   },
   {
@@ -151,7 +157,8 @@ export const UNIVERSES: Universe[] = [
       "Piel expuesta al aire libre",
       "Prevención de manchas",
     ],
-    emoji: "☀️",
+    image: "/productos/mineral-safe-stick-color-ligero/1.webp",
+    imageAlt: "Mineral Safe Stick FPS 50+, fotoproteccion en barra",
     tone: "bg-[#fdf6e3]",
   },
   {
@@ -165,7 +172,8 @@ export const UNIVERSES: Universe[] = [
       "Piel atópica en niños",
       "Enrojecimiento e irritación frecuente",
     ],
-    emoji: "🤲",
+    image: "/productos/proavenal-gel-de-ducha/1.webp",
+    imageAlt: "Proavenal gel de ducha para piel sensible y atopica",
     tone: "bg-[#f2eef4]",
   },
   {
@@ -179,7 +187,8 @@ export const UNIVERSES: Universe[] = [
       "Piel apagada o fatigada",
       "Prevención de fotoenvejecimiento",
     ],
-    emoji: "🌿",
+    image: "/productos/vitanoin-c5-serum/1.webp",
+    imageAlt: "Vitanoin C5 Serum, antioxidante para primeras arrugas",
     tone: "bg-[#eef2f4]",
   },
 ];

@@ -33,24 +33,53 @@ const STEPS = [
   },
 ];
 
+/* Estos cuatro logros son acciones abstractas (test, encuesta, webinar,
+   testimonio): no hay foto de producto Panalab que las represente, y meter
+   banco de imagenes en un sitio comercial del cliente es un tema de licencia.
+   Van como iconos vectoriales en color de marca, que se ven nitidos a
+   cualquier tamano. Si el cliente manda fotografia propia, se cambian aqui. */
 const ACHIEVEMENTS = [
   {
-    emoji: "🧪",
+    icon: (
+      <>
+        <path d="M9 4.5H7.5A2 2 0 0 0 5.5 6.5v13a2 2 0 0 0 2 2h9a2 2 0 0 0 2-2v-13a2 2 0 0 0-2-2H15" />
+        <rect x="9" y="2.5" width="6" height="4" rx="1" />
+        <path d="m9.5 14 2 2 3.5-3.5" />
+      </>
+    ),
     title: "Completar tests",
     desc: "Suma puntos cada vez que completas un test de piel o cabello y conoces mejor tus necesidades.",
   },
   {
-    emoji: "📋",
+    icon: (
+      <>
+        <path d="M3 20.5h18" />
+        <path d="M6 20.5v-7" />
+        <path d="M12 20.5V4" />
+        <path d="M18 20.5v-11" />
+      </>
+    ),
     title: "Participar en encuestas",
     desc: "Tu opinión cuenta: responde encuestas breves durante el reto y desbloquea logros.",
   },
   {
-    emoji: "🎥",
+    icon: (
+      <>
+        <rect x="2.5" y="5" width="19" height="13" rx="2" />
+        <path d="m10.5 9.5 4.5 3-4.5 3z" />
+      </>
+    ),
     title: "Ver webinars",
     desc: "Aprende con especialistas en sesiones cortas y gana insignias por cada webinar que completes.",
   },
   {
-    emoji: "💬",
+    icon: (
+      <>
+        <path d="M21 11.5a8.4 8.4 0 0 1-12.8 7.2L3.5 20.5l1.8-4.6A8.4 8.4 0 1 1 21 11.5z" />
+        <path d="M8.5 11.5h7" />
+        <path d="M8.5 8.5h4" />
+      </>
+    ),
     title: "Compartir tu testimonio",
     desc: "Cuenta tu experiencia al final del reto y obtén el logro más valioso de la comunidad.",
   },
@@ -124,8 +153,19 @@ export default function Reto28DiasPage() {
                 key={a.title}
                 className="rounded-card border border-sand bg-cream p-6"
               >
-                <span className="text-3xl" aria-hidden="true">
-                  {a.emoji}
+                <span className="flex h-12 w-12 items-center justify-center rounded-full bg-brand-light text-brand">
+                  <svg
+                    viewBox="0 0 24 24"
+                    fill="none"
+                    stroke="currentColor"
+                    strokeWidth="1.5"
+                    strokeLinecap="round"
+                    strokeLinejoin="round"
+                    className="h-6 w-6"
+                    aria-hidden="true"
+                  >
+                    {a.icon}
+                  </svg>
                 </span>
                 <h3 className="mt-4 font-display text-lg font-semibold">
                   {a.title}

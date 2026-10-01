@@ -1,3 +1,4 @@
+import Image from "next/image";
 import Link from "next/link";
 import { notFound } from "next/navigation";
 import { PRODUCTS, getProduct, getUniverse, productsByUniverse } from "@/lib/data";
@@ -65,9 +66,17 @@ export default async function ProductPage({
               <ProductGallery images={product.images} name={product.name} />
             ) : (
               <div
-                className={`flex min-h-80 items-center justify-center rounded-card text-8xl ${universe?.tone ?? "bg-cream"}`}
+                className={`relative min-h-80 overflow-hidden rounded-card ${universe?.tone ?? "bg-cream"}`}
               >
-                {universe?.emoji}
+                {universe ? (
+                  <Image
+                    src={universe.image}
+                    alt={universe.imageAlt}
+                    fill
+                    sizes="(min-width: 768px) 45vw, 90vw"
+                    className="object-contain p-10"
+                  />
+                ) : null}
               </div>
             )}
           </div>
