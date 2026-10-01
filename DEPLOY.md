@@ -34,26 +34,57 @@ estatico y subir por FTP tal cual.
    npx serve out            # o: cd out && python3 -m http.server 8080
    ```
 
-3. Subir el **contenido de `out/`** a `public_html` del servidor.
+3. Subir el **contenido de `out/`** a la **raiz** de la cuenta FTP.
+
+   > **Importante — la cuenta FTP entra enjaulada.** `userPnlb@panalab.mx`
+   > aterriza directamente en el document root: lo que se ve como `/` al
+   > conectarse **ya es** `public_html`. No hay que entrar a ninguna carpeta
+   > `public_html` ni crearla. Al conectarse, `/` debe mostrar `.htaccess`,
+   > `index.html`, `_next/`, `productos/`, etc.
 
    Con cliente grafico (FileZilla): Host `panalab.mx`, Usuario
    `userPnlb@panalab.mx`, Puerto `21`, Cifrado **"Requerir FTP explicito sobre
    TLS"**. Arrastrar todo lo que esta dentro de `out/` (no la carpeta `out`) a
-   `public_html`. Verificar que el archivo oculto `.htaccess` tambien se suba:
-   en FileZilla, *Servidor -> Forzar mostrar archivos ocultos*.
+   la raiz remota `/`. Verificar que el archivo oculto `.htaccess` tambien se
+   suba: en FileZilla, *Servidor -> Forzar mostrar archivos ocultos*.
 
    Desde la terminal:
 
    ```bash
-   FTP_PASS='la-password' ./scripts/deploy-ftp.sh --dry-run   # simulacro
-   FTP_PASS='la-password' ./scripts/deploy-ftp.sh             # subida real
+   read -rsp 'FTP pass: ' FTP_PASS && export FTP_PASS && echo
+
+   FTP_VERIFY_CERT=no ./scripts/deploy-ftp.sh --dry-run   # simulacro
+   FTP_VERIFY_CERT=no ./scripts/deploy-ftp.sh             # subida real
    ```
 
-   El script usa `lftp` con FTPS explicito y espeja `out/` contra
-   `/public_html`. **`--delete` esta activo**: borra del servidor lo que ya no
-   existe en `out/`. Es lo que queremos: el sitio nuevo reemplaza por completo
-   al anterior (decision tomada con el cliente). Aun asi conviene bajar una
-   copia de `public_html` antes de la primera subida, por si acaso.
+   `FTP_VERIFY_CERT=no` es obligatorio con este hospedaje: el servidor
+   presenta el certificado `*.hostgator.mx`, que nunca va a coincidir con
+   `panalab.mx`, asi que la verificacion falla siempre. La conexion sigue
+   cifrada por TLS (`ftp:ssl-force` + `ftp:ssl-protect-data`); lo que se pierde
+   es la autenticacion del certificado. Se lee la contrasena con `read -rsp`
+   para que no quede en el historial del shell.
+
+   El script usa `lftp` con FTPS explicito y espeja `out/` contra la raiz `/`
+   de la cuenta (que es el document root). **`--delete` esta activo**: borra
+   del servidor lo que ya no existe en `out/`. Es lo que queremos: el sitio
+   nuevo reemplaza por completo al anterior (decision tomada con el cliente).
+   Aun asi conviene bajar una copia de la raiz antes de la primera subida, por
+   si acaso.
+
+   Como el espejo corre contra la raiz, el script excluye del borrado dos
+   cosas que son del hospedaje y no nuestras: `.well-known/` (validacion
+   ACME/AutoSSL — borrarla rompe la renovacion del certificado HTTPS) y
+   `.ftpquota`.
+
+### Si `panalab.mx` responde 403 y el sitio aparece en `panalab.mx/public_html/`
+
+Es el sintoma de haber subido todo un nivel mas abajo: quedo
+`<document root>/public_html/` y la raiz se quedo sin `index.html`, asi que
+Apache devuelve el 403 de cPanel. Paso por lo que `FTP_DIR` apuntaba a
+`/public_html` sin tomar en cuenta que la cuenta ya entra enjaulada en el
+document root. Se corrige volviendo a desplegar con `FTP_DIR=/` (el valor por
+omision actual); el `--delete` del espejo se encarga de limpiar la carpeta
+`public_html/` sobrante.
 
 4. Revisar en el navegador: home, un producto (`/productos/aminoter-mask/`), un
    universo (`/universos/acne/`), una herramienta y `/donde-comprar/`.
@@ -83,6 +114,8 @@ Mientras tanto, la Opcion A funciona con lo que ya tenemos.
 
 - La contrasena del FTP no se guarda en el repositorio: va en un gestor de
   contrasenas y se pasa por la variable `FTP_PASS`.
+- No la escribas en linea (`FTP_PASS='...' ./scripts/deploy-ftp.sh`): queda
+  guardada en claro en `~/.bash_history`. Usa el `read -rsp` del paso 3.
 - `npm run build` (sin `STATIC_EXPORT`) sigue haciendo el build normal de
   Next.js, por si mas adelante se despliega en un servidor con Node.
 - `out/` esta en `.gitignore`: es un artefacto de build, no se versiona.
