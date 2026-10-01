@@ -110,6 +110,50 @@ acceso al panel de DNS del registrador, no al FTP.
 
 Mientras tanto, la Opcion A funciona con lo que ya tenemos.
 
+## Comprobaciones despues de desplegar
+
+Las cabeceras de seguridad y las redirecciones viven en `.htaccess`, asi que
+solo se pueden comprobar contra el servidor ya desplegado: no hay forma de
+verificarlas desde el build. Despues de cada subida conviene correr esto.
+
+```bash
+# 1. Las siete cabeceras de seguridad (deben salir 7)
+curl -sI https://panalab.mx/ | grep -ciE '^(strict-transport-security|content-security-policy|content-security-policy-report-only|x-frame-options|x-content-type-options|referrer-policy|permissions-policy):'
+
+# 2. Tambien en el 404 (debe salir 1)
+curl -sI https://panalab.mx/no-existe/ | grep -ci '^x-frame-options: DENY'
+
+# 3. HSTS NO debe salir sobre http, porque ahi la respuesta es el 301 (0)
+curl -sI http://panalab.mx/ | grep -ci '^strict-transport-security'
+
+# 4. Carpetas que antes daban 403 (301 a /donde-comprar/ y a /)
+curl -s -o /dev/null -w '%{http_code} %{redirect_url}\n' https://panalab.mx/productos/
+curl -s -o /dev/null -w '%{http_code} %{redirect_url}\n' https://panalab.mx/universos/
+
+# 5. Charset y cache de estaticos
+curl -sI https://panalab.mx/ | grep -i 'content-type: text/html; charset=utf-8'
+curl -sI "https://panalab.mx$(grep -o '/_next/static/[^"]*\.js' out/index.html | head -1)" | grep -i immutable
+
+# 6. robots.txt y sitemap.xml (200 los dos)
+curl -s -o /dev/null -w '%{http_code}\n' https://panalab.mx/robots.txt
+curl -s -o /dev/null -w '%{http_code}\n' https://panalab.mx/sitemap.xml
+
+# 7. La exencion de ACME sigue viva: 404, nunca 301
+curl -s -o /dev/null -w '%{http_code}\n' http://panalab.mx/.well-known/acme-challenge/x
+```
+
+Si las cabeceras no aparecen, lo primero que hay que confirmar con el hosting
+es que `mod_headers` este habilitado en el plan. `Server: Apache` y la firma
+del servidor solo se pueden cambiar a nivel de vhost, no desde `.htaccess`.
+
+Antes de subir, el build ya revisa lo que si se puede revisar sin servidor:
+
+```bash
+npm test             # 69 pruebas
+npm run build:static
+npm run verify:out   # canonicals, titulos, descripciones, sitemap, 404
+```
+
 ## Notas
 
 - La contrasena del FTP no se guarda en el repositorio: va en un gestor de
