@@ -1,3 +1,4 @@
+import type { Metadata } from "next";
 import Image from "next/image";
 import Link from "next/link";
 import { UNIVERSES, PRODUCTS, STORIES } from "@/lib/data";
@@ -8,6 +9,10 @@ import Newsletter from "@/components/Newsletter";
 import Disclaimer from "@/components/Disclaimer";
 import HeroBanner from "@/components/HeroBanner";
 import WaveDivider from "@/components/WaveDivider";
+
+export const metadata: Metadata = {
+  alternates: { canonical: "/" },
+};
 
 const COMMUNITY_BENEFITS = [
   "Recibe tu rutina personalizada por correo",

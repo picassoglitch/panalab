@@ -8,6 +8,7 @@ import {
   getUniverse,
   productsByUniverse,
 } from "@/lib/data";
+import { canonical } from "@/lib/site";
 import ProductCard from "@/components/ProductCard";
 import Disclaimer from "@/components/Disclaimer";
 import Accordion, { AccordionItem } from "@/components/Accordion";
@@ -25,7 +26,10 @@ export async function generateMetadata({
 }) {
   const { slug } = await params;
   const universe = getUniverse(slug);
-  return { title: universe?.title ?? "Universo" };
+  return {
+    title: universe?.title ?? "Universo",
+    alternates: { canonical: canonical(`/universos/${slug}`) },
+  };
 }
 
 export default async function UniversePage({

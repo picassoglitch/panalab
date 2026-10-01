@@ -57,8 +57,13 @@ for (const { file, route } of pages) {
   if (h1s > 1) fail(`${route} tiene ${h1s} <h1> (maximo 1)`);
 }
 
+// Las paginas de error no llevan canonical: no son contenido indexable y
+// apuntarlas a si mismas o a la home seria mentir sobre que son.
+const ERROR_ROUTES = new Set(["/404/", "/_not-found/"]);
+
 // --- Canonical por pagina, con barra final --------------------------------
 for (const { file, route } of pages) {
+  if (ERROR_ROUTES.has(route)) continue;
   const html = readFileSync(file, "utf8");
   const canonicals = count(html, /rel="canonical"/g);
   if (canonicals !== 1) {

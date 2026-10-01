@@ -8,6 +8,7 @@ const off = DERMA_FINDER_MODE === "off";
 // La pagina nunca se indexa: apagada no tiene contenido util, y en modo demo
 // los especialistas son ficticios.
 export const metadata: Metadata = {
+  alternates: { canonical: "/derma-finder/" },
   title: "Derma Finder",
   description: off
     ? "El directorio de especialistas aliados de Panalab México estará disponible próximamente."

@@ -2,6 +2,7 @@ import Image from "next/image";
 import Link from "next/link";
 import { notFound } from "next/navigation";
 import { PRODUCTS, getProduct, getUniverse, productsByUniverse } from "@/lib/data";
+import { canonical } from "@/lib/site";
 import BuyButtons from "@/components/BuyButtons";
 import Disclaimer from "@/components/Disclaimer";
 import ProductCard from "@/components/ProductCard";
@@ -20,7 +21,10 @@ export async function generateMetadata({
 }) {
   const { slug } = await params;
   const product = getProduct(slug);
-  return { title: product?.name ?? "Producto" };
+  return {
+    title: product?.name ?? "Producto",
+    alternates: { canonical: canonical(`/productos/${slug}`) },
+  };
 }
 
 export default async function ProductPage({

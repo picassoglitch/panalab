@@ -1,6 +1,7 @@
 import type { Metadata } from "next";
 import Script from "next/script";
 import { Raleway, Mulish } from "next/font/google";
+import { SITE_URL } from "@/lib/site";
 import Header from "@/components/Header";
 import Footer from "@/components/Footer";
 import WaveFX from "@/components/WaveFX";
@@ -20,6 +21,8 @@ const mulish = Mulish({
 });
 
 export const metadata: Metadata = {
+  // Base para resolver los canonical y las URLs de Open Graph.
+  metadataBase: new URL(SITE_URL),
   title: {
     default: "Panalab México — Historias que tu piel quiere contar",
     template: "%s | Panalab México",

@@ -5,6 +5,7 @@ import OceanWaves from "@/components/OceanWaves";
 import { DERMA_FINDER_MODE } from "@/lib/features";
 
 export const metadata: Metadata = {
+  alternates: { canonical: "/herramientas/" },
   title: "Herramientas",
   description:
     "Asesor Virtual, test de tipo de piel, calculadora de rutina, mini tests y Derma Finder: herramientas Panalab para orientarte.",

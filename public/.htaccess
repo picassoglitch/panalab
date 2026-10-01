@@ -81,6 +81,12 @@ ErrorDocument 404 /404.html
   Header always set Content-Security-Policy-Report-Only "default-src 'self'; script-src 'self' 'unsafe-inline' https://www.googletagmanager.com; style-src 'self' 'unsafe-inline'; img-src 'self' data: https://www.googletagmanager.com https://*.google-analytics.com; font-src 'self'; connect-src 'self' https://*.google-analytics.com https://*.analytics.google.com https://www.googletagmanager.com; frame-src https://www.googletagmanager.com; frame-ancestors 'none'"
 
   Header always unset X-Powered-By
+
+  # Red de seguridad: cualquier host que no sea el canonico se marca noindex.
+  # La redireccion 301 de arriba ya cubre www y panalab.com.mx; esto protege de
+  # cualquier otro hostname que termine apuntando a este mismo document root
+  # (un subdominio de pruebas, el nombre temporal del hosting, etc.).
+  Header always set X-Robots-Tag "noindex, nofollow" "expr=%{HTTP_HOST} != 'panalab.mx'"
 </IfModule>
 
 # Cache de los assets estaticos (llevan hash en el nombre)

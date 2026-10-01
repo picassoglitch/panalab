@@ -14,6 +14,24 @@ const nextConfig: NextConfig = staticExport
       // La optimizacion de imagenes de Next necesita servidor.
       images: { unoptimized: true },
     }
-  : {};
+  : {
+      // Esta rama es la que construye Vercel. Existe una copia publica del
+      // sitio en panalab.vercel.app que compite en buscadores con panalab.mx,
+      // asi que todo lo que no se sirva desde el dominio canonico sale con
+      // noindex. `headers()` no existe en el export estatico; en Apache el
+      // equivalente es el X-Robots-Tag de public/.htaccess.
+      //
+      // Solo surte efecto cuando Vercel reconstruya desde una rama que ya
+      // tenga esto. Lo definitivo es retirar esa copia (tarea de OPS).
+      async headers() {
+        return [
+          {
+            source: "/:path*",
+            missing: [{ type: "host", value: "panalab.mx" }],
+            headers: [{ key: "X-Robots-Tag", value: "noindex, nofollow" }],
+          },
+        ];
+      },
+    };
 
 export default nextConfig;
