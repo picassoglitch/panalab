@@ -26,9 +26,9 @@ export default function Header() {
           >
             <Image
               src="/brand/panalab-logo.png"
-              alt="Laboratorios Panalab"
-              width={853}
-              height={206}
+              alt="Panalab México"
+              width={1200}
+              height={331}
               priority
               className="h-8 w-auto sm:h-9"
             />

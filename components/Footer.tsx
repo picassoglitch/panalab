@@ -9,9 +9,9 @@ export default function Footer() {
         <div>
           <Image
             src="/brand/panalab-logo-blanco.png"
-            alt="Laboratorios Panalab"
-            width={853}
-            height={206}
+            alt="Panalab México"
+            width={1200}
+            height={331}
             className="h-10 w-auto"
           />
           <p className="mt-3 max-w-xs text-sm leading-relaxed text-white/70">
