@@ -13,10 +13,22 @@ function headerValue(name: string): string | undefined {
 }
 
 describe("cabeceras de seguridad", () => {
-  it("todas se emiten con always, para que salgan tambien en 301 y 404", () => {
-    const sets = htaccess.match(/^\s*Header (always )?(set|unset)/gm) ?? [];
-    expect(sets.length).toBeGreaterThan(0);
-    for (const s of sets) expect(s).toContain("always");
+  it("se emiten con always, para que salgan tambien en 301 y 404", () => {
+    // Cache-Control es la excepcion a proposito: solo debe acompanar a las
+    // respuestas buenas. Con "always" un /_next/static/ inexistente serviria
+    // un 404 cacheado un ano.
+    const lines = htaccess
+      .split("\n")
+      .filter((l) => /^\s*Header\s/.test(l))
+      .filter((l) => !l.includes("Cache-Control"));
+    expect(lines.length).toBeGreaterThan(0);
+    for (const l of lines) expect(l, l.trim()).toContain("always");
+  });
+
+  it("Cache-Control se emite sin always, a proposito", () => {
+    const line = htaccess.split("\n").find((l) => l.includes("Cache-Control"));
+    expect(line).toBeDefined();
+    expect(line).not.toContain("always");
   });
 
   it("manda HSTS de un ano, solo sobre HTTPS", () => {
@@ -92,5 +104,41 @@ describe("reglas que ya existian", () => {
   it("sigue el 404 propio y la redireccion al dominio canonico", () => {
     expect(htaccess).toContain("ErrorDocument 404 /404.html");
     expect(htaccess).toContain("RewriteRule ^(.*)$ https://panalab.mx/$1 [R=301,L]");
+  });
+});
+
+describe("higiene de Apache", () => {
+  it("declara UTF-8 por defecto", () => {
+    expect(htaccess).toMatch(/^AddDefaultCharset UTF-8$/m);
+  });
+
+  it("redirige las carpetas que devolvian 403", () => {
+    expect(htaccess).toContain("RewriteRule ^productos/?$ /donde-comprar/ [R=301,L]");
+    expect(htaccess).toContain("RewriteRule ^universos/?$ / [R=301,L]");
+  });
+
+  it("manda /index.html a la home, sin romper el ErrorDocument", () => {
+    expect(htaccess).toContain("RewriteRule ^index\\.html$ / [R=301,L]");
+    const idx = htaccess.indexOf("RewriteRule ^index\\.html$");
+    const before = htaccess.slice(0, idx);
+    expect(before).toContain("RewriteCond %{ENV:REDIRECT_STATUS} ^$");
+  });
+
+  it("cachea para siempre los estaticos con hash", () => {
+    expect(htaccess).toContain('m#^/_next/static/#');
+    expect(htaccess).toContain('Cache-Control "public, max-age=31536000, immutable"');
+  });
+
+  it("las redirecciones nuevas van despues de la exencion de /.well-known/", () => {
+    const wellKnown = htaccess.indexOf("^/\\.well-known/");
+    const productos = htaccess.indexOf("RewriteRule ^productos/?$");
+    expect(wellKnown).toBeGreaterThan(-1);
+    expect(productos).toBeGreaterThan(wellKnown);
+  });
+
+  it("y despues de la redireccion al dominio canonico", () => {
+    const canonico = htaccess.indexOf("https://panalab.mx/$1 [R=301,L]");
+    const productos = htaccess.indexOf("RewriteRule ^productos/?$");
+    expect(productos).toBeGreaterThan(canonico);
   });
 });

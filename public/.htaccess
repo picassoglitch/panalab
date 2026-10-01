@@ -5,6 +5,10 @@
 # Pagina de error 404 del sitio
 ErrorDocument 404 /404.html
 
+# El HTML se servia como text/html sin charset, y el sitio esta en espanol:
+# sin esto los acentos dependen de lo que adivine el navegador.
+AddDefaultCharset UTF-8
+
 <IfModule mod_rewrite.c>
   RewriteEngine On
 
@@ -42,6 +46,18 @@ ErrorDocument 404 /404.html
   RewriteCond %{HTTPS} !=on
   RewriteCond %{HTTP:X-Forwarded-Proto} !https
   RewriteRule ^(.*)$ https://%{HTTP_HOST}/$1 [R=301,L]
+
+  # /productos/ y /universos/ son solo carpetas: el sitio no genera indice para
+  # ellas, asi que Apache devolvia su 403 de "FORBIDDEN". Se mandan a la pagina
+  # que el usuario esperaba encontrar.
+  RewriteRule ^productos/?$ /donde-comprar/ [R=301,L]
+  RewriteRule ^universos/?$ / [R=301,L]
+
+  # /index.html responde 200 igual que /, o sea la home duplicada. Se manda a
+  # la version canonica. La condicion sobre REDIRECT_STATUS evita tocar las
+  # peticiones internas que Apache hace al resolver un ErrorDocument.
+  RewriteCond %{ENV:REDIRECT_STATUS} ^$
+  RewriteRule ^index\.html$ / [R=301,L]
 </IfModule>
 
 # Cabeceras de seguridad.
@@ -87,6 +103,13 @@ ErrorDocument 404 /404.html
   # cualquier otro hostname que termine apuntando a este mismo document root
   # (un subdominio de pruebas, el nombre temporal del hosting, etc.).
   Header always set X-Robots-Tag "noindex, nofollow" "expr=%{HTTP_HOST} != 'panalab.mx'"
+
+  # Los archivos de /_next/static/ llevan hash en el nombre: si cambia el
+  # contenido cambia la URL, asi que se pueden cachear para siempre. No tenian
+  # ningun Cache-Control.
+  <If "%{REQUEST_URI} =~ m#^/_next/static/#">
+    Header set Cache-Control "public, max-age=31536000, immutable"
+  </If>
 </IfModule>
 
 # Cache de los assets estaticos (llevan hash en el nombre)
