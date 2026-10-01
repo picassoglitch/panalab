@@ -44,6 +44,45 @@ ErrorDocument 404 /404.html
   RewriteRule ^(.*)$ https://%{HTTP_HOST}/$1 [R=301,L]
 </IfModule>
 
+# Cabeceras de seguridad.
+#
+# El sitio no mandaba ninguna: sin HSTS, sin proteccion contra clickjacking y
+# sin bloqueo de MIME sniffing. En hospedaje compartido solo controlamos este
+# archivo, no el vhost, asi que van todas aqui.
+#
+# "always" es importante: sin eso las cabeceras no salen en las respuestas de
+# error ni en los 301, que es justo donde tambien hacen falta.
+<IfModule mod_headers.c>
+  # HSTS solo cuando la peticion ya viene por HTTPS. Mandarlo sobre http es
+  # inutil (el navegador lo ignora) y aqui la respuesta http es un 301.
+  # Sin includeSubDomains ni preload a proposito: no esta verificado que todos
+  # los subdominios (mail., etc.) sirvan solo HTTPS, y preload es dificil de
+  # revertir. Ver OPEN QUESTION 4.
+  Header always set Strict-Transport-Security "max-age=31536000" "expr=%{HTTPS} == 'on' || %{HTTP:X-Forwarded-Proto} == 'https'"
+
+  Header always set X-Frame-Options "DENY"
+  Header always set X-Content-Type-Options "nosniff"
+  Header always set Referrer-Policy "strict-origin-when-cross-origin"
+  Header always set Permissions-Policy "camera=(), microphone=(), geolocation=(), payment=(), usb=(), browsing-topics=()"
+
+  # CSP aplicada: solo lo que no puede romper nada del sitio actual.
+  Header always set Content-Security-Policy "frame-ancestors 'none'; base-uri 'self'; object-src 'none'; form-action 'self'"
+
+  # CSP completa, de momento en modo reporte para poder observar antes de
+  # aplicarla. Googletagmanager va explicito para que encender GTM mas adelante
+  # no la rompa. 'unsafe-inline' en script-src es inevitable por ahora: un
+  # export estatico no puede generar un nonce por peticion y Next emite un
+  # script inline (self.__next_f.push) en cada pagina. next/font descarga
+  # Raleway y Mulish al propio dominio, asi que font-src 'self' basta.
+  #
+  # Plan para aplicarla: observar los reportes y luego, o bien aplicarla tal
+  # cual con 'unsafe-inline', o anadir un paso despues del build que calcule el
+  # sha256 de cada script inline y los liste aqui. Ver OPEN QUESTION 3.
+  Header always set Content-Security-Policy-Report-Only "default-src 'self'; script-src 'self' 'unsafe-inline' https://www.googletagmanager.com; style-src 'self' 'unsafe-inline'; img-src 'self' data: https://www.googletagmanager.com https://*.google-analytics.com; font-src 'self'; connect-src 'self' https://*.google-analytics.com https://*.analytics.google.com https://www.googletagmanager.com; frame-src https://www.googletagmanager.com; frame-ancestors 'none'"
+
+  Header always unset X-Powered-By
+</IfModule>
+
 # Cache de los assets estaticos (llevan hash en el nombre)
 <IfModule mod_expires.c>
   ExpiresActive On
