@@ -5,6 +5,7 @@ import Link from "next/link";
 import { useState } from "react";
 import { UNIVERSES, productsByUniverse, getUniverse } from "@/lib/data";
 import { track } from "@/lib/analytics";
+import { DERMA_FINDER_MODE } from "@/lib/features";
 import BuyButtons from "@/components/BuyButtons";
 import Disclaimer from "@/components/Disclaimer";
 import Newsletter from "@/components/Newsletter";
@@ -212,9 +213,24 @@ export default function AdvisorFlow() {
 
           <p className="mt-6 text-ink-soft">
             ¿Prefieres una valoración profesional?{" "}
-            <Link href="/derma-finder" className="font-semibold text-brand hover:underline">
-              Busca un dermatólogo cerca de ti →
-            </Link>
+            {DERMA_FINDER_MODE === "off" ? (
+              <>
+                Estamos armando el directorio de especialistas aliados.{" "}
+                <Link
+                  href="/derma-finder"
+                  className="font-semibold text-brand hover:underline"
+                >
+                  Derma Finder · Próximamente
+                </Link>
+              </>
+            ) : (
+              <Link
+                href="/derma-finder"
+                className="font-semibold text-brand hover:underline"
+              >
+                Busca un dermatólogo cerca de ti →
+              </Link>
+            )}
           </p>
 
           <div className="mt-10 rounded-card border border-sand bg-white p-6">

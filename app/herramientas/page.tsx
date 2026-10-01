@@ -2,6 +2,7 @@ import type { Metadata } from "next";
 import Link from "next/link";
 import Disclaimer from "@/components/Disclaimer";
 import OceanWaves from "@/components/OceanWaves";
+import { DERMA_FINDER_MODE } from "@/lib/features";
 
 export const metadata: Metadata = {
   title: "Herramientas",
@@ -33,7 +34,11 @@ const TOOLS = [
   {
     href: "/derma-finder",
     title: "Derma Finder",
-    desc: "Encuentra dermatólogos y clínicas aliadas por código postal, con filtros por problema.",
+    desc:
+      DERMA_FINDER_MODE === "off"
+        ? "Directorio de dermatólogos y clínicas aliadas. Lo abriremos en cuanto cada especialista confirme su participación."
+        : "Encuentra dermatólogos y clínicas aliadas por código postal, con filtros por problema.",
+    soon: DERMA_FINDER_MODE === "off",
   },
   {
     href: "/reto-28-dias",
@@ -91,7 +96,7 @@ export default function HerramientasPage() {
               </h3>
               <p className="mt-2 leading-relaxed text-ink-soft">{t.desc}</p>
               <span className="mt-4 inline-block text-sm font-semibold text-brand">
-                Probar →
+                {"soon" in t && t.soon ? "Próximamente" : "Probar →"}
               </span>
             </Link>
           ))}

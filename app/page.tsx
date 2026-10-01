@@ -1,6 +1,7 @@
 import Image from "next/image";
 import Link from "next/link";
 import { UNIVERSES, PRODUCTS, STORIES } from "@/lib/data";
+import { DERMA_FINDER_MODE } from "@/lib/features";
 import ProductCard from "@/components/ProductCard";
 import USPBar from "@/components/USPBar";
 import Newsletter from "@/components/Newsletter";
@@ -88,7 +89,11 @@ export default function Home() {
               {
                 href: "/derma-finder",
                 title: "Derma Finder",
-                desc: "Dermatólogos y clínicas aliadas cerca de ti.",
+                desc:
+                  DERMA_FINDER_MODE === "off"
+                    ? "Directorio de especialistas aliados, en construcción."
+                    : "Dermatólogos y clínicas aliadas cerca de ti.",
+                soon: DERMA_FINDER_MODE === "off",
               },
             ].map((t) => (
               <Link
@@ -101,7 +106,7 @@ export default function Home() {
                 </h3>
                 <p className="mt-2 text-sm leading-relaxed text-ink-soft">{t.desc}</p>
                 <span className="mt-3 inline-block text-sm font-semibold text-brand">
-                  Probar →
+                  {"soon" in t && t.soon ? "Próximamente" : "Probar →"}
                 </span>
               </Link>
             ))}

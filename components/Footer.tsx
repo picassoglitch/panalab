@@ -1,6 +1,7 @@
 import Image from "next/image";
 import Link from "next/link";
 import { UNIVERSES } from "@/lib/data";
+import { DERMA_FINDER_MODE } from "@/lib/features";
 
 export default function Footer() {
   return (
@@ -48,7 +49,7 @@ export default function Footer() {
             </li>
             <li>
               <Link href="/derma-finder" className="text-sm text-white/80 hover:text-white">
-                Derma Finder
+                Derma Finder{DERMA_FINDER_MODE === "off" && " · Próximamente"}
               </Link>
             </li>
             <li>
