@@ -1,14 +1,19 @@
 @import "tailwindcss";
 
 /* Paleta 100% Panalab:
-   #001e62 Pantone 2758 C (logo) · #5b6770 Pantone 431 (logo)
-   #133782 azul web · #00a7dc cian web · #005380 azul profundo
+   #133782 azul del logo oficial · #46bfe5 cian del logo ("LABORATORIOS")
+   #001e62 Pantone 2758 C · #5b6770 Pantone 431
+   #00a7dc cian web · #005380 azul profundo
    #0a6f83 azul-verdoso del gradiente institucional de panalab.com */
 @theme {
-  --color-brand: #001e62; /* Pantone 2758 C */
-  --color-brand-dark: #001440;
+  /* El azul de marca es el del logo oficial (logo_panalab_color.png de
+     panalab.com): #133782. Antes era Pantone 2758 C (#001e62), que se veia
+     mas oscuro que el propio logo cuando los dos quedaban juntos en pantalla.
+     El 2758 C pasa a ser el tono profundo. */
+  --color-brand: #133782; /* azul del logo Panalab */
+  --color-brand-dark: #001e62; /* Pantone 2758 C */
   --color-brand-light: #e7eaf4;
-  --color-royal: #133782; /* azul primario panalab.com */
+  --color-royal: #133782; /* azul primario panalab.com (= --color-brand) */
   --color-petrol: #0a6f83; /* verde-azulado del gradiente Panalab */
   --color-ink: #10162e;
   --color-ink-soft: #5b6770; /* Pantone 431 */
