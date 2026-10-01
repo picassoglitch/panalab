@@ -1,5 +1,6 @@
 "use client";
 
+import Image from "next/image";
 import Link from "next/link";
 import { useState } from "react";
 import { UNIVERSES, productsByUniverse, getUniverse } from "@/lib/data";
@@ -132,7 +133,15 @@ export default function AdvisorFlow() {
                 onClick={() => pickUniverse(un.slug)}
                 className={`flex items-center gap-4 rounded-card p-5 text-left transition-transform hover:-translate-y-0.5 ${un.tone}`}
               >
-                <span className="text-3xl">{un.emoji}</span>
+                <span className="relative h-14 w-14 shrink-0">
+                  <Image
+                    src={un.image}
+                    alt={un.imageAlt}
+                    fill
+                    sizes="56px"
+                    className="object-contain"
+                  />
+                </span>
                 <span className="font-display text-lg font-semibold">{un.nav}</span>
               </button>
             ))}

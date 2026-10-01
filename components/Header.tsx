@@ -1,5 +1,6 @@
 "use client";
 
+import Image from "next/image";
 import Link from "next/link";
 import { useState } from "react";
 import { UNIVERSES } from "@/lib/data";
@@ -17,13 +18,20 @@ export default function Header() {
       </div>
       <div className="border-b border-sand">
         <div className="mx-auto flex h-16 max-w-6xl items-center justify-between px-4 sm:px-6">
-          <Link href="/" className="flex items-baseline gap-1" onClick={() => setOpen(false)}>
-            <span className="font-display text-2xl font-extrabold tracking-tight text-brand">
-              Panalab
-            </span>
-            <span className="text-xs font-semibold uppercase tracking-widest text-ink-soft">
-              México
-            </span>
+          <Link
+            href="/"
+            className="flex items-center"
+            onClick={() => setOpen(false)}
+            aria-label="Panalab México, ir al inicio"
+          >
+            <Image
+              src="/brand/panalab-logo.png"
+              alt="Panalab México"
+              width={1200}
+              height={331}
+              priority
+              className="h-8 w-auto sm:h-9"
+            />
           </Link>
 
           <nav className="hidden items-center gap-5 lg:flex">

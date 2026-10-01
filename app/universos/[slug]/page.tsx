@@ -1,3 +1,4 @@
+import Image from "next/image";
 import Link from "next/link";
 import { notFound } from "next/navigation";
 import {
@@ -83,7 +84,16 @@ export default async function UniversePage({
       <TrackView event="view_category" params={{ category: universe.slug }} />
       <section className={`relative ${universe.tone}`}>
         <div className="mx-auto max-w-6xl px-4 pb-24 pt-12 sm:px-6 md:pt-16">
-          <span className="text-4xl">{universe.emoji}</span>
+          <div className="relative h-32 w-32">
+            <Image
+              src={universe.image}
+              alt={universe.imageAlt}
+              fill
+              sizes="128px"
+              priority
+              className="object-contain object-left"
+            />
+          </div>
           <h1 className="mt-4 font-display text-4xl font-extrabold sm:text-5xl">
             {universe.title}
           </h1>

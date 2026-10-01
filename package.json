@@ -6,10 +6,11 @@
     "dev": "next dev",
     "build": "next build",
     "start": "next start",
-    "lint": "eslint"
+    "lint": "eslint",
+    "build:static": "STATIC_EXPORT=true next build"
   },
   "dependencies": {
-    "next": "16.2.10",
+    "next": "16.3.8",
     "react": "19.2.4",
     "react-dom": "19.2.4"
   },

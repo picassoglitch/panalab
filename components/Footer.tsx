@@ -1,3 +1,4 @@
+import Image from "next/image";
 import Link from "next/link";
 import { UNIVERSES } from "@/lib/data";
 
@@ -6,7 +7,13 @@ export default function Footer() {
     <footer className="bg-ink text-white">
       <div className="mx-auto grid max-w-6xl gap-10 px-4 py-12 sm:px-6 md:grid-cols-3">
         <div>
-          <p className="font-display text-2xl font-semibold">Panalab México</p>
+          <Image
+            src="/brand/panalab-logo-blanco.png"
+            alt="Panalab México"
+            width={1200}
+            height={331}
+            className="h-10 w-auto"
+          />
           <p className="mt-3 max-w-xs text-sm leading-relaxed text-white/70">
             Historias que tu piel quiere contar. Ciencia traducida a lenguaje
             cotidiano para cuidar tu piel y tu cabello.

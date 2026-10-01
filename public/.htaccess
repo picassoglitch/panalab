@@ -1,0 +1,61 @@
+# Configuracion para el hospedaje compartido de panalab.mx (Apache).
+# Este archivo se copia tal cual a /out durante el build
+# y debe quedar en la raiz de public_html.
+
+# Pagina de error 404 del sitio
+ErrorDocument 404 /404.html
+
+<IfModule mod_rewrite.c>
+  RewriteEngine On
+
+  # Nunca redirigir /.well-known/: por ahi valida AutoSSL/ACME la renovacion
+  # del certificado. Si esas peticiones se mueven, el certificado deja de
+  # renovarse y el sitio queda sin HTTPS semanas despues.
+  RewriteCond %{REQUEST_URI} ^/\.well-known/ [NC]
+  RewriteRule ^ - [L]
+
+  # Dominio canonico: panalab.mx sin www.
+  #
+  # panalab.com.mx, www.panalab.com.mx y www.panalab.mx apuntan al mismo
+  # document root, asi que sin esta regla el sitio se sirve igual en cuatro
+  # hostnames (contenido duplicado para buscadores).
+  #
+  # Va antes de forzar HTTPS y manda directo a https:// para resolverlo en una
+  # sola redireccion en lugar de encadenar dos.
+  #
+  # No depende de lo que haga el cliente en el DNS: si el ademas lo resuelve
+  # alla, esta regla simplemente deja de activarse. Tampoco puede hacer bucle,
+  # porque el destino (panalab.mx) no coincide con la condicion.
+  #
+  # Es una sola condicion con un regex en vez de varias con [OR]: mezclar [OR]
+  # y AND en RewriteCond cambia la precedencia de forma poco obvia.
+  RewriteCond %{HTTP_HOST} ^(www\.panalab\.mx|(www\.)?panalab\.com\.mx)$ [NC]
+  RewriteRule ^(.*)$ https://panalab.mx/$1 [R=301,L]
+
+  # Forzar HTTPS (aqui el host ya es el canonico).
+  #
+  # Estuvo desactivado un tiempo porque el hosting todavia no emitia el
+  # certificado de panalab.mx y redirigir a https dejaba el sitio inaccesible
+  # (lo atendia el vhost por defecto del servidor con un 404 ajeno). AutoSSL ya
+  # emitio: Let's Encrypt el 25-09-2026 para panalab.mx y *.panalab.mx, y otro
+  # para panalab.com.mx y *.panalab.com.mx. Por eso vuelve a estar activo.
+  RewriteCond %{HTTPS} !=on
+  RewriteCond %{HTTP:X-Forwarded-Proto} !https
+  RewriteRule ^(.*)$ https://%{HTTP_HOST}/$1 [R=301,L]
+</IfModule>
+
+# Cache de los assets estaticos (llevan hash en el nombre)
+<IfModule mod_expires.c>
+  ExpiresActive On
+  ExpiresByType text/html "access plus 0 seconds"
+  ExpiresByType text/css "access plus 1 year"
+  ExpiresByType application/javascript "access plus 1 year"
+  ExpiresByType image/webp "access plus 6 months"
+  ExpiresByType image/jpeg "access plus 6 months"
+  ExpiresByType image/png "access plus 6 months"
+  ExpiresByType image/svg+xml "access plus 6 months"
+</IfModule>
+
+<IfModule mod_deflate.c>
+  AddOutputFilterByType DEFLATE text/html text/css application/javascript application/json image/svg+xml
+</IfModule>
