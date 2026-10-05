@@ -1,21 +1,31 @@
 # Shirt folding boards (tablas para doblar ropa)
 
-Plain boards with a handle cutout, in 4 sizes. They are 2.5 mm thick.
+Boards with a handle cutout, 2.5 mm thick, in 4 sizes. The black "mp" logo is set
+flush into the center of the top surface (0.6 mm deep).
 
-| Size | Size (cm) | Full STL | Fits the 256 mm bed (X1/P1/A1)? |
-|---|---|---|---|
-| Bebé | 11 × 24.5 | `stl/bebe_full.stl` | Yes |
-| Chica | 16 × 27 | `stl/chica_full.stl` | No, use `chica_split_top/bottom` |
-| Mediana | 20 × 30 | `stl/mediana_full.stl` | No, use `mediana_split_top/bottom` |
-| Grande | 25 × 30 | `stl/grande_full.stl` | No, use `grande_split_top/bottom` |
+| Size | Board (cm) | Logo | Regular bed (X1/P1/A1, 256 mm) | H2D |
+|---|---|---|---|---|
+| Bebé | 11 × 24.5 | 7 cm | `3mf/bebe_full.3mf` | same |
+| Chica | 16 × 27 | 10 cm | `3mf/chica_split_bottom.3mf` + `stl/chica_split_top_board.stl` | `3mf/chica_full.3mf` |
+| Mediana | 20 × 30 | 12 cm | `3mf/mediana_split_bottom.3mf` + `stl/mediana_split_top_board.stl` | `3mf/mediana_full.3mf` |
+| Grande | 25 × 30 | 14 cm | `3mf/grande_split_bottom.3mf` + `stl/grande_split_top_board.stl` | `3mf/grande_full.3mf` |
 
-The `_full` files print in one piece on an H2D (325 × 320 mm bed).
-Each split version has two halves that join with dovetail tabs (0.15 mm gap).
-Press them together and glue with CA glue.
+## Colors (AMS)
+- **board** part → white (or the board color). The "mp" letters are part of it.
+- **logo** part → black (the disc around the letters).
 
-**Suggested settings:** PETG (bends without snapping) or PLA, 0.2 mm layers,
-3 walls, 100% infill or top/bottom only. For a smooth top, print on the
-textured PEI plate or use ironing.
+Open the `.3mf` in Bambu Studio. If it asks, choose **Yes** to load it as one object
+with multiple parts. Then set the filament for each part. The same parts are also
+in `stl/` (`*_board.stl` + `*_logo.stl`). Select both together when importing.
 
-To change the dimensions, edit `SIZES` / `T` in `make_boards.py` and run
-`python3 make_boards.py`. It needs `trimesh`, `shapely`, `matplotlib` and `numpy`.
+## Split boards
+Boards over 256 mm come in two halves joined by dovetail tabs (0.15 mm gap). The joint
+sits above the logo, so it never crosses it. Press the halves together and glue with
+CA glue.
+
+**Settings:** PETG (bends without snapping) or PLA, 0.2 mm layers, 3 walls. Lay the
+board flat with the logo facing up.
+
+To change sizes or logo diameter, edit `SIZES` in `make_boards.py` and run
+`python3 make_boards.py`. It needs `trimesh`, `manifold3d`, `shapely`, `opencv-python`,
+`matplotlib` and `numpy`. The logo is traced from `../mp-logo/mp_logo.png`.
